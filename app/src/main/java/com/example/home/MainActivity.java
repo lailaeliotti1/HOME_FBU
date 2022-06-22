@@ -8,6 +8,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
+import com.example.home.login.LoginFragment;
+import com.example.home.login.RegisterFragment;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {

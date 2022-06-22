@@ -1,16 +1,16 @@
-package com.example.home;
+package com.example.home.models;
 
 import org.json.JSONObject;
 import org.parceler.Parcel;
 
 @Parcel
 public class Homes {
-    public String address;
-    public Double homePrice;
-    public Integer homeNoOfBedrooms;
-    public Integer homeNoOfBathrooms;
-    public Integer homeNoOfFloors;
-    public Integer yearBuilt;
+    private String address;
+    private Double homePrice;
+    private Integer homeNoOfBedrooms;
+    private Integer homeNoOfBathrooms;
+    private Integer homeNoOfFloors;
+    private Integer yearBuilt;
     public boolean saved;
 
     public Homes(){}

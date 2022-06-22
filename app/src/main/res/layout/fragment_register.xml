@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".RegisterFragment">
+    tools:context=".login.RegisterFragment">
 
     <TextView
-        android:id="@+id/tv_logo"
+        android:id="@+id/mtvLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register"
@@ -19,7 +19,7 @@
         android:layout_marginTop="60dp"/>
 
     <TextView
-        android:id="@+id/tvSubtitle"
+        android:id="@+id/mtvSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tag"
@@ -28,7 +28,7 @@
         android:layout_marginBottom="50dp"/>
 
     <EditText
-        android:id="@+id/et_name"
+        android:id="@+id/metName"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="@string/your_name"
@@ -41,7 +41,7 @@
         android:textSize="15sp" />
 
     <EditText
-        android:id="@+id/etEmail"
+        android:id="@+id/metEmail"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="@string/e_mail"
@@ -54,7 +54,7 @@
         android:textSize="15sp" />
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/metPassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="@string/password"
@@ -67,7 +67,7 @@
         android:textSize="15sp" />
 
     <EditText
-        android:id="@+id/et_repassword"
+        android:id="@+id/metRepasword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="@string/re_type_password"
@@ -84,7 +84,7 @@
         android:layout_weight="1">
 
         <Button
-            android:id="@+id/btn_register"
+            android:id="@+id/mbtnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_custom"
@@ -96,14 +96,15 @@
             android:text="@string/register"/>
 
         <ImageView
+            android:id="@+id/mivbArrow"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_arrow_left"
-            android:layout_above="@id/swipeLeft"
-            android:layout_centerHorizontal="true"/>
+            android:layout_above="@id/mtvSwipeLeft"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_arrow_left" />
 
         <TextView
-            android:id="@+id/swipeLeft"
+            android:id="@+id/mtvSwipeLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/swipe_right_for_login"

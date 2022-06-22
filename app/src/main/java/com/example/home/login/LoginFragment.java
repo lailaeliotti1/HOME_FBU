@@ -1,4 +1,4 @@
-package com.example.home;
+package com.example.home.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,14 +15,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.home.MainActivity;
+import com.example.home.R;
+
 public class LoginFragment extends Fragment {
-    private TextView tvTitle;
-    private TextView tvSubtitle;
-    private Button btnLogin;
-    private EditText etEmail;
-    private EditText etPassword;
-    private ImageView ivArrow;
-    private TextView tvSwipeRight;
+    private TextView mtvTitle;
+    private TextView mtvSubtitle;
+    private Button mbtnLogin;
+    private EditText metEmail;
+    private EditText metPassword;
+    private ImageView mivArrow;
+    private TextView mtvSwipeRight;
 
 
 
@@ -41,14 +44,14 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        tvTitle = view.findViewById(R.id.tvTitle);
-        tvSubtitle = view.findViewById(R.id.tvSubtitle);
-        btnLogin = view.findViewById(R.id.btnLogin);
-        etEmail = view.findViewById(R.id.etEmail);
-        etPassword = view.findViewById(R.id.etPassword);
-        ivArrow = view.findViewById(R.id.ivArrow);
-        tvSwipeRight = view.findViewById(R.id.tvSwipeRight);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        mtvTitle = view.findViewById(R.id.mtvTitle);
+        mtvSubtitle = view.findViewById(R.id.mtvSubtitle);
+        mbtnLogin = view.findViewById(R.id.mbtnLogin);
+        metEmail = view.findViewById(R.id.metEmail);
+        metPassword = view.findViewById(R.id.metPassword);
+        mivArrow = view.findViewById(R.id.mivArrow);
+        mtvSwipeRight = view.findViewById(R.id.mtvSwipeRight);
+        mbtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

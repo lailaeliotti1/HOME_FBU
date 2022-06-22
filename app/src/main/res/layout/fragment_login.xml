@@ -5,13 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginFragment">
+    tools:context=".login.LoginFragment">
 
     <TextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/mtvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/tvSubtitle"
+        android:layout_above="@id/mtvSubtitle"
         android:layout_marginStart="123dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="147dp"
@@ -22,10 +22,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvSubtitle"
+        android:id="@+id/mtvSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/etEmail"
+        android:layout_above="@id/metEmail"
         android:layout_marginStart="136dp"
         android:layout_marginEnd="165dp"
         android:text="@string/tag"
@@ -33,13 +33,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/mtvTitle" />
 
     <EditText
-        android:id="@+id/etEmail"
+        android:id="@+id/metEmail"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_above="@id/etPassword"
+        android:layout_above="@id/metPassword"
         android:layout_marginTop="79dp"
         android:background="@drawable/et_custom"
         android:hint="@string/e_mail"
@@ -48,10 +48,10 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle" />
+        app:layout_constraintTop_toBottomOf="@+id/mtvSubtitle" />
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/metPassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_centerInParent="true"
@@ -63,26 +63,26 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/metEmail" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/mbtnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/etPassword"
+        android:layout_below="@id/metPassword"
         android:layout_marginTop="19dp"
         android:background="@drawable/btn_custom"
         android:text="@string/login"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/metPassword" />
 
     <ImageView
-        android:id="@+id/ivArrow"
+        android:id="@+id/mivArrow"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_above="@id/tvSwipeRight"
+        android:layout_above="@id/mtvSwipeRight"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
@@ -91,11 +91,11 @@
         android:src="@drawable/ic_arrow_right"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvSwipeRight"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintStart_toEndOf="@+id/mtvSwipeRight"
+        app:layout_constraintTop_toBottomOf="@+id/mbtnLogin" />
 
     <TextView
-        android:id="@+id/tvSwipeRight"
+        android:id="@+id/mtvSwipeRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -105,8 +105,8 @@
         android:layout_marginEnd="8dp"
         android:text="@string/swipe_left_for_register"
         android:textSize="15sp"
-        app:layout_constraintEnd_toStartOf="@+id/ivArrow"
+        app:layout_constraintEnd_toStartOf="@+id/mivArrow"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/mbtnLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
