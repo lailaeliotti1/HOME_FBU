@@ -44,13 +44,13 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mtvTitle = view.findViewById(R.id.mtvTitle);
-        mtvSubtitle = view.findViewById(R.id.mtvSubtitle);
-        mbtnLogin = view.findViewById(R.id.mbtnLogin);
-        metEmail = view.findViewById(R.id.metEmail);
-        metPassword = view.findViewById(R.id.metPassword);
-        mivArrow = view.findViewById(R.id.mivArrow);
-        mtvSwipeRight = view.findViewById(R.id.mtvSwipeRight);
+        mtvTitle = view.findViewById(R.id.TitleTextView);
+        mtvSubtitle = view.findViewById(R.id.SubtitleTextView);
+        mbtnLogin = view.findViewById(R.id.LoginButton);
+        metEmail = view.findViewById(R.id.EmailEditText);
+        metPassword = view.findViewById(R.id.PassEditText);
+        mivArrow = view.findViewById(R.id.ArrowImageView);
+        mtvSwipeRight = view.findViewById(R.id.SwipeRightTextView);
         mbtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

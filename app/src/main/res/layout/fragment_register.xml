@@ -8,7 +8,7 @@
     tools:context=".login.RegisterFragment">
 
     <TextView
-        android:id="@+id/mtvLogo"
+        android:id="@+id/LogoTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register"
@@ -19,7 +19,7 @@
         android:layout_marginTop="60dp"/>
 
     <TextView
-        android:id="@+id/mtvSubtitle"
+        android:id="@+id/SubtitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tag"
@@ -41,7 +41,7 @@
         android:textSize="15sp" />
 
     <EditText
-        android:id="@+id/metEmail"
+        android:id="@+id/EmailEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="@string/e_mail"
@@ -54,7 +54,7 @@
         android:textSize="15sp" />
 
     <EditText
-        android:id="@+id/metPassword"
+        android:id="@+id/PassEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="@string/password"
