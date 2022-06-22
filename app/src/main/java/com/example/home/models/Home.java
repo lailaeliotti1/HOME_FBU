@@ -6,13 +6,13 @@ import com.parse.ParseObject;
 
 @ParseClassName("Home")
 public class Home extends ParseObject {
-    private String address;
-    private Double homePrice;
-    private Integer homeNoOfBedrooms;
-    private Integer homeNoOfBathrooms;
-    private Integer homeNoOfFloors;
-    private Integer yearBuilt;
-    public boolean saved;
+    private String mAddress;
+    private Double mHomePrice;
+    private Integer mHomeNoOfBedrooms;
+    private Integer mHomeNoOfBathrooms;
+    private Integer mHomeNoOfFloors;
+    private Integer mYearBuilt;
+    public boolean mSaved;
 
     public Home(){}
 
@@ -21,31 +21,51 @@ public class Home extends ParseObject {
         return home;
     }
 
-    public String getAddress() {
-        return address;
+    public String getmAddress() {
+        return mAddress;
     }
 
-    public Double getHomePrice() {
-        return homePrice;
+    public void setmAddress(String mAddress) {
+        this.mAddress = mAddress;
+    }
+
+    public Double getmHomePrice() {
+        return mHomePrice;
     }
 
     public Integer getHomeNoOfBedrooms() {
-        return homeNoOfBedrooms;
+        return mHomeNoOfBedrooms;
     }
 
-    public Integer getHomeNoOfBathrooms() {
-        return homeNoOfBathrooms;
+    public void setmHomeNoOfBedrooms(Integer mHomeNoOfBedrooms) {
+        this.mHomeNoOfBedrooms = mHomeNoOfBedrooms;
     }
 
-    public Integer getHomeNoOfFloors() {
-        return homeNoOfFloors;
+    public Integer getmHomeNoOfBathrooms() {
+        return mHomeNoOfBathrooms;
     }
 
-    public Integer getYearBuilt() {
-        return yearBuilt;
+    public void setmHomeNoOfBathrooms(Integer mHomeNoOfBathrooms) {
+        this.mHomeNoOfBathrooms = mHomeNoOfBathrooms;
     }
 
-    public boolean isSaved() {
-        return saved;
+    public Integer getmHomeNoOfFloors() {
+        return mHomeNoOfFloors;
+    }
+
+    public void setmHomeNoOfFloors(Integer mHomeNoOfFloors) {
+        this.mHomeNoOfFloors = mHomeNoOfFloors;
+    }
+
+    public Integer getmYearBuilt() {
+        return mYearBuilt;
+    }
+
+    public void setmYearBuilt(Integer mYearBuilt) {
+        this.mYearBuilt = mYearBuilt;
+    }
+
+    public boolean ismSaved() {
+        return mSaved;
     }
 }

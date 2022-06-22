@@ -38,7 +38,7 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        return inflater.inflate(R.layout.activity_login, container, false);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class LoginFragment extends Fragment {
         mtvTitle = view.findViewById(R.id.TitleTextView);
         mtvSubtitle = view.findViewById(R.id.SubtitleTextView);
         mbtnLogin = view.findViewById(R.id.LoginButton);
-        metEmail = view.findViewById(R.id.EmailEditText);
+        metEmail = view.findViewById(R.id.UsernameEditText);
         metPassword = view.findViewById(R.id.PassEditText);
         mivArrow = view.findViewById(R.id.ArrowImageView);
         mtvSwipeRight = view.findViewById(R.id.SwipeRightTextView);

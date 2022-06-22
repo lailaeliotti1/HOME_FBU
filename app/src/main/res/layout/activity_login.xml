@@ -25,7 +25,7 @@
         android:id="@+id/SubtitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/EmailEditText"
+        android:layout_above="@id/UsernameEditText"
         android:layout_marginStart="136dp"
         android:layout_marginEnd="165dp"
         android:text="@string/tag"
@@ -36,13 +36,13 @@
         app:layout_constraintTop_toBottomOf="@+id/TitleTextView" />
 
     <EditText
-        android:id="@+id/EmailEditText"
+        android:id="@+id/UsernameEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_above="@id/PassEditText"
         android:layout_marginTop="79dp"
         android:background="@drawable/et_custom"
-        android:hint="@string/e_mail"
+        android:hint="@string/Username"
         android:inputType="textEmailAddress"
         android:padding="15dp"
         android:textSize="15sp"
@@ -63,7 +63,7 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/UsernameEditText" />
 
     <Button
         android:id="@+id/LoginButton"

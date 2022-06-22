@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".login.RegisterFragment">
+    tools:context=".login.RegisterActivity">
 
     <TextView
         android:id="@+id/LogoTextView"
@@ -28,7 +28,7 @@
         android:layout_marginBottom="50dp"/>
 
     <EditText
-        android:id="@+id/metName"
+        android:id="@+id/NameEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="@string/your_name"
@@ -41,7 +41,7 @@
         android:textSize="15sp" />
 
     <EditText
-        android:id="@+id/EmailEditText"
+        android:id="@+id/UsernameEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="@string/e_mail"
@@ -67,7 +67,7 @@
         android:textSize="15sp" />
 
     <EditText
-        android:id="@+id/metRepasword"
+        android:id="@+id/RepasswordEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="@string/re_type_password"
@@ -79,39 +79,40 @@
         android:textSize="15sp" />
 
     <RelativeLayout
+        android:id="@+id/RegisterRelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
         <Button
-            android:id="@+id/mbtnRegister"
+            android:id="@+id/RegisterButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_custom"
+            android:layout_centerInParent="true"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="30dp"
-            android:layout_centerInParent="true"
-            android:textColor="@android:color/white"
-            android:text="@string/register"/>
+            android:background="@drawable/btn_custom"
+            android:text="@string/register"
+            android:textColor="@android:color/white" />
 
         <ImageView
-            android:id="@+id/mivbArrow"
+            android:id="@+id/BackArrowImageView"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_above="@id/mtvSwipeLeft"
+            android:layout_above="@id/SwipeLeftTextView"
             android:layout_centerHorizontal="true"
             android:src="@drawable/ic_arrow_left" />
 
         <TextView
-            android:id="@+id/mtvSwipeLeft"
+            android:id="@+id/SwipeLeftTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/swipe_right_for_login"
-            android:textSize="15sp"
-            android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:text="@string/swipe_right_for_login"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
