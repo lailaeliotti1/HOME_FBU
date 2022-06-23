@@ -1,23 +1,47 @@
 package com.example.home;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
+import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.example.home.login.LoginActivity;
-import com.example.home.login.RegisterActivity;
+import com.example.home.preferences.PreferenceFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView textView;
+    public static final String TAG = "Main Activity";
+    final FragmentManager fragmentManager = getSupportFragmentManager();
+    private BottomNavigationView bottomNavigationView;
+    private PreferenceFragment preferenceFragment = new PreferenceFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.textView);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment fragment;
+                switch (item.getItemId()) {
+                    case R.id.action_preferences:
+                        fragment = preferenceFragment;
+                        break;
+                    default:
+                        fragment = preferenceFragment;
+                        break;
+                }
+                fragmentManager.beginTransaction().replace(R.id.fragmentContainerView, fragment).commit();
+                return true;
+            }
+        });
+
 
 
     }
