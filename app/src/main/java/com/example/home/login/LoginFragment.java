@@ -47,7 +47,7 @@ public class LoginFragment extends Fragment {
         mtvTitle = view.findViewById(R.id.TitleTextView);
         mtvSubtitle = view.findViewById(R.id.SubtitleTextView);
         mbtnLogin = view.findViewById(R.id.LoginButton);
-        metEmail = view.findViewById(R.id.UsernameEditText);
+        metEmail = view.findViewById(R.id.EmailEditText);
         metPassword = view.findViewById(R.id.PassEditText);
         mivArrow = view.findViewById(R.id.ArrowImageView);
         mtvSwipeRight = view.findViewById(R.id.SwipeRightTextView);

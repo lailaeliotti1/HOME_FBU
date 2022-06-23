@@ -28,10 +28,10 @@
         android:layout_marginBottom="50dp"/>
 
     <EditText
-        android:id="@+id/NameEditText"
+        android:id="@+id/UserNameEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="@string/your_name"
+        android:hint="@string/Username"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
@@ -41,7 +41,7 @@
         android:textSize="15sp" />
 
     <EditText
-        android:id="@+id/UsernameEditText"
+        android:id="@+id/EmailEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="@string/e_mail"
@@ -61,18 +61,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
-        android:padding="15dp"
-        android:inputType="textPassword"
-        android:background="@drawable/et_custom"
-        android:textSize="15sp" />
-
-    <EditText
-        android:id="@+id/RepasswordEditText"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="@string/re_type_password"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:padding="15dp"
         android:inputType="textPassword"
         android:background="@drawable/et_custom"

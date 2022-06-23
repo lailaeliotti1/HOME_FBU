@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         mtvTitle = findViewById(R.id.TitleTextView);
         mtvSubtitle = findViewById(R.id.SubtitleTextView);
         mbtnLogin = findViewById(R.id.LoginButton);
-        metUsername = findViewById(R.id.UsernameEditText);
+        metUsername = findViewById(R.id.EmailEditText);
         metPassword = findViewById(R.id.PassEditText);
         mivArrow = findViewById(R.id.ArrowImageView);
         mtvSwipeRight = findViewById(R.id.SwipeRightTextView);
