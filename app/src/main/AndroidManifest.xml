@@ -40,6 +40,7 @@
         <activity
             android:name=".login.RegisterActivity"
             android:exported="true">
+
         </activity>
 
         <meta-data

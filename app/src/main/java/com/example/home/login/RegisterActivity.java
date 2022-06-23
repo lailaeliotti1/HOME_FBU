@@ -15,12 +15,15 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.home.R;
+//import com.example.home.models._User;
+import com.example.home.models._User;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 public class RegisterActivity extends AppCompatActivity {
-    private String TAG = "Register Activity";
+    public static final String TAG = "Register Activity";
     private TextView mtvLogo;
     private TextView mtvSubtitle;
     private EditText metUsername;
@@ -35,11 +38,13 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        ParseInstallation.getCurrentInstallation().saveInBackground();
 
         mtvLogo = findViewById(R.id.LogoTextView);
         mtvSubtitle = findViewById(R.id.SubtitleTextView);
         mbtnRegister = findViewById(R.id.RegisterButton);
         metEmail = findViewById(R.id.EmailEditText);
+        metUsername = findViewById(R.id.UserNameEditText);
         metPassword = findViewById(R.id.PassEditText);
         mivBackArrow = findViewById(R.id.BackArrowImageView);
         mrvRegister = findViewById(R.id.RegisterRelativeLayout);
@@ -55,6 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
                     //goLoginActivity();
                     String userName = metUsername.getText().toString();
                     String password = metPassword.getText().toString();
+                    String email = metEmail.getText().toString();
 
                     // checking if the entered text is empty or not.
                     if (TextUtils.isEmpty(userName) && TextUtils.isEmpty(password)) {
@@ -62,20 +68,23 @@ public class RegisterActivity extends AppCompatActivity {
                     }
 
                     // calling a method to register a user.
-                    registerUser(userName, password);
+                    registerUser(userName, password, email);
 
 
             }
         });
     }
 
-    private void registerUser(String userName, String password) {
-        ParseUser user = new ParseUser();
+    private void registerUser (String userName, String password, String email){
+        _User user = new _User();
 
         // Set the user's username and password,
         // which can be obtained from edit text
         user.setUsername(userName);
+        Log.i(TAG, metUsername.getText().toString());
         user.setPassword(password);
+        Log.i(TAG, metPassword.getText().toString());
+        user.setEmail(email);
 
         // calling a method to register the user.
         user.signUpInBackground(new SignUpCallback() {
@@ -93,6 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
                     // if we get any error then we are logging out
                     // our user and displaying an error message
                     ParseUser.logOut();
+                    Log.e(TAG, e.getMessage());
                     Toast.makeText(RegisterActivity.this, "Fail to Register User..", Toast.LENGTH_SHORT).show();
                 }
             }
