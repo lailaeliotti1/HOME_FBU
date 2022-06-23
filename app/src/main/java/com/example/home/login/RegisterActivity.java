@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView mtvSwipeLeft;
     private RelativeLayout mrvRegister;
     private Button mbtnRegister;
+    public float x1, x2, y1, y2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,5 +116,22 @@ public class RegisterActivity extends AppCompatActivity {
         Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(i);
         finish();
+    }
+    public boolean onTouchEvent(MotionEvent touchevent){
+        switch(touchevent.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                x1 = touchevent.getX();
+                y1 = touchevent.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = touchevent.getX();
+                y2 = touchevent.getY();
+                if(x1 < x2){
+                    Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivity(i);
+                }
+                break;
+        }
+        return false;
     }
 }
