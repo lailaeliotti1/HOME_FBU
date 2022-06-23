@@ -2,8 +2,13 @@ package com.example.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.widget.TextView;
+
+import com.example.home.login.LoginActivity;
+import com.example.home.login.RegisterActivity;
 
 public class MainActivity extends AppCompatActivity {
     private TextView textView;
