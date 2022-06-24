@@ -20,4 +20,12 @@
     <string name="back4app_app_id">G90mbl2Izwog6wDodvDxkSzFPKPkiPzTR6zAt6Fc</string>
     <string name="back4app_client_key">rKN3dsIyz3zEKWU4DnE8Ctva78zfSMCgx2lpNyRp</string>
 
+    <string-array name="NoOfBedrooms">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
 </resources>

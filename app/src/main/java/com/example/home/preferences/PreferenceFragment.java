@@ -11,7 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 import com.example.home.R;
 import com.example.home.login.LoginActivity;
 import com.parse.ParseUser;
@@ -20,6 +23,7 @@ import com.parse.ParseUser;
 public class PreferenceFragment extends Fragment {
 
     private Button mLogoutButton;
+    private Spinner mSpinnerBedrooms;
 
     public PreferenceFragment() {
         // Required empty public constructor
