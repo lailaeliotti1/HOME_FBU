@@ -5,17 +5,21 @@ import com.parse.ParseClassName;
 import com.parse.ParseUser;
 
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
+import java.util.ArrayList;
 @ParseClassName("_User")
-public class User extends ParseUser {
+public class _User extends ParseUser {
     private String mUserName;
     private String mPassword;
     private String mEmail;
+    private String _User;
 
-    public User(){}
 
-    public static User fromJson(JSONObject jsonObject){
-        User user = new User();
+    public _User(){}
+
+    public static _User fromJson(JSONObject jsonObject){
+        _User user = new _User();
         return user;
     }
 
