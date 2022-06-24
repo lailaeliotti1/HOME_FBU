@@ -97,7 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (e == null) {
                     // if the error is null we are displaying a toast message and
                     // redirecting our user to new activity and passing the user name.
-                    Toast.makeText(RegisterActivity.this, "User Registered successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "_User Registered successfully", Toast.LENGTH_SHORT).show();
                     goLoginActivity();
                     //i.putExtra("username", userName);
                 } else {
@@ -105,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
                     // our user and displaying an error message
                     ParseUser.logOut();
                     Log.e(TAG, e.getMessage());
-                    Toast.makeText(RegisterActivity.this, "Fail to Register User..", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Fail to Register _User..", Toast.LENGTH_SHORT).show();
                 }
             }
         });

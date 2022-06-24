@@ -5,45 +5,45 @@ import com.parse.ParseClassName;
 import com.parse.ParseUser;
 
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
+import java.util.ArrayList;
 @ParseClassName("_User")
-public class User extends ParseUser {
+public class _User extends ParseUser {
     private String mUserName;
     private String mPassword;
     private String mEmail;
-    private UserPreferences mUserPreferences;
+    private String _User;
 
-    public User(){}
 
-    public static User fromJson(JSONObject jsonObject){
-        User user = new User();
+    public _User(){}
+
+    public static _User fromJson(JSONObject jsonObject){
+        _User user = new _User();
         return user;
     }
 
-    public String getUserName() {
+    public String getmUserName() {
         return mUserName;
     }
 
-    public void setUserName(String mUserName) {
+    public void setmUserName(String mUserName) {
         this.mUserName = mUserName;
     }
 
-    public String getEmail() {
+    public String getmEmail() {
         return mEmail;
     }
 
-    public void setEmail(String mEmail) {
+    public void setmEmail(String mEmail) {
         this.mEmail = mEmail;
     }
 
-    public String getPassword() {
+    public String getmPassword() {
         return mPassword;
     }
 
-    public void setPassword(String mPassword) {
+    public void setmPassword(String mPassword) {
         this.mPassword = mPassword;
     }
-
-    public UserPreferences getUserPreferences(){return mUserPreferences;}
-    public void setUserPreferences(UserPreferences mUserPreferences) {this.mUserPreferences = mUserPreferences;}
 }
