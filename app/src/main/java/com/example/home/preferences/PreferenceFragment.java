@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +27,7 @@ import com.parse.ParseUser;
 
 public class PreferenceFragment extends Fragment {
     private ConstraintLayout mPrefConLayout;
+    private ScrollView mScrollView;
     private TextView mPreferenceTextView;
     private Button mLogoutButton;
     private TextView mBedTextView;
@@ -80,9 +83,9 @@ public class PreferenceFragment extends Fragment {
 
         mHouseStyleTextView = view.findViewById(R.id.HouseStyleTextView);
         mSpinnerHouse = view.findViewById(R.id.spinHouse);
-        ArrayAdapter<CharSequence>locationAdapter=ArrayAdapter.createFromResource(getContext(), R.array.houseStyle, android.R.layout.simple_spinner_item);
-        bedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        mSpinnerBedrooms.setAdapter(bedAdapter);
+        ArrayAdapter<CharSequence>houseAdapter=ArrayAdapter.createFromResource(getContext(), R.array.houseStyle, android.R.layout.simple_spinner_item);
+        houseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        mSpinnerHouse.setAdapter(houseAdapter);
 
 
         mLogoutButton = view.findViewById(R.id.LogoutButton);
