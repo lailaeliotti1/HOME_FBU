@@ -14,7 +14,6 @@
     <string name="re_type_password">Re-type Password</string>
     <string name="your_name">Full Name</string>
     <string name="back4app_server_url">https://parseapi.back4app.com/</string>
-    <string name="please_enter_username_and_password">Please enter user name and password</string>
 
     <!-- Paste BOTH strings as required -->
     <string name="back4app_app_id">G90mbl2Izwog6wDodvDxkSzFPKPkiPzTR6zAt6Fc</string>
@@ -25,23 +24,7 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
-        <item>5+</item>
-    </string-array>
-
-    <string-array name="NoOfBathrooms">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5+</item>
-    </string-array>
-
-    <string-array name="houseStyle">
-        <item>Apartment</item>
-        <item>House</item>
-        <item>Condo</item>
-        <item>Mansion</item>
-        <item>Studio</item>
+        <item>5</item>
     </string-array>
 
 </resources>
