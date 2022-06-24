@@ -15,8 +15,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.home.R;
-//import com.example.home.models._User;
-import com.example.home.models._User;
+//import com.example.home.models.User;
+import com.example.home.models.User;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseUser;
@@ -76,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registerUser (String userName, String password, String email){
-        _User user = new _User();
+        User user = new User();
 
         // Set the user's username and password,
         // which can be obtained from edit text
