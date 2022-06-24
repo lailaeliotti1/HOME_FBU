@@ -11,13 +11,13 @@ import com.example.home.login.LoginActivity;
 import com.example.home.login.RegisterActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView textView;
+    private TextView mTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.textView);
+        mTextView = findViewById(R.id.textView);
 
 
     }
