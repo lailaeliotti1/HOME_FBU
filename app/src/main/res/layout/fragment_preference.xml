@@ -1,143 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/prefConLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".preferences.PreferenceFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/prefConLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@+id/HouseStyleTextView"
-        app:layout_constraintTop_toTopOf="@+id/HouseStyleTextView">
+    <Button
+        android:id="@+id/LogoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="44dp"
+        android:text="LOGOUT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/PreferenceTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="48dp"
+        tools:layout_conversion_absoluteWidth="93dp" />
 
-        <Spinner
-            android:id="@+id/spinBed"
-            android:layout_width="225dp"
-            android:layout_height="54dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="20dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"
-            app:layout_constraintBottom_toTopOf="@+id/BathTextView"
-            app:layout_constraintEnd_toEndOf="@+id/spinBudget"
-            app:layout_constraintStart_toStartOf="@+id/BedTextView"
-            app:layout_constraintTop_toBottomOf="@+id/BedTextView"
-            tools:ignore="SpeakableTextPresentCheck" />
+    <Spinner
+        android:id="@+id/spinBed"
+        android:layout_width="203dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="3dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BedTextView"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_conversion_absoluteHeight="54dp"
+        tools:layout_conversion_absoluteWidth="225dp" />
 
-        <TextView
-            android:id="@+id/BedTextView"
-            android:layout_width="148dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="33dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/spinBed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/PreferenceTextView"
-            tools:text="No. of Bedrooms" />
+    <Spinner
+        android:id="@+id/spinHouse"
+        android:layout_width="212dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="44dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HouseStyleTextView"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_conversion_absoluteHeight="63dp"
+        tools:layout_conversion_absoluteWidth="246dp" />
 
-        <TextView
-            android:id="@+id/BathTextView"
-            android:layout_width="107dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginBottom="1dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/spinBath"
-            app:layout_constraintStart_toStartOf="@+id/spinBath"
-            app:layout_constraintTop_toBottomOf="@+id/spinBed"
-            tools:text="No. of Bathrooms" />
+    <TextView
+        android:id="@+id/BedTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="106dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="55dp"
+        tools:layout_conversion_absoluteWidth="148dp"
+        tools:text="No. of Bedrooms" />
 
-        <Spinner
-            android:id="@+id/spinBath"
-            android:layout_width="211dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="27dp"
-            android:layout_marginBottom="36dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"
-            app:layout_constraintBottom_toTopOf="@+id/HouseStyleTextView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/BathTextView"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+    <TextView
+        android:id="@+id/BathTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="12dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinBed"
+        tools:layout_conversion_absoluteHeight="55dp"
+        tools:layout_conversion_absoluteWidth="107dp"
+        tools:text="No. of Bathrooms" />
 
-        <TextView
-            android:id="@+id/HouseStyleTextView"
-            android:layout_width="143dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="27dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/spinHouse"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinBath"
-            tools:text="House Style" />
+    <TextView
+        android:id="@+id/HouseStyleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinBath"
+        tools:layout_conversion_absoluteHeight="55dp"
+        tools:layout_conversion_absoluteWidth="143dp"
+        tools:text="House Style" />
 
-        <Spinner
-            android:id="@+id/spinHouse"
-            android:layout_width="246dp"
-            android:layout_height="63dp"
-            android:layout_marginEnd="11dp"
-            android:layout_marginBottom="10dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"
-            app:layout_constraintBottom_toTopOf="@+id/BudgetTextView"
-            app:layout_constraintEnd_toEndOf="@+id/spinBudget"
-            app:layout_constraintStart_toStartOf="@+id/HouseStyleTextView"
-            app:layout_constraintTop_toBottomOf="@+id/HouseStyleTextView"
-            tools:ignore="SpeakableTextPresentCheck" />
+    <TextView
+        android:id="@+id/PreferenceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="40dp"
+        android:text="Preferences"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="55dp"
+        tools:layout_conversion_absoluteWidth="259dp"
+        tools:text="Preferences" />
 
-        <TextView
-            android:id="@+id/BudgetTextView"
-            android:layout_width="106dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="27dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/spinBudget"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinHouse"
-            tools:text="Budget" />
+    <Spinner
+        android:id="@+id/spinBath"
+        android:layout_width="214dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="44dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BathTextView"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+        tools:layout_conversion_absoluteHeight="54dp"
+        tools:layout_conversion_absoluteWidth="211dp" />
 
-        <Spinner
-            android:id="@+id/spinBudget"
-            android:layout_width="226dp"
-            android:layout_height="56dp"
-            android:layout_marginBottom="208dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/BudgetTextView"
-            app:layout_constraintTop_toBottomOf="@+id/BudgetTextView"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <TextView
-            android:id="@+id/PreferenceTextView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="113dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="22dp"
-            android:text="Preferences"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/BedTextView"
-            app:layout_constraintEnd_toStartOf="@+id/LogoutButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Preferences" />
-
-        <Button
-            android:id="@+id/LogoutButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="8dp"
-            android:text="LOGOUT"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/PreferenceTextView"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
