@@ -23,21 +23,22 @@ import android.widget.Toast;
 import com.example.home.R;
 import com.example.home.login.LoginActivity;
 import com.parse.ParseUser;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 
 
 public class PreferenceFragment extends Fragment {
     private ConstraintLayout mPrefConLayout;
-    private ScrollView mScrollView;
     private TextView mPreferenceTextView;
     private Button mLogoutButton;
-    private TextView mBedTextView;
-    private Spinner mSpinnerBedrooms;
-    private TextView mBathTextView;
-    private Spinner mSpinnerBathrooms;
-    private TextView mHouseStyleTextView;
-    private Spinner mSpinnerHouse;
-    private TextView mBudgetTextView;
-    private Spinner mSpinnerBudget;
+    private AutoCompleteTextView mBedroomTextView;
+    private ArrayAdapter bedroomAdapter;
+
+    private AutoCompleteTextView mBathroomTextView;
+    private ArrayAdapter bathroomAdapter;
+
+    private AutoCompleteTextView mHouseStyleTextView;
+    private ArrayAdapter houseStyleAdapter;
 
     public PreferenceFragment() {
         // Required empty public constructor
@@ -66,27 +67,41 @@ public class PreferenceFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mPrefConLayout = view.findViewById(R.id.prefConLayout);
-        mPreferenceTextView =  view.findViewById(R.id.PreferenceTextView);
+        mBedroomTextView = view.findViewById(R.id.BedroomTextView);
+        bedroomAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, getResources().getStringArray(R.array.NoOfBedrooms));
 
-        mBedTextView = view.findViewById(R.id.BedTextView);
-        mSpinnerBedrooms = view.findViewById(R.id.spinBed);
-        ArrayAdapter<CharSequence>bedAdapter=ArrayAdapter.createFromResource(getContext(), R.array.NoOfBedrooms, android.R.layout.simple_spinner_item);
-        bedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        mSpinnerBedrooms.setAdapter(bedAdapter);
+        mBedroomTextView.setAdapter(bedroomAdapter);
+        mBedroomTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String bedItem = parent.getItemAtPosition(position).toString();
+                Toast.makeText(getContext(), "Item: "+ bedItem, Toast.LENGTH_SHORT).show();
+            }
+        });
 
-        mBathTextView = view.findViewById(R.id.BathTextView);
-        mSpinnerBathrooms = view.findViewById(R.id.spinBath);
-        ArrayAdapter<CharSequence>bathAdapter=ArrayAdapter.createFromResource(getContext(), R.array.NoOfBathrooms, android.R.layout.simple_spinner_item);
-        bathAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        mSpinnerBathrooms.setAdapter(bathAdapter);
+        mBathroomTextView = view.findViewById(R.id.BathroomTextView);
+        bathroomAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, getResources().getStringArray(R.array.NoOfBathrooms));
+
+        mBathroomTextView.setAdapter(bathroomAdapter);
+        mBathroomTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String bathItem = parent.getItemAtPosition(position).toString();
+                Toast.makeText(getContext(), "Item: "+ bathItem, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         mHouseStyleTextView = view.findViewById(R.id.HouseStyleTextView);
-        mSpinnerHouse = view.findViewById(R.id.spinHouse);
-        ArrayAdapter<CharSequence>houseAdapter=ArrayAdapter.createFromResource(getContext(), R.array.houseStyle, android.R.layout.simple_spinner_item);
-        houseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        mSpinnerHouse.setAdapter(houseAdapter);
+        houseStyleAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, getResources().getStringArray(R.array.houseStyle));
 
+        mHouseStyleTextView.setAdapter(houseStyleAdapter);
+        mHouseStyleTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String houseItem = parent.getItemAtPosition(position).toString();
+                Toast.makeText(getContext(), "Item: "+ houseItem, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         mLogoutButton = view.findViewById(R.id.LogoutButton);
         mLogoutButton.setOnClickListener(new View.OnClickListener() {
