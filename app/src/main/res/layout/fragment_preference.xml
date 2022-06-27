@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/prefConLayout"
@@ -7,113 +8,85 @@
     android:layout_height="match_parent"
     tools:context=".preferences.PreferenceFragment">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/BedroomDropDown"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="466dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="103dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Inside text input layout add
+              an auto complete text view
+                and make its input type to none-->
+
+        <AutoCompleteTextView
+            android:id="@+id/BedroomTextView"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_weight="1"
+            android:inputType="none"
+            android:text="Number of Bedrooms" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/BathroomDropDown"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="466dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="107dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BedroomDropDown">
+
+        <!-- Inside text input layout add
+              an auto complete text view
+                and make its input type to none-->
+
+        <AutoCompleteTextView
+            android:id="@+id/BathroomTextView"
+            android:layout_width="462dp"
+            android:layout_height="61dp"
+            android:layout_weight="1"
+            android:inputType="none"
+            android:text="Number of Bathrooms" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/HouseStyleDropDown"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="432dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="98dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BathroomDropDown">
+
+        <!-- Inside text input layout add
+              an auto complete text view
+                and make its input type to none-->
+
+        <AutoCompleteTextView
+            android:id="@+id/HouseStyleTextView"
+            android:layout_width="457dp"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:inputType="none"
+            android:text="House Style" />
+    </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:id="@+id/LogoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="47dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="44dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="93dp"
         android:text="LOGOUT"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/PreferenceTextView"
-        app:layout_constraintTop_toTopOf="parent"
         tools:layout_conversion_absoluteHeight="48dp"
         tools:layout_conversion_absoluteWidth="93dp" />
 
-    <Spinner
-        android:id="@+id/spinBed"
-        android:layout_width="203dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="3dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BedTextView"
-        tools:ignore="SpeakableTextPresentCheck"
-        tools:layout_conversion_absoluteHeight="54dp"
-        tools:layout_conversion_absoluteWidth="225dp" />
-
-    <Spinner
-        android:id="@+id/spinHouse"
-        android:layout_width="212dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="44dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HouseStyleTextView"
-        tools:ignore="SpeakableTextPresentCheck"
-        tools:layout_conversion_absoluteHeight="63dp"
-        tools:layout_conversion_absoluteWidth="246dp" />
-
-    <TextView
-        android:id="@+id/BedTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="106dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_conversion_absoluteHeight="55dp"
-        tools:layout_conversion_absoluteWidth="148dp"
-        tools:text="No. of Bedrooms" />
-
-    <TextView
-        android:id="@+id/BathTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="12dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinBed"
-        tools:layout_conversion_absoluteHeight="55dp"
-        tools:layout_conversion_absoluteWidth="107dp"
-        tools:text="No. of Bathrooms" />
-
-    <TextView
-        android:id="@+id/HouseStyleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinBath"
-        tools:layout_conversion_absoluteHeight="55dp"
-        tools:layout_conversion_absoluteWidth="143dp"
-        tools:text="House Style" />
-
-    <TextView
-        android:id="@+id/PreferenceTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="40dp"
-        android:text="Preferences"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_conversion_absoluteHeight="55dp"
-        tools:layout_conversion_absoluteWidth="259dp"
-        tools:text="Preferences" />
-
-    <Spinner
-        android:id="@+id/spinBath"
-        android:layout_width="214dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="44dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BathTextView"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-        tools:layout_conversion_absoluteHeight="54dp"
-        tools:layout_conversion_absoluteWidth="211dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
