@@ -44,6 +44,10 @@ public class User extends ParseUser {
         this.mPassword = mPassword;
     }
 
-    public UserPreferences getUserPreferences(){return mUserPreferences;}
-    public void setUserPreferences(UserPreferences mUserPreferences) {this.mUserPreferences = mUserPreferences;}
+    public UserPreferences getUserPreferences(){
+        return mUserPreferences;
+    }
+    public void setUserPreferences(UserPreferences mUserPreferences) {
+        this.mUserPreferences = mUserPreferences;
+    }
 }
