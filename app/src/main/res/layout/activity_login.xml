@@ -8,10 +8,10 @@
     tools:context=".login.LoginFragment">
 
     <TextView
-        android:id="@+id/mtvTitle"
+        android:id="@+id/TitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/mtvSubtitle"
+        android:layout_above="@id/SubtitleTextView"
         android:layout_marginStart="123dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="147dp"
@@ -22,10 +22,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/mtvSubtitle"
+        android:id="@+id/SubtitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/metEmail"
+        android:layout_above="@id/EmailEditText"
         android:layout_marginStart="136dp"
         android:layout_marginEnd="165dp"
         android:text="@string/tag"
@@ -33,25 +33,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mtvTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/TitleTextView" />
 
     <EditText
-        android:id="@+id/metEmail"
+        android:id="@+id/EmailEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_above="@id/metPassword"
+        android:layout_above="@id/PassEditText"
         android:layout_marginTop="79dp"
         android:background="@drawable/et_custom"
-        android:hint="@string/e_mail"
+        android:hint="@string/Username"
         android:inputType="textEmailAddress"
         android:padding="15dp"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mtvSubtitle" />
+        app:layout_constraintTop_toBottomOf="@+id/SubtitleTextView" />
 
     <EditText
-        android:id="@+id/metPassword"
+        android:id="@+id/PassEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_centerInParent="true"
@@ -63,26 +63,26 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/metEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/EmailEditText" />
 
     <Button
-        android:id="@+id/mbtnLogin"
+        android:id="@+id/LoginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/metPassword"
+        android:layout_below="@id/PassEditText"
         android:layout_marginTop="19dp"
         android:background="@drawable/btn_custom"
         android:text="@string/login"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/metPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/PassEditText" />
 
     <ImageView
-        android:id="@+id/mivArrow"
+        android:id="@+id/ArrowImageView"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_above="@id/mtvSwipeRight"
+        android:layout_above="@id/SwipeRightTextView"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
@@ -91,11 +91,11 @@
         android:src="@drawable/ic_arrow_right"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/mtvSwipeRight"
-        app:layout_constraintTop_toBottomOf="@+id/mbtnLogin" />
+        app:layout_constraintStart_toEndOf="@+id/SwipeRightTextView"
+        app:layout_constraintTop_toBottomOf="@+id/LoginButton" />
 
     <TextView
-        android:id="@+id/mtvSwipeRight"
+        android:id="@+id/SwipeRightTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -105,8 +105,8 @@
         android:layout_marginEnd="8dp"
         android:text="@string/swipe_left_for_register"
         android:textSize="15sp"
-        app:layout_constraintEnd_toStartOf="@+id/mivArrow"
+        app:layout_constraintEnd_toStartOf="@+id/ArrowImageView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mbtnLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/LoginButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
