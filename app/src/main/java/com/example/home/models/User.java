@@ -5,7 +5,9 @@ import com.parse.ParseClassName;
 import com.parse.ParseUser;
 
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
+import java.util.ArrayList;
 @ParseClassName("_User")
 public class User extends ParseUser {
     private String mUserName;
