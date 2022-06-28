@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +15,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.home.R;
-//import com.example.home.models._User;
-import com.example.home.models._User;
+//import com.example.home.models.User;
+import com.example.home.models.User;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseUser;
@@ -25,16 +24,15 @@ import com.parse.SignUpCallback;
 
 public class RegisterActivity extends AppCompatActivity {
     public static final String TAG = "Register Activity";
-    private TextView mtvLogo;
-    private TextView mtvSubtitle;
-    private EditText metUsername;
-    private EditText metEmail;
-    private EditText metPassword;
-    private ImageView mivBackArrow;
-    private TextView mtvSwipeLeft;
-    private RelativeLayout mrvRegister;
+    private TextView LogoTextView;
+    private TextView mSubtitleTextView;
+    private EditText mUsernameEditText;
+    private EditText mEmailEditText;
+    private EditText mPasswordEditText;
+    private ImageView mBackArrowImageView;
+    private TextView mSwipeLeftTextView;
+    private RelativeLayout mRegisterRelativeLayout;
     private Button mbtnRegister;
-    public float x1, x2, y1, y2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +40,15 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         ParseInstallation.getCurrentInstallation().saveInBackground();
 
-        mtvLogo = findViewById(R.id.LogoTextView);
-        mtvSubtitle = findViewById(R.id.SubtitleTextView);
+        LogoTextView = findViewById(R.id.LogoTextView);
+        mSubtitleTextView = findViewById(R.id.SubtitleTextView);
         mbtnRegister = findViewById(R.id.RegisterButton);
-        metEmail = findViewById(R.id.EmailEditText);
-        metUsername = findViewById(R.id.UserNameEditText);
-        metPassword = findViewById(R.id.PassEditText);
-        mivBackArrow = findViewById(R.id.BackArrowImageView);
-        mrvRegister = findViewById(R.id.RegisterRelativeLayout);
-        mtvSwipeLeft = findViewById(R.id.SwipeLeftTextView);
+        mEmailEditText = findViewById(R.id.EmailEditText);
+        mUsernameEditText = findViewById(R.id.UserNameEditText);
+        mPasswordEditText = findViewById(R.id.PassEditText);
+        mBackArrowImageView = findViewById(R.id.BackArrowImageView);
+        mRegisterRelativeLayout = findViewById(R.id.RegisterRelativeLayout);
+        mSwipeLeftTextView = findViewById(R.id.SwipeLeftTextView);
 
         if(ParseUser.getCurrentUser() !=null ) {
             goLoginActivity();
@@ -60,32 +58,25 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i(TAG, "onClick login button");
                     //goLoginActivity();
-                    String userName = metUsername.getText().toString();
-                    String password = metPassword.getText().toString();
-                    String email = metEmail.getText().toString();
-
+                    String userName= setUserName(mUsernameEditText);
+                    String password = setPassword(mPasswordEditText);
+                    String email = setEmail(mEmailEditText);
                     // checking if the entered text is empty or not.
-                    if (TextUtils.isEmpty(userName) && TextUtils.isEmpty(password)) {
-                        Toast.makeText(RegisterActivity.this, "Please enter user name and password", Toast.LENGTH_SHORT).show();
+                    if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
+                        Toast.makeText(RegisterActivity.this, getString(R.string.please_enter_username_and_password), Toast.LENGTH_SHORT).show();
                     }
-
                     // calling a method to register a user.
                     registerUser(userName, password, email);
-
-
             }
         });
     }
 
     private void registerUser (String userName, String password, String email){
-        _User user = new _User();
-
+        User user = new User();
         // Set the user's username and password,
         // which can be obtained from edit text
         user.setUsername(userName);
-        Log.i(TAG, metUsername.getText().toString());
         user.setPassword(password);
-        Log.i(TAG, metPassword.getText().toString());
         user.setEmail(email);
 
         // calling a method to register the user.
@@ -97,41 +88,25 @@ public class RegisterActivity extends AppCompatActivity {
                 if (e == null) {
                     // if the error is null we are displaying a toast message and
                     // redirecting our user to new activity and passing the user name.
-                    Toast.makeText(RegisterActivity.this, "_User Registered successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "User Registered successfully", Toast.LENGTH_SHORT).show();
                     goLoginActivity();
-                    //i.putExtra("username", userName);
                 } else {
                     // if we get any error then we are logging out
                     // our user and displaying an error message
                     ParseUser.logOut();
                     Log.e(TAG, e.getMessage());
-                    Toast.makeText(RegisterActivity.this, "Fail to Register _User..", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Fail to Register User..", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
-
 
     private void goLoginActivity(){
         Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(i);
         finish();
     }
-    public boolean onTouchEvent(MotionEvent touchevent){
-        switch(touchevent.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                x1 = touchevent.getX();
-                y1 = touchevent.getY();
-                break;
-            case MotionEvent.ACTION_UP:
-                x2 = touchevent.getX();
-                y2 = touchevent.getY();
-                if(x1 < x2){
-                    Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
-                    startActivity(i);
-                }
-                break;
-        }
-        return false;
-    }
+    private String setUserName(EditText userName) {return userName.getText().toString();}
+    private String setPassword(EditText password) {return password.getText().toString();}
+    private String setEmail(EditText email) {return email.getText().toString();}
 }

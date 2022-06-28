@@ -14,6 +14,7 @@
     <string name="re_type_password">Re-type Password</string>
     <string name="your_name">Full Name</string>
     <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+    <string name="please_enter_username_and_password">Please enter user name and password</string>
 
     <!-- Paste BOTH strings as required -->
     <string name="back4app_app_id">G90mbl2Izwog6wDodvDxkSzFPKPkiPzTR6zAt6Fc</string>
