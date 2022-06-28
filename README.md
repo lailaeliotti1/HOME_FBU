@@ -43,7 +43,7 @@ This app is a way for users to search for new homes! It will use the Realty API 
 * ...
 * User can schedule a virtual tour
 * User can share house via text
-* User can view closest houses to them or close in compability
+* User can view closest houses to them or close in compability by recommendation.
 
 ### 2. Screen Archetypes
 
