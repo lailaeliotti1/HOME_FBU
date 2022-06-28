@@ -7,17 +7,16 @@ import com.parse.ParseUser;
 import org.json.JSONObject;
 
 @ParseClassName("_User")
-public class _User extends ParseUser {
+public class User extends ParseUser {
     private String mUserName;
     private String mPassword;
     private String mEmail;
-    private String _User;
 
 
-    public _User(){}
+    public User(){}
 
-    public static com.example.home.models._User fromJson(JSONObject jsonObject){
-        com.example.home.models._User user = new _User();
+    public static com.example.home.models.User fromJson(JSONObject jsonObject){
+        com.example.home.models.User user = new User();
         return user;
     }
 
