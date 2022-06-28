@@ -24,14 +24,14 @@ import com.parse.SignUpCallback;
 
 public class RegisterActivity extends AppCompatActivity {
     public static final String TAG = "Register Activity";
-    private TextView mtvLogo;
-    private TextView mtvSubtitle;
-    private EditText metUsername;
-    private EditText metEmail;
-    private EditText metPassword;
-    private ImageView mivBackArrow;
-    private TextView mtvSwipeLeft;
-    private RelativeLayout mrvRegister;
+    private TextView LogoTextView;
+    private TextView mSubtitleTextView;
+    private EditText mUsernameEditText;
+    private EditText mEmailEditText;
+    private EditText mPasswordEditText;
+    private ImageView mBackArrowImageView;
+    private TextView mSwipeLeftTextView;
+    private RelativeLayout mRegisterRelativeLayout;
     private Button mbtnRegister;
 
     @Override
@@ -40,15 +40,15 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         ParseInstallation.getCurrentInstallation().saveInBackground();
 
-        mtvLogo = findViewById(R.id.LogoTextView);
-        mtvSubtitle = findViewById(R.id.SubtitleTextView);
+        LogoTextView = findViewById(R.id.LogoTextView);
+        mSubtitleTextView = findViewById(R.id.SubtitleTextView);
         mbtnRegister = findViewById(R.id.RegisterButton);
-        metEmail = findViewById(R.id.EmailEditText);
-        metUsername = findViewById(R.id.UserNameEditText);
-        metPassword = findViewById(R.id.PassEditText);
-        mivBackArrow = findViewById(R.id.BackArrowImageView);
-        mrvRegister = findViewById(R.id.RegisterRelativeLayout);
-        mtvSwipeLeft = findViewById(R.id.SwipeLeftTextView);
+        mEmailEditText = findViewById(R.id.EmailEditText);
+        mUsernameEditText = findViewById(R.id.UserNameEditText);
+        mPasswordEditText = findViewById(R.id.PassEditText);
+        mBackArrowImageView = findViewById(R.id.BackArrowImageView);
+        mRegisterRelativeLayout = findViewById(R.id.RegisterRelativeLayout);
+        mSwipeLeftTextView = findViewById(R.id.SwipeLeftTextView);
 
         if(ParseUser.getCurrentUser() !=null ) {
             goLoginActivity();
@@ -58,32 +58,25 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i(TAG, "onClick login button");
                     //goLoginActivity();
-                    String userName = metUsername.getText().toString();
-                    String password = metPassword.getText().toString();
-                    String email = metEmail.getText().toString();
-
+                    String userName= setUserName(mUsernameEditText);
+                    String password = setPassword(mPasswordEditText);
+                    String email = setEmail(mEmailEditText);
                     // checking if the entered text is empty or not.
-                    if (TextUtils.isEmpty(userName) && TextUtils.isEmpty(password)) {
-                        Toast.makeText(RegisterActivity.this, "Please enter user name and password", Toast.LENGTH_SHORT).show();
+                    if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
+                        Toast.makeText(RegisterActivity.this, getString(R.string.please_enter_username_and_password), Toast.LENGTH_SHORT).show();
                     }
-
                     // calling a method to register a user.
                     registerUser(userName, password, email);
-
-
             }
         });
     }
 
     private void registerUser (String userName, String password, String email){
         User user = new User();
-
         // Set the user's username and password,
         // which can be obtained from edit text
         user.setUsername(userName);
-        Log.i(TAG, metUsername.getText().toString());
         user.setPassword(password);
-        Log.i(TAG, metPassword.getText().toString());
         user.setEmail(email);
 
         // calling a method to register the user.
@@ -97,7 +90,6 @@ public class RegisterActivity extends AppCompatActivity {
                     // redirecting our user to new activity and passing the user name.
                     Toast.makeText(RegisterActivity.this, "User Registered successfully", Toast.LENGTH_SHORT).show();
                     goLoginActivity();
-                    //i.putExtra("username", userName);
                 } else {
                     // if we get any error then we are logging out
                     // our user and displaying an error message
@@ -109,10 +101,12 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-
     private void goLoginActivity(){
         Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(i);
         finish();
     }
+    private String setUserName(EditText userName) {return userName.getText().toString();}
+    private String setPassword(EditText password) {return password.getText().toString();}
+    private String setEmail(EditText email) {return email.getText().toString();}
 }

@@ -11,6 +11,7 @@ public class User extends ParseUser {
     private String mUserName;
     private String mPassword;
     private String mEmail;
+    private UserPreferences mUserPreferences;
 
     public User(){}
 
@@ -19,27 +20,30 @@ public class User extends ParseUser {
         return user;
     }
 
-    public String getmUserName() {
+    public String getUserName() {
         return mUserName;
     }
 
-    public void setmUserName(String mUserName) {
+    public void setUserName(String mUserName) {
         this.mUserName = mUserName;
     }
 
-    public String getmEmail() {
+    public String getEmail() {
         return mEmail;
     }
 
-    public void setmEmail(String mEmail) {
+    public void setEmail(String mEmail) {
         this.mEmail = mEmail;
     }
 
-    public String getmPassword() {
+    public String getPassword() {
         return mPassword;
     }
 
-    public void setmPassword(String mPassword) {
+    public void setPassword(String mPassword) {
         this.mPassword = mPassword;
     }
+
+    public UserPreferences getUserPreferences(){return mUserPreferences;}
+    public void setUserPreferences(UserPreferences mUserPreferences) {this.mUserPreferences = mUserPreferences;}
 }

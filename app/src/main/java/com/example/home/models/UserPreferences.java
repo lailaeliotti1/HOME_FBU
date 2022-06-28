@@ -16,46 +16,46 @@ public class UserPreferences extends ParseObject {
     public static final String mBudget = "mBudget";
     public static final String mSavedHomes = "mSavedHomes";
 
-    public ParseFile getmLocation(){
+    public ParseFile getLocation(){
         return getParseFile(mLocation);
     }
-    public void setmLocation(ParseFile parseFile){
+    public void setLocation(ParseFile parseFile){
         put(mLocation, parseFile);
     }
     public ParseFile getmNoOfBedrooms(){
         return getParseFile(mLocation);
     }
-    public void setmNoOfBedrooms(ParseFile parseFile){
+    public void setNoOfBedrooms(ParseFile parseFile){
         put(mNoOfBedrooms, parseFile);
     }
-    public ParseFile getmNoOfBathrooms(){
+    public ParseFile getNoOfBathrooms(){
         return getParseFile(mNoOfBathrooms);
     }
-    public void setmNoOfBathrooms(ParseFile parseFile){
+    public void setNoOfBathrooms(ParseFile parseFile){
         put(mNoOfBathrooms, parseFile);
     }
     public ParseFile getmHouseStyle(){
         return getParseFile(mHouseStyle);
     }
-    public void setmHouseStyle(ParseFile parseFile){
+    public void setHouseStyle(ParseFile parseFile){
         put(mHouseStyle, parseFile);
     }
-    public ParseFile getmNoOFFloors(){
+    public ParseFile getNoOFFloors(){
         return getParseFile(mNoOfFloors);
     }
-    public void setmNoOfFloors(ParseFile parseFile){
+    public void setNoOfFloors(ParseFile parseFile){
         put(mNoOfFloors, parseFile);
     }
-    public ParseFile getmBudget(){
+    public ParseFile getBudget(){
         return getParseFile(mBudget);
     }
-    public void setmBudget(ParseFile parseFile){
+    public void setBudget(ParseFile parseFile){
         put(mBudget, parseFile);
     }
-    public ParseFile getmSavedHomes(){
+    public ParseFile getSavedHomes(){
         return getParseFile(mSavedHomes);
     }
-    public void setmSavedHomes(ParseFile parseFile){
+    public void setSavedHomes(ParseFile parseFile){
         put(mSavedHomes, parseFile);
     }
 
