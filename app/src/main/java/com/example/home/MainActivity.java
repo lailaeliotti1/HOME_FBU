@@ -12,13 +12,15 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.home.preferences.PreferenceFragment;
+import com.example.home.stream.StreamFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "Main Activity";
-    final FragmentManager fragmentManager = getSupportFragmentManager();
+    public final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
-    private PreferenceFragment preferenceFragment = new PreferenceFragment();
+    private PreferenceFragment preferenceFragment = new PreferenceFragment(this);
+    private StreamFragment streamFragment = new StreamFragment("");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_preferences:
                         fragment = preferenceFragment;
+                        break;
+                    case R.id.action_stream:
+                        fragment = streamFragment;
                         break;
                     default:
                         fragment = preferenceFragment;

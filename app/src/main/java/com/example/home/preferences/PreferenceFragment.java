@@ -1,13 +1,11 @@
 package com.example.home.preferences;
 
 import android.content.Intent;
+import android.location.Geocoder;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,15 +13,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.Spinner;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.home.MainActivity;
 import com.example.home.R;
 import com.example.home.login.LoginActivity;
+import com.example.home.stream.StreamFragment;
 import com.parse.ParseUser;
-import android.widget.ArrayAdapter;
+
 import android.widget.AutoCompleteTextView;
 
 
@@ -33,20 +32,24 @@ public class PreferenceFragment extends Fragment {
     private Button mLogoutButton;
     private AutoCompleteTextView mBedroomTextView;
     private ArrayAdapter bedroomAdapter;
+    MainActivity mainActivity;
+    private AutoCompleteTextView mProperyType;
+    private ArrayAdapter propertyTypeAdapter;
+    private EditText mZipcodeEditText;
+    private int mZipCode;
+    private String mZipCodeText;
 
-    private AutoCompleteTextView mBathroomTextView;
-    private ArrayAdapter bathroomAdapter;
+    public PreferenceFragment(){
+    }
 
-    private AutoCompleteTextView mHouseStyleTextView;
-    private ArrayAdapter houseStyleAdapter;
-
-    public PreferenceFragment() {
+    public PreferenceFragment(MainActivity mainActivity) {
         // Required empty public constructor
+        this.mainActivity = mainActivity;
     }
 
     // TODO: Rename and change types and number of parameters
     public static PreferenceFragment newInstance(String param1, String param2) {
-        PreferenceFragment fragment = new PreferenceFragment();
+        PreferenceFragment fragment = new PreferenceFragment(null);
         Bundle args = new Bundle();
         return fragment;
     }
@@ -74,34 +77,39 @@ public class PreferenceFragment extends Fragment {
         mBedroomTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String bedItem = parent.getItemAtPosition(position).toString();
-                Toast.makeText(getContext(), "Item: "+ bedItem, Toast.LENGTH_SHORT).show();
+                String mNoOfBedrooms = parent.getItemAtPosition(position).toString();
+                StreamFragment stream = new StreamFragment(mNoOfBedrooms);
+                mainActivity.fragmentManager.beginTransaction().replace(R.id.fragmentContainerView, stream).commit();
+//                Intent i = new Intent(getContext(), StreamFragment.class);
+//                i.putExtra("NoOfBedrooms", mNoOfBedrooms);
+//                startActivity(i);
+                Toast.makeText(getContext(), "Item: "+ mNoOfBedrooms, Toast.LENGTH_SHORT).show();
             }
         });
 
-        mBathroomTextView = view.findViewById(R.id.BathroomTextView);
-        bathroomAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, getResources().getStringArray(R.array.NoOfBathrooms));
+        mProperyType = view.findViewById(R.id.PropertyTypeTextView);
+        propertyTypeAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, getResources().getStringArray(R.array.PropertyType));
 
-        mBathroomTextView.setAdapter(bathroomAdapter);
-        mBathroomTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mProperyType.setAdapter(propertyTypeAdapter);
+        mProperyType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String bathItem = parent.getItemAtPosition(position).toString();
-                Toast.makeText(getContext(), "Item: "+ bathItem, Toast.LENGTH_SHORT).show();
+                String mPropertyType = parent.getItemAtPosition(position).toString();
+                Intent i = new Intent(getContext(), StreamFragment.class);
+                i.putExtra("PropertyType", mPropertyType);
+                startActivity(i);
+                Toast.makeText(getContext(), "Item: "+ mPropertyType, Toast.LENGTH_SHORT).show();
             }
         });
+        mZipcodeEditText = (EditText) view.findViewById(R.id.ZipcodeEditText);
+        mZipCodeText = mZipcodeEditText.getText().toString();
+        if(!mZipCodeText.equals("")){
+            mZipCode = Integer.parseInt(mZipCodeText);
+        }
 
-        mHouseStyleTextView = view.findViewById(R.id.HouseStyleTextView);
-        houseStyleAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, getResources().getStringArray(R.array.houseStyle));
 
-        mHouseStyleTextView.setAdapter(houseStyleAdapter);
-        mHouseStyleTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String houseItem = parent.getItemAtPosition(position).toString();
-                Toast.makeText(getContext(), "Item: "+ houseItem, Toast.LENGTH_SHORT).show();
-            }
-        });
+
+
 
         mLogoutButton = view.findViewById(R.id.LogoutButton);
         mLogoutButton.setOnClickListener(new View.OnClickListener() {
