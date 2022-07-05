@@ -9,16 +9,16 @@ import com.parse.ParseObject;
 @ParseClassName("Home")
 public class Home extends ParseObject {
     public String mAddress;
-    private String mPropertyType;
-    private String mHomeNoOfBedrooms;
-    private String mHomeNoOfBathrooms;
-    private String mYearBuilt;
-    private String mDistance;
+    public String mPropertyType;
+    public String mHomeNoOfBedrooms;
+    public String mHomeNoOfBathrooms;
+    public String mYearBuilt;
+    public String mDistance;
 
     public Home(){}
 
     public Home (JSONObject jsonObject) throws JSONException{
-        mAddress = jsonObject.getJSONObject("property").getJSONObject("address").getString("oneLine:");
+        mAddress = jsonObject.getJSONObject("property").getJSONObject("address").getString("oneLine");
         mPropertyType = jsonObject.getJSONObject("property").getJSONObject("summary").getString("proptype");
         mHomeNoOfBedrooms = jsonObject.getJSONObject("property").getJSONObject("address").getJSONObject("rooms").getString("beds");
         mHomeNoOfBathrooms = jsonObject.getJSONObject("property").getJSONObject("building").getJSONObject("rooms").getString("bathstotal");
@@ -39,11 +39,15 @@ public class Home extends ParseObject {
     }
 
     public String getHomeNoOfBathrooms() {
-        return mHomeNoOfBathrooms;
+      return mHomeNoOfBathrooms;
     }
 
     public String getYearBuilt() {
-        return mYearBuilt;
+       return mYearBuilt;
+    }
+
+    public String getDistance() {
+        return mDistance;
     }
 
     public boolean isSaved() {

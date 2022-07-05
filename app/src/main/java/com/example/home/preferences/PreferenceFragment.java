@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,8 +37,12 @@ public class PreferenceFragment extends Fragment {
     private AutoCompleteTextView mProperyType;
     private ArrayAdapter propertyTypeAdapter;
     private EditText mZipcodeEditText;
+    private Button mSaveButton;
+
     private int mZipCode;
     private String mZipCodeText;
+    private String mNoOfBedrooms;
+    private String mPropertyTypeText;
 
     public PreferenceFragment(){
     }
@@ -49,7 +54,7 @@ public class PreferenceFragment extends Fragment {
 
     // TODO: Rename and change types and number of parameters
     public static PreferenceFragment newInstance(String param1, String param2) {
-        PreferenceFragment fragment = new PreferenceFragment(null);
+        PreferenceFragment fragment = new PreferenceFragment();
         Bundle args = new Bundle();
         return fragment;
     }
@@ -77,12 +82,7 @@ public class PreferenceFragment extends Fragment {
         mBedroomTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String mNoOfBedrooms = parent.getItemAtPosition(position).toString();
-                StreamFragment stream = new StreamFragment(mNoOfBedrooms);
-                mainActivity.fragmentManager.beginTransaction().replace(R.id.fragmentContainerView, stream).commit();
-//                Intent i = new Intent(getContext(), StreamFragment.class);
-//                i.putExtra("NoOfBedrooms", mNoOfBedrooms);
-//                startActivity(i);
+                mNoOfBedrooms = parent.getItemAtPosition(position).toString();
                 Toast.makeText(getContext(), "Item: "+ mNoOfBedrooms, Toast.LENGTH_SHORT).show();
             }
         });
@@ -94,11 +94,9 @@ public class PreferenceFragment extends Fragment {
         mProperyType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String mPropertyType = parent.getItemAtPosition(position).toString();
-                Intent i = new Intent(getContext(), StreamFragment.class);
-                i.putExtra("PropertyType", mPropertyType);
-                startActivity(i);
-                Toast.makeText(getContext(), "Item: "+ mPropertyType, Toast.LENGTH_SHORT).show();
+                mPropertyTypeText = parent.getItemAtPosition(position).toString();
+
+                Toast.makeText(getContext(), "Item: "+ mPropertyTypeText, Toast.LENGTH_SHORT).show();
             }
         });
         mZipcodeEditText = (EditText) view.findViewById(R.id.ZipcodeEditText);
@@ -106,9 +104,13 @@ public class PreferenceFragment extends Fragment {
         if(!mZipCodeText.equals("")){
             mZipCode = Integer.parseInt(mZipCodeText);
         }
-
-
-
+        mSaveButton = view.findViewById(R.id.SaveButton);
+        mSaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).startStream(mNoOfBedrooms, mPropertyTypeText, mZipCode);
+            }
+        });
 
 
         mLogoutButton = view.findViewById(R.id.LogoutButton);

@@ -17,10 +17,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "Main Activity";
+    public String mNoOfBedrooms;
+    public String mPropertyType;
+    public Integer mZipCode;
     public final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
     private PreferenceFragment preferenceFragment = new PreferenceFragment(this);
-    private StreamFragment streamFragment = new StreamFragment("");
+    private StreamFragment streamFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+    }
+    public void startStream(String mNoOfBedrooms, String mPropertyTypeText, Integer mZipCode ){
+        streamFragment = new StreamFragment(mNoOfBedrooms, mPropertyTypeText, mZipCode);
+        fragmentManager.beginTransaction().replace(R.id.fragmentContainerView, streamFragment).commit();
 
     }
 }
