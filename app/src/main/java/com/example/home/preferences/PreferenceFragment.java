@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.codepath.asynchttpclient.AsyncHttpClient;
+import com.codepath.asynchttpclient.RequestParams;
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.home.MainActivity;
 import com.example.home.R;
 import com.example.home.login.LoginActivity;
@@ -29,6 +32,14 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import android.widget.AutoCompleteTextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import okhttp3.Headers;
 
 
 public class PreferenceFragment extends Fragment {
@@ -44,6 +55,13 @@ public class PreferenceFragment extends Fragment {
     private Button mSaveButton;
 
     private int mZipCode;
+    private ArrayList latlng;
+    private Bundle latlngBundle;
+    private String mLatitude;
+    private String mLongitude;
+
+    public static final String FORMAT_ZIP = "info.json";
+    public static final String DEGREES_ZIP = "degrees";
     private String mZipCodeText;
     private String mNoOfBedrooms;
     private String mPropertyTypeText;
@@ -135,12 +153,74 @@ public class PreferenceFragment extends Fragment {
                 Toast.makeText(getContext(), "Item: "+ mPropertyTypeText, Toast.LENGTH_SHORT).show();
             }
         });
-    }
-    public void initZipcodeEditText(){
-        mZipCodeText = mZipcodeEditText.getText().toString();
-        if(!mZipCodeText.equals("")){
-            mZipCode = Integer.parseInt(mZipCodeText);
-        }
+        mZipcodeEditText = (EditText) view.findViewById(R.id.ZipcodeEditText);
+        mSaveButton = view.findViewById(R.id.SaveButton);
+        mSaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mZipCodeText = mZipcodeEditText.getText().toString();
+                if(!mZipCodeText.equals("")){
+                    mZipCode = Integer.parseInt(mZipCodeText);
+                    AsyncHttpClient client = new AsyncHttpClient();
+                    RequestParams params = new RequestParams();
+                    params.put("api_key", getContext().getString(R.string.zipcode_api_key));
+                    params.put(FORMAT_ZIP, "");
+                    params.put("", mZipCodeText);
+                    client.get("https://www.zipcodeapi.com/rest/", params, new JsonHttpResponseHandler() {
+                        @Override
+                        public void onSuccess(int statusCode, Headers headers, JSON json) {
+                            // Access a JSON array response with `json.jsonArray`
+                            populateZipCode(json.jsonObject, mLatitude, mLongitude);
+                            latlng = new ArrayList();
+                            latlngBundle = new Bundle();
+                            latlngBundle.putStringArrayList("latlng", latlng);
+                            Log.d("ZipCode entered", "");
+                            // Access a JSON object response with `json.jsonObject`
+                            Log.d("DEBUG OBJECT", json.jsonObject.toString());
+                            ((MainActivity)getActivity()).startStream(mNoOfBedrooms, mPropertyTypeText, latlng);
+                        }
+                        @Override
+                        public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                            Log.e("ERROR:", response.toString());
+
+                        }
+                    });
+
+                }
+
+
+            }
+        });
+
+
+        mLogoutButton = view.findViewById(R.id.LogoutButton);
+        mLogoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParseUser.logOut();
+                Intent i = new Intent(getContext(), LoginActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
+    private void populateZipCode(JSONObject jsonObject, String mLatitude, String mLongitude) {
+        try {
+            if (jsonObject != null) {
+                for (int i = 0; i < jsonObject.length(); i++) {
+                    mLatitude = jsonObject.getString("lat");
+                    latlng.add(mLatitude);
+                    mLongitude = jsonObject.getString("lng");
+                    latlng.add(mLongitude);
+                }
+            }
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+//    public String[] getLatlng(){
+//        return latlng.clone();
+//    }
 }

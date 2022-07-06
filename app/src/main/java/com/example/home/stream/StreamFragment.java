@@ -35,6 +35,20 @@ import okhttp3.Headers;
 
 public class StreamFragment extends Fragment {
 
+    public String mNoOfBedrooms;
+    public String mPropertyTypeText;
+    public String[] latlng;
+    public Integer mZipCode;
+    public List<Home> mHome;
+    public HomeAdapter adapter;
+    public RecyclerView streamRecyclerView;
+    public LinearLayout StreamLinearLayout;
+    public static final String LATITUDE_PARAM = "latitude";
+    public static final String LONGITUDE_PARAM = "longitude";
+    public static final String RADIUS_PARAM = "radius";
+    public static final String MIN_BEDS_PARAM = "minbeds";
+    public static final String MAX_BEDS_PARAM = "maxbeds";
+    public static final String PROPERTY_TYPE_PARAM = "propertytype";
     private String noOfBedrooms;
     private String propertyTypeText;
     private Integer zipCode;
