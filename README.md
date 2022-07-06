@@ -43,7 +43,7 @@ This app is a way for users to search for new homes! It will use the Realty API 
 * ...
 * User can schedule a virtual tour
 * User can share house via text
-* User can view closest houses to them or close in compability
+* User can view closest houses to them or close in compability by recommendation.
 
 ### 2. Screen Archetypes
 
@@ -85,7 +85,8 @@ This app is a way for users to search for new homes! It will use the Realty API 
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
-<img src="https://raw.githubusercontent.com/lailaeliotti1/HOME-FBU/main/IMG_2371.jpg" width=600>
+<img src="https://user-images.githubusercontent.com/93938274/174900993-6294f53e-b067-4af5-a96f-b2ea7277b319.jpeg"
+ width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
 
