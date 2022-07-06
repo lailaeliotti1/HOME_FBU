@@ -11,8 +11,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/BedroomDropDown"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="466dp"
-        android:layout_height="76dp"
+        android:layout_width="385dp"
+        android:layout_height="62dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="103dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,20 +24,20 @@
 
         <AutoCompleteTextView
             android:id="@+id/BedroomTextView"
-            android:layout_width="match_parent"
-            android:layout_height="57dp"
+            android:layout_width="369dp"
+            android:layout_height="52dp"
             android:layout_weight="1"
             android:inputType="none"
             android:text="Number of Bedrooms" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/BathroomDropDown"
+        android:id="@+id/PropertyTypeDropDown"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="466dp"
-        android:layout_height="80dp"
+        android:layout_width="393dp"
+        android:layout_height="51dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="107dp"
+        android:layout_marginTop="9dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BedroomDropDown">
 
@@ -46,36 +46,14 @@
                 and make its input type to none-->
 
         <AutoCompleteTextView
-            android:id="@+id/BathroomTextView"
-            android:layout_width="462dp"
-            android:layout_height="61dp"
+            android:id="@+id/PropertyTypeTextView"
+            android:layout_width="374dp"
+            android:layout_height="51dp"
             android:layout_weight="1"
             android:inputType="none"
-            android:text="Number of Bathrooms" />
+            android:text="Property Type" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/HouseStyleDropDown"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="432dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="98dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BathroomDropDown">
-
-        <!-- Inside text input layout add
-              an auto complete text view
-                and make its input type to none-->
-
-        <AutoCompleteTextView
-            android:id="@+id/HouseStyleTextView"
-            android:layout_width="457dp"
-            android:layout_height="55dp"
-            android:layout_weight="1"
-            android:inputType="none"
-            android:text="House Style" />
-    </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:id="@+id/LogoutButton"
         android:layout_width="wrap_content"
@@ -87,6 +65,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_conversion_absoluteHeight="48dp"
         tools:layout_conversion_absoluteWidth="93dp" />
+
+    <EditText
+        android:id="@+id/ZipcodeEditText"
+        android:layout_width="374dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="22dp"
+        android:ems="10"
+        android:hint="ZipCode"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PropertyTypeDropDown" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

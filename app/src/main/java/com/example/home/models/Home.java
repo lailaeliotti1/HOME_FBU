@@ -1,71 +1,52 @@
 package com.example.home.models;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
 @ParseClassName("Home")
 public class Home extends ParseObject {
-    private String mAddress;
-    private Double mHomePrice;
-    private Integer mHomeNoOfBedrooms;
-    private Integer mHomeNoOfBathrooms;
-    private Integer mHomeNoOfFloors;
-    private Integer mYearBuilt;
-    public boolean mSaved;
+    public String mAddress;
+    private String mPropertyType;
+    private String mHomeNoOfBedrooms;
+    private String mHomeNoOfBathrooms;
+    private String mYearBuilt;
+    private String mDistance;
 
     public Home(){}
 
-    public static Home fromJson(JSONObject jsonObject){
-        Home home = new Home();
-        return home;
+    public Home (JSONObject jsonObject) throws JSONException{
+        mAddress = jsonObject.getJSONObject("property").getJSONObject("address").getString("oneLine:");
+        mPropertyType = jsonObject.getJSONObject("property").getJSONObject("summary").getString("proptype");
+        mHomeNoOfBedrooms = jsonObject.getJSONObject("property").getJSONObject("address").getJSONObject("rooms").getString("beds");
+        mHomeNoOfBathrooms = jsonObject.getJSONObject("property").getJSONObject("building").getJSONObject("rooms").getString("bathstotal");
+        mYearBuilt = jsonObject.getJSONObject("property").getJSONObject("summary").getString("yearbuilt");
+        mDistance = jsonObject.getJSONObject("property").getJSONObject("address").getString("distance");
     }
 
-    public String getmAddress() {
+    public String getAddress() {
         return mAddress;
     }
 
-    public void setmAddress(String mAddress) {
-        this.mAddress = mAddress;
+    public String getPropertyType(){
+        return mPropertyType;
     }
 
-    public Double getmHomePrice() {
-        return mHomePrice;
-    }
-
-    public Integer getHomeNoOfBedrooms() {
+    public String getHomeNoOfBedrooms() {
         return mHomeNoOfBedrooms;
     }
 
-    public void setmHomeNoOfBedrooms(Integer mHomeNoOfBedrooms) {
-        this.mHomeNoOfBedrooms = mHomeNoOfBedrooms;
-    }
-
-    public Integer getmHomeNoOfBathrooms() {
+    public String getHomeNoOfBathrooms() {
         return mHomeNoOfBathrooms;
     }
 
-    public void setmHomeNoOfBathrooms(Integer mHomeNoOfBathrooms) {
-        this.mHomeNoOfBathrooms = mHomeNoOfBathrooms;
-    }
-
-    public Integer getmHomeNoOfFloors() {
-        return mHomeNoOfFloors;
-    }
-
-    public void setmHomeNoOfFloors(Integer mHomeNoOfFloors) {
-        this.mHomeNoOfFloors = mHomeNoOfFloors;
-    }
-
-    public Integer getmYearBuilt() {
+    public String getYearBuilt() {
         return mYearBuilt;
     }
 
-    public void setmYearBuilt(Integer mYearBuilt) {
-        this.mYearBuilt = mYearBuilt;
-    }
-
-    public boolean ismSaved() {
-        return mSaved;
+    public boolean isSaved() {
+        return true;
     }
 }

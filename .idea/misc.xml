@@ -6,9 +6,12 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2203125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.18697916666666667" />
+        <entry key="app/src/main/res/layout/activity_stream_details.xml" value="0.2703125" />
+        <entry key="app/src/main/res/layout/activity_stream_homes.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.4036458333333333" />
-        <entry key="app/src/main/res/layout/fragment_preference.xml" value="0.22706422018348624" />
+        <entry key="app/src/main/res/layout/fragment_preference.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/fragment_stream.xml" value="0.40260416666666665" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.21302083333333333" />
       </map>
     </option>
