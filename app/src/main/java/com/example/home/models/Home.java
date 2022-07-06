@@ -18,12 +18,12 @@ public class Home extends ParseObject {
     public Home(){}
 
     public Home (JSONObject jsonObject) throws JSONException{
-        mAddress = jsonObject.getJSONObject("property").getJSONObject("address").getString("oneLine");
-        mPropertyType = jsonObject.getJSONObject("property").getJSONObject("summary").getString("proptype");
-        mHomeNoOfBedrooms = jsonObject.getJSONObject("property").getJSONObject("address").getJSONObject("rooms").getString("beds");
-        mHomeNoOfBathrooms = jsonObject.getJSONObject("property").getJSONObject("building").getJSONObject("rooms").getString("bathstotal");
-        mYearBuilt = jsonObject.getJSONObject("property").getJSONObject("summary").getString("yearbuilt");
-        mDistance = jsonObject.getJSONObject("property").getJSONObject("address").getString("distance");
+        mAddress = jsonObject.getJSONObject("address").getString("oneLine");
+        mPropertyType = jsonObject.getJSONObject("summary").getString("proptype");
+        mHomeNoOfBedrooms = jsonObject.getJSONObject("building").getJSONObject("rooms").getString("beds");
+        mHomeNoOfBathrooms = jsonObject.getJSONObject("building").getJSONObject("rooms").getString("bathstotal");
+        mYearBuilt = jsonObject.getJSONObject("summary").getString("yearbuilt");
+        mDistance = jsonObject.getJSONObject("location").getString("distance");
     }
 
     public String getAddress() {

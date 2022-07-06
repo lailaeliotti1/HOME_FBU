@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.RequestHeaders;
@@ -19,6 +20,10 @@ import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.home.R;
 import com.example.home.models.Home;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +39,7 @@ public class StreamFragment extends Fragment {
     public List<Home> mHome;
     public HomeAdapter adapter;
     public RecyclerView streamRecyclerView;
+    public LinearLayout StreamLinearLayout;
     public static final String LATITUDE_PARAM = "latitude";
     public static final String LONGITUDE_PARAM = "longitude";
     public static final String RADIUS_PARAM = "radius";
@@ -73,12 +79,13 @@ public class StreamFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         streamRecyclerView = view.findViewById(R.id.HomesRecyclerView);
+        StreamLinearLayout = view.findViewById(R.id.StreamLinearLayout);
         //initializes list of homes and adapter
         mHome = new ArrayList<>();
         //recycler view setup
         adapter = new HomeAdapter(getContext(), mHome);
-        streamRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         streamRecyclerView.setAdapter(adapter);
+        streamRecyclerView.setLayoutManager(new LinearLayoutManager(StreamLinearLayout.getContext()));
         AsyncHttpClient client = new AsyncHttpClient();
         RequestHeaders headers = new RequestHeaders();
         headers.put("apikey", getContext().getString(R.string.attomdata_api_key));
@@ -95,7 +102,9 @@ public class StreamFragment extends Fragment {
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 // Access a JSON array response with `json.jsonArray`
                 //Log.d("DEBUG ARRAY", json.jsonArray.toString());
-                //adapter.notifyDataSetChanged();
+                populateHomes(json.jsonObject);
+                adapter.notifyDataSetChanged();
+                Log.d("Home size", String.valueOf(mHome.size()));
                 // Access a JSON object response with `json.jsonObject`
                 Log.d("DEBUG OBJECT", json.jsonObject.toString());
             }
@@ -105,6 +114,20 @@ public class StreamFragment extends Fragment {
 
             }
         });
+    }
+
+    public void populateHomes(JSONObject jsonObject) {
+        try {
+            JSONArray jsonArray = jsonObject.getJSONArray("property");
+            if (jsonArray != null) {
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    mHome.add(new Home((JSONObject) jsonArray.get(i)));
+                }
+            }
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 }
