@@ -5,7 +5,9 @@ import com.parse.ParseClassName;
 import com.parse.ParseUser;
 
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
+import java.util.ArrayList;
 @ParseClassName("_User")
 public class User extends ParseUser {
     private String mUserName;
@@ -13,10 +15,11 @@ public class User extends ParseUser {
     private String mEmail;
     private UserPreferences mUserPreferences;
 
+
     public User(){}
 
-    public static User fromJson(JSONObject jsonObject){
-        User user = new User();
+    public static com.example.home.models.User fromJson(JSONObject jsonObject){
+        com.example.home.models.User user = new User();
         return user;
     }
 
