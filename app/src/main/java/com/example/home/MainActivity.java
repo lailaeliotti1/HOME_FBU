@@ -15,6 +15,8 @@ import com.example.home.preferences.PreferenceFragment;
 import com.example.home.stream.StreamFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "Main Activity";
     public String mNoOfBedrooms;
@@ -53,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void startStream(String mNoOfBedrooms, String mPropertyTypeText, Integer mZipCode ){
-        streamFragment = new StreamFragment(mNoOfBedrooms, mPropertyTypeText, mZipCode);
+    public void startStream(String mNoOfBedrooms, String mPropertyTypeText, ArrayList latlng ){
+        streamFragment = new StreamFragment(mNoOfBedrooms, mPropertyTypeText, latlng);
         fragmentManager.beginTransaction().replace(R.id.fragmentContainerView, streamFragment).commit();
 
     }

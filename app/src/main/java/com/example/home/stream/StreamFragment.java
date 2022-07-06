@@ -20,6 +20,7 @@ import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.home.R;
 import com.example.home.models.Home;
+import com.example.home.preferences.PreferenceFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +36,7 @@ public class StreamFragment extends Fragment {
 
     public String mNoOfBedrooms;
     public String mPropertyTypeText;
+    public String[] latlng;
     public Integer mZipCode;
     public List<Home> mHome;
     public HomeAdapter adapter;
@@ -48,10 +50,10 @@ public class StreamFragment extends Fragment {
     public static final String PROPERTY_TYPE_PARAM = "propertytype";
 
 
-    public StreamFragment(String mNoOfBedrooms, String mPropertyTypeText, Integer mZipCode) {
+    public StreamFragment(String mNoOfBedrooms, String mPropertyTypeText, ArrayList latlng) {
         this.mNoOfBedrooms = mNoOfBedrooms;
         this.mPropertyTypeText = mPropertyTypeText;
-        this.mZipCode = mZipCode;
+        this.latlng = latlng;
         // Required empty public constructor
     }
 
@@ -91,17 +93,18 @@ public class StreamFragment extends Fragment {
         headers.put("apikey", getContext().getString(R.string.attomdata_api_key));
         RequestParams params = new RequestParams();
 
-        params.put(LATITUDE_PARAM, "47.628891");
-        params.put(LONGITUDE_PARAM, "-122.341408");
-        params.put(RADIUS_PARAM, "1");
+
+        PreferenceFragment preferenceFragment = new PreferenceFragment();
+        preferenceFragment.getLatlng();
+        params.put(LATITUDE_PARAM, latlng[0]);
+        params.put(LONGITUDE_PARAM, latlng[1]);
+        params.put(RADIUS_PARAM, "20");
         params.put(MIN_BEDS_PARAM, mNoOfBedrooms);
         params.put(MAX_BEDS_PARAM, mNoOfBedrooms);
         params.put(PROPERTY_TYPE_PARAM, mPropertyTypeText);
         client.get("https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/snapshot?", headers, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
-                // Access a JSON array response with `json.jsonArray`
-                //Log.d("DEBUG ARRAY", json.jsonArray.toString());
                 populateHomes(json.jsonObject);
                 adapter.notifyDataSetChanged();
                 Log.d("Home size", String.valueOf(mHome.size()));

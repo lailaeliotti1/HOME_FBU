@@ -1,7 +1,6 @@
 package com.example.home.preferences;
 
 import android.content.Intent;
-import android.location.Geocoder;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -18,13 +17,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.codepath.asynchttpclient.AsyncHttpClient;
+import com.codepath.asynchttpclient.RequestParams;
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.home.MainActivity;
 import com.example.home.R;
 import com.example.home.login.LoginActivity;
-import com.example.home.stream.StreamFragment;
 import com.parse.ParseUser;
 
 import android.widget.AutoCompleteTextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import okhttp3.Headers;
 
 
 public class PreferenceFragment extends Fragment {
@@ -40,6 +49,13 @@ public class PreferenceFragment extends Fragment {
     private Button mSaveButton;
 
     private int mZipCode;
+    private ArrayList latlng;
+    private Bundle latlngBundle;
+    private String mLatitude;
+    private String mLongitude;
+
+    public static final String FORMAT_ZIP = "info.json";
+    public static final String DEGREES_ZIP = "degrees";
     private String mZipCodeText;
     private String mNoOfBedrooms;
     private String mPropertyTypeText;
@@ -100,15 +116,41 @@ public class PreferenceFragment extends Fragment {
             }
         });
         mZipcodeEditText = (EditText) view.findViewById(R.id.ZipcodeEditText);
-        mZipCodeText = mZipcodeEditText.getText().toString();
-        if(!mZipCodeText.equals("")){
-            mZipCode = Integer.parseInt(mZipCodeText);
-        }
         mSaveButton = view.findViewById(R.id.SaveButton);
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).startStream(mNoOfBedrooms, mPropertyTypeText, mZipCode);
+                mZipCodeText = mZipcodeEditText.getText().toString();
+                if(!mZipCodeText.equals("")){
+                    mZipCode = Integer.parseInt(mZipCodeText);
+                    AsyncHttpClient client = new AsyncHttpClient();
+                    RequestParams params = new RequestParams();
+                    params.put("api_key", getContext().getString(R.string.zipcode_api_key));
+                    params.put(FORMAT_ZIP, "");
+                    params.put("", mZipCodeText);
+                    client.get("https://www.zipcodeapi.com/rest/", params, new JsonHttpResponseHandler() {
+                        @Override
+                        public void onSuccess(int statusCode, Headers headers, JSON json) {
+                            // Access a JSON array response with `json.jsonArray`
+                            populateZipCode(json.jsonObject, mLatitude, mLongitude);
+                            latlng = new ArrayList();
+                            latlngBundle = new Bundle();
+                            latlngBundle.putStringArrayList("latlng", latlng);
+                            Log.d("ZipCode entered", "");
+                            // Access a JSON object response with `json.jsonObject`
+                            Log.d("DEBUG OBJECT", json.jsonObject.toString());
+                            ((MainActivity)getActivity()).startStream(mNoOfBedrooms, mPropertyTypeText, latlng);
+                        }
+                        @Override
+                        public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                            Log.e("ERROR:", response.toString());
+
+                        }
+                    });
+
+                }
+
+
             }
         });
 
@@ -124,4 +166,23 @@ public class PreferenceFragment extends Fragment {
         });
 
     }
+
+    private void populateZipCode(JSONObject jsonObject, String mLatitude, String mLongitude) {
+        try {
+            if (jsonObject != null) {
+                for (int i = 0; i < jsonObject.length(); i++) {
+                    mLatitude = jsonObject.getString("lat");
+                    latlng.add(mLatitude);
+                    mLongitude = jsonObject.getString("lng");
+                    latlng.add(mLongitude);
+                }
+            }
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+//    public String[] getLatlng(){
+//        return latlng.clone();
+//    }
 }
