@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import com.example.home.R;
 import com.example.home.models.Home;
 import com.example.home.models.User;
+import com.example.home.models.UserPreferences;
 import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -16,6 +17,7 @@ public class ParseApplication extends Application {
         super.onCreate();
         ParseObject.registerSubclass(Home.class);
         ParseUser.registerSubclass(User.class);
+        ParseObject.registerSubclass(UserPreferences.class);
 
 
         Parse.setLogLevel(Parse.LOG_LEVEL_DEBUG);
