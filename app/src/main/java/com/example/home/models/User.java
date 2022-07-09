@@ -2,6 +2,7 @@ package com.example.home.models;
 
 
 import com.parse.ParseClassName;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import org.json.JSONObject;
@@ -13,15 +14,11 @@ public class User extends ParseUser {
     private String mUserName;
     private String mPassword;
     private String mEmail;
-    private UserPreferences mUserPreferences;
+    //private UserPreferences mUserPreferences = new UserPreferences();
+    //private ParseObject mParseObject = ParseObject.create("UserPreferences");
 
 
     public User(){}
-
-    public static com.example.home.models.User fromJson(JSONObject jsonObject){
-        com.example.home.models.User user = new User();
-        return user;
-    }
 
     public String getUserName() {
         return mUserName;
@@ -47,10 +44,11 @@ public class User extends ParseUser {
         this.mPassword = mPassword;
     }
 
-    public UserPreferences getUserPreferences(){
-        return mUserPreferences;
-    }
-    public void setUserPreferences(UserPreferences mUserPreferences) {
-        this.mUserPreferences = mUserPreferences;
-    }
+//    public UserPreferences getUserPreferences(){
+//        return mUserPreferences;
+//    }
+//    public void setUserPreferences(UserPreferences mUserPreferences) {
+//        this.mUserPreferences = mUserPreferences;
+//
+//    }
 }

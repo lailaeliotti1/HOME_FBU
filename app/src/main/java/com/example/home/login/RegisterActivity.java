@@ -106,7 +106,13 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(i);
         finish();
     }
-    private String setUserName(EditText userName) {return userName.getText().toString();}
-    private String setPassword(EditText password) {return password.getText().toString();}
-    private String setEmail(EditText email) {return email.getText().toString();}
+    private String setUserName(EditText userName) {
+        return userName.getText().toString();
+    }
+    private String setPassword(EditText password) {
+        return password.getText().toString();
+    }
+    private String setEmail(EditText email) {
+        return email.getText().toString();
+    }
 }

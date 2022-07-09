@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText metPassword;
     private ImageView mivArrow;
     private TextView mtvSwipeRight;
-    public float x1, x2, y1, y2;
+    private float firstTouchX, lastTouchX, firstTouchY, lastTouchY;
 
 
     @Override
@@ -68,9 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
-
     private void goMainActivity(){
         Intent i = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(i);
@@ -79,13 +77,13 @@ public class LoginActivity extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent touchevent){
         switch(touchevent.getAction()){
             case MotionEvent.ACTION_DOWN:
-                x1 = touchevent.getX();
-                y1 = touchevent.getY();
+                firstTouchX = touchevent.getX();
+                firstTouchY = touchevent.getY();
                 break;
             case MotionEvent.ACTION_UP:
-                x2 = touchevent.getX();
-                y2 = touchevent.getY();
-                if(x1 > x2){
+                lastTouchX = touchevent.getX();
+                lastTouchY = touchevent.getY();
+                if(firstTouchX > lastTouchX){
                     Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
                     startActivity(i);
                 }
@@ -93,5 +91,4 @@ public class LoginActivity extends AppCompatActivity {
         }
         return false;
     }
-
 }

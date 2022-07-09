@@ -1,67 +1,38 @@
 package com.example.home.models;
 
+import android.util.Log;
+
 import com.parse.ParseClassName;
-import com.parse.ParseFile;
 import com.parse.ParseObject;
-import com.parse.ParseUser;
 
 @ParseClassName("UserPreferences")
-
 public class UserPreferences extends ParseObject {
-    public static final String mLocation = "mLocation";
-    public static final String mNoOfBedrooms = "mNoOfBedrooms";
-    public static final String mNoOfBathrooms = "mNoOfBathrooms";
-    public static final String mHouseStyle = "mHouseStyle";
-    public static final String mNoOfFloors = "mNoOfFloors";
-    public static final String mBudget = "mBudget";
-    public static final String mSavedHomes = "mSavedHomes";
+    private static final String KEY_BEDROOM_NO = "noOfBedrooms";
+    private static final String KEY_BATHROOM_NO = "mNoOfBathrooms";
+    private static final String KEY_PROPERTY_TYPE = "mPropertyType";
+    //private ParseObject mParseObject = ParseObject.create("UserPreferences");
 
-    public ParseFile getLocation(){
-        return getParseFile(mLocation);
+    public Number getNoOfBedrooms(){
+        return getNumber("noOfBedrooms");
     }
-    public void setLocation(ParseFile parseFile){
-        put(mLocation, parseFile);
+    public void setNoOfBedrooms(Integer noOfBedrooms){
+        put(KEY_BEDROOM_NO, noOfBedrooms);
     }
-    public ParseFile getmNoOfBedrooms(){
-        return getParseFile(mLocation);
+    public Number getNoOfBathrooms(){
+        return getNumber("noOfBathrooms");
     }
-    public void setNoOfBedrooms(ParseFile parseFile){
-        put(mNoOfBedrooms, parseFile);
+    public void setNoOfBathrooms(Integer noOfBathrooms){
+        put(KEY_BATHROOM_NO, noOfBathrooms);
     }
-    public ParseFile getNoOfBathrooms(){
-        return getParseFile(mNoOfBathrooms);
+    public String getPropertyType(){
+        return getString("propertyType");
     }
-    public void setNoOfBathrooms(ParseFile parseFile){
-        put(mNoOfBathrooms, parseFile);
+    public void setPropertyType(String propertyType){
+        put(KEY_PROPERTY_TYPE, propertyType);
     }
-    public ParseFile getmHouseStyle(){
-        return getParseFile(mHouseStyle);
+    public ParseObject getUserPreferences(){
+        return getParseObject("UserPreferences");
     }
-    public void setHouseStyle(ParseFile parseFile){
-        put(mHouseStyle, parseFile);
-    }
-    public ParseFile getNoOFFloors(){
-        return getParseFile(mNoOfFloors);
-    }
-    public void setNoOfFloors(ParseFile parseFile){
-        put(mNoOfFloors, parseFile);
-    }
-    public ParseFile getBudget(){
-        return getParseFile(mBudget);
-    }
-    public void setBudget(ParseFile parseFile){
-        put(mBudget, parseFile);
-    }
-    public ParseFile getSavedHomes(){
-        return getParseFile(mSavedHomes);
-    }
-    public void setSavedHomes(ParseFile parseFile){
-        put(mSavedHomes, parseFile);
     }
 
-
-
-
-
-}
 

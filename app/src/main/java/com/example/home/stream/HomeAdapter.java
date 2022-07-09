@@ -1,15 +1,12 @@
 package com.example.home.stream;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.home.R;
@@ -18,13 +15,13 @@ import com.example.home.models.Home;
 import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
-    private List<Home> mHome;
+    private List<Home> mHomes;
     private Context context;
 
-    public HomeAdapter(Context context, List<Home> mHome)
+    public HomeAdapter(Context context, List<Home> mHomes)
     {
         this.context = context;
-        this.mHome = mHome;
+        this.mHomes = mHomes;
     }
     @NonNull
     @Override
@@ -37,16 +34,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Home home = mHome.get(position);
+        Home home = mHomes.get(position);
         holder.bind(home);
-
-
-
     }
 
     @Override
     public int getItemCount() {
-        return mHome.size();
+        return mHomes.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -74,17 +68,17 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
         }
 
         public void bind(Home home) {
-            mAddressTextView.setText(home.mAddress);
-            mPropertyTypeText.setText(home.mPropertyType);
-            mYearBuiltText.setText(home.mYearBuilt);
-            mDistanceText.setText(home.mDistance);
-            mBedroomText.setText(home.mHomeNoOfBedrooms);
-            mBathroomText.setText(home.mHomeNoOfBathrooms);
+            mAddressTextView.setText(home.getAddress());
+            mPropertyTypeText.setText(home.getPropertyType());
+            mYearBuiltText.setText(home.getYearBuilt());
+            mDistanceText.setText(home.getYearBuilt());
+            mBedroomText.setText(home.getHomeNoOfBedrooms());
+            mBathroomText.setText(home.getHomeNoOfBathrooms());
         }
     }
 
     public void clear(){
-        mHome.clear();
+        mHomes.clear();
         notifyDataSetChanged();
     }
     public void addAll(List<Home> mHome)
