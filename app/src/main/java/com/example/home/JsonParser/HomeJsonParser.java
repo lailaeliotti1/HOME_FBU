@@ -1,5 +1,7 @@
 package com.example.home.JsonParser;
 
+import android.util.Log;
+
 import com.example.home.models.Home;
 
 import org.json.JSONArray;
@@ -36,11 +38,13 @@ public class HomeJsonParser {
         return home;
     }
     public static ArrayList<Home> getListOfHomes(JSONObject jsonObject){
+        Log.e("getListOfHomes","in method");
         ArrayList<Home> homes = new ArrayList<>();
         try {
             JSONArray jsonArray = jsonObject.getJSONArray(PROPERTY_PARAM);
             for (int i = 0; i < jsonArray.length(); i++) {
                 homes.add(HomeJsonParser.getHomeFromJson((JSONObject) jsonArray.get(i)));
+                Log.d("ArrayList", "home added");
             }
         }
         catch (JSONException e) {

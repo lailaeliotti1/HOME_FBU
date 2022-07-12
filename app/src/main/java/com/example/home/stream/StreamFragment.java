@@ -1,6 +1,5 @@
 package com.example.home.stream;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,18 +13,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.home.AttomData.AttomDataClient;
 import com.example.home.JsonParser.HomeJsonParser;
 import com.example.home.R;
+import com.example.home.ZipCode.ZipcodeClient;
+import com.example.home.ZipCode.ZipcodeParser;
 import com.example.home.models.Home;
 import com.example.home.models.User;
 import com.example.home.models.UserPreferences;
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,34 +40,23 @@ import okhttp3.Headers;
 
 
 public class StreamFragment extends Fragment {
-
-    public String mNoOfBedrooms;
-    public String mPropertyTypeText;
-    public String[] latlng;
-    public Integer mZipCode;
-    public List<Home> mHome;
     public HomeAdapter adapter;
     public RecyclerView streamRecyclerView;
     public LinearLayout StreamLinearLayout;
-    public static final String LATITUDE_PARAM = "latitude";
-    public static final String LONGITUDE_PARAM = "longitude";
-    public static final String RADIUS_PARAM = "radius";
-    public static final String MIN_BEDS_PARAM = "minbeds";
-    public static final String MAX_BEDS_PARAM = "maxbeds";
-    public static final String PROPERTY_TYPE_PARAM = "propertytype";
     private String noOfBedrooms;
     private String propertyTypeText;
-    private Integer zipCode;
+    private String zipCode;
     private List<Home> mHomes;
-    private HomeAdapter adapter;
-    private RecyclerView streamRecyclerView;
-    private LinearLayout StreamLinearLayout;
+    private ArrayList latlng;
+    private UserPreferences mUserPreferences;
     private AttomDataClient attomDataClient = new AttomDataClient();
+    private ZipcodeClient zipcodeClient = new ZipcodeClient();
 
-    public StreamFragment(String noOfBedrooms, String propertyTypeText, Integer zipCode) {
-        this.noOfBedrooms = noOfBedrooms;
-        this.propertyTypeText = propertyTypeText;
-        this.zipCode = zipCode;
+    public StreamFragment() {
+    }
+
+    public StreamFragment(UserPreferences userPreferences) {
+        mUserPreferences = userPreferences;
         // Required empty public constructor
     }
 
@@ -91,37 +86,59 @@ public class StreamFragment extends Fragment {
         adapter = new HomeAdapter(getContext(), mHomes);
         streamRecyclerView.setAdapter(adapter);
         streamRecyclerView.setLayoutManager(new LinearLayoutManager(StreamLinearLayout.getContext()));
-        populateHomeTimeline();
+        ParseQuery<ParseObject> query = new ParseQuery<>("UserPreferences");
+        query.whereEqualTo("user", User.getCurrentUser());
+        query.findInBackground(((objects, e) -> {
+            for (ParseObject object : objects) {
+                mUserPreferences = (UserPreferences) object;
+                zipCode = String.valueOf(mUserPreferences.getZipcode());
+                populateZipCode(zipCode);
+            }
+
+        }));
+
 
     }
 
-    private void populateHomeTimeline(){
-        ParseUser user = ParseUser.getCurrentUser();//grabbed from server
-        ParseQuery<UserPreferences> query = new ParseQuery<UserPreferences>(UserPreferences.class);
-        query.whereEqualTo("user", user);
-        query.findInBackground(new FindCallback<UserPreferences>() {
+    private void populateZipCode(String zipCode) {
+        zipcodeClient.getZipcodeClient(getContext(), String.valueOf(mUserPreferences.getZipcode()), new JsonHttpResponseHandler() {
             @Override
-            public void done(List<UserPreferences> objects, ParseException e) {
-                for(UserPreferences obj: objects){
-                    attomDataClient.getHomeTimeline(getContext(), obj, new JsonHttpResponseHandler() {
-                        @Override
-                        public void onSuccess(int statusCode, Headers headers, JSON json) {
-                            // Access a JSON array response with `json.jsonArray`
-                            mHomes.addAll(HomeJsonParser.getListOfHomes(json.jsonObject));
-                            adapter.notifyDataSetChanged();
-                            Log.d("Home size", String.valueOf(mHomes.size()));
-                            // Access a JSON object response with `json.jsonObject`
-                            Log.d("DEBUG OBJECT", json.jsonObject.toString());
-                        }
-                        @Override
-                        public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                            Log.e("ERROR:", response.toString());
-
-                        }
-                    });
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                try {
+                    ZipcodeParser.addLatlng(json.jsonObject, mUserPreferences);
+                    populateHomeTimeline();
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
             }
+
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+
+            }
         });
+    }
+
+    private void populateHomeTimeline() {
+        ParseUser user = ParseUser.getCurrentUser();
+        attomDataClient.getHomeTimeline(getContext(), mUserPreferences, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                // Access a JSON array response with `json.jsonArray`
+                mHomes.addAll(HomeJsonParser.getListOfHomes(json.jsonObject));
+                adapter.notifyDataSetChanged();
+                Log.d("Home size", String.valueOf(mHomes.size()));
+                // Access a JSON object response with `json.jsonObject`
+                Log.d("DEBUG OBJECT", json.jsonObject.toString());
+            }
+
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                Log.e("ERROR:", response.toString());
+
+            }
+        });
+
     }
 }

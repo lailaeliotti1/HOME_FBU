@@ -18,13 +18,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.codepath.asynchttpclient.AsyncHttpClient;
-import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.example.home.JsonParser.HomeJsonParser;
 import com.example.home.MainActivity;
 import com.example.home.R;
+import com.example.home.ZipCode.ZipcodeClient;
+import com.example.home.ZipCode.ZipcodeParser;
 import com.example.home.login.LoginActivity;
 import com.example.home.models.User;
+import com.example.home.models.UserPreferences;
+import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -33,11 +37,10 @@ import com.parse.SaveCallback;
 
 import android.widget.AutoCompleteTextView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Headers;
 
@@ -49,13 +52,13 @@ public class PreferenceFragment extends Fragment {
     private AutoCompleteTextView mBedroomTextView;
     private ArrayAdapter bedroomAdapter;
     MainActivity mainActivity;
-    private AutoCompleteTextView mProperyType;
+    private AutoCompleteTextView mPropertyType;
     private ArrayAdapter propertyTypeAdapter;
     private EditText mZipcodeEditText;
     private Button mSaveButton;
 
     private int mZipCode;
-    private ArrayList latlng;
+
     private Bundle latlngBundle;
     private String mLatitude;
     private String mLongitude;
@@ -65,8 +68,10 @@ public class PreferenceFragment extends Fragment {
     private String mZipCodeText;
     private String mNoOfBedrooms;
     private String mPropertyTypeText;
+    UserPreferences userPreferences = new UserPreferences();
 
-    public PreferenceFragment(){
+
+    public PreferenceFragment() {
     }
 
     public PreferenceFragment(MainActivity mainActivity) {
@@ -78,6 +83,24 @@ public class PreferenceFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        userPreferences.setUser((User) User.getCurrentUser());
+        //grabbed from server
+        ParseQuery<UserPreferences> query = new ParseQuery<UserPreferences>(UserPreferences.class);
+        query.setLimit(1);
+        query.getFirstInBackground(new GetCallback<UserPreferences>() {
+            public void done(UserPreferences userPreferences, ParseException e) {
+                if (e == null) {
+                    userPreferences.setNoOfBedrooms(userPreferences.getInt("noOfBedrooms"));
+                    userPreferences.setZipcode(userPreferences.getInt("zipcode"));
+                    userPreferences.setPropertyType(userPreferences.getString("propertyType"));
+                    userPreferences.saveInBackground();
+
+
+                } else {
+                    // Something is wrong
+                }
+            }
+        });
     }
 
     @Override
@@ -91,31 +114,23 @@ public class PreferenceFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ParseUser user = ParseUser.getCurrentUser(); //grabbed from server
-        //mUserPreferences.setParseObject(user.getParseObject("UserPreferences"));//grabbed uP from server, the column in User
 
         mBedroomTextView = view.findViewById(R.id.BedroomTextView);
         initBedroomTextView();
 
-        mProperyType = view.findViewById(R.id.PropertyTypeTextView);
+        mPropertyType = view.findViewById(R.id.PropertyTypeTextView);
         initPropertyTypeText();
         mZipcodeEditText = (EditText) view.findViewById(R.id.ZipcodeEditText);
+
 
         mSaveButton = view.findViewById(R.id.SaveButton);
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //user.put("UserPreferences", mUserPreferences.getUserPreferences());
-                user.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        if (e == null) {
-                            Log.e("startStream", "run");
-                        } else {
-                            // Error
-                        }
-                    }
-                });
-                ((MainActivity)getActivity()).startStream(mNoOfBedrooms, mPropertyTypeText, mZipCode);
+                mZipCodeText = mZipcodeEditText.getText().toString();
+                userPreferences.setZipcode(Integer.parseInt(mZipCodeText));
+                userPreferences.saveInBackground();
+                ((MainActivity) getActivity()).startStream(userPreferences);
             }
         });
         mLogoutButton = view.findViewById(R.id.LogoutButton);
@@ -129,7 +144,8 @@ public class PreferenceFragment extends Fragment {
         });
 
     }
-    public void initBedroomTextView(){
+
+    public void initBedroomTextView() {
         bedroomAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, getResources().getStringArray(R.array.NoOfBedrooms));
 
         mBedroomTextView.setAdapter(bedroomAdapter);
@@ -137,90 +153,29 @@ public class PreferenceFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mNoOfBedrooms = parent.getItemAtPosition(position).toString();
-                Toast.makeText(getContext(), "Item: "+ mNoOfBedrooms, Toast.LENGTH_SHORT).show();
+                userPreferences.setNoOfBedrooms(Integer.parseInt(mNoOfBedrooms));
+                Toast.makeText(getContext(), "Item: " + mNoOfBedrooms, Toast.LENGTH_SHORT).show();
             }
         });
     }
-    public void initPropertyTypeText(){
+
+    public void initPropertyTypeText() {
         propertyTypeAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, getResources().getStringArray(R.array.PropertyType));
 
-        mProperyType.setAdapter(propertyTypeAdapter);
-        mProperyType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mPropertyType.setAdapter(propertyTypeAdapter);
+        mPropertyType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mPropertyTypeText = parent.getItemAtPosition(position).toString();
+                userPreferences.setPropertyType(mPropertyTypeText);
+                //user = getCurrentuser
+                //pref = user.getUserPreferences
+                //pref.setProperty()
 
-                Toast.makeText(getContext(), "Item: "+ mPropertyTypeText, Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(getContext(), "Item: " + mPropertyTypeText, Toast.LENGTH_SHORT).show();
             }
         });
-        mZipcodeEditText = (EditText) view.findViewById(R.id.ZipcodeEditText);
-        mSaveButton = view.findViewById(R.id.SaveButton);
-        mSaveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mZipCodeText = mZipcodeEditText.getText().toString();
-                if(!mZipCodeText.equals("")){
-                    mZipCode = Integer.parseInt(mZipCodeText);
-                    AsyncHttpClient client = new AsyncHttpClient();
-                    RequestParams params = new RequestParams();
-                    params.put("api_key", getContext().getString(R.string.zipcode_api_key));
-                    params.put(FORMAT_ZIP, "");
-                    params.put("", mZipCodeText);
-                    client.get("https://www.zipcodeapi.com/rest/", params, new JsonHttpResponseHandler() {
-                        @Override
-                        public void onSuccess(int statusCode, Headers headers, JSON json) {
-                            // Access a JSON array response with `json.jsonArray`
-                            populateZipCode(json.jsonObject, mLatitude, mLongitude);
-                            latlng = new ArrayList();
-                            latlngBundle = new Bundle();
-                            latlngBundle.putStringArrayList("latlng", latlng);
-                            Log.d("ZipCode entered", "");
-                            // Access a JSON object response with `json.jsonObject`
-                            Log.d("DEBUG OBJECT", json.jsonObject.toString());
-                            ((MainActivity)getActivity()).startStream(mNoOfBedrooms, mPropertyTypeText, latlng);
-                        }
-                        @Override
-                        public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                            Log.e("ERROR:", response.toString());
-
-                        }
-                    });
-
-                }
-
-
-            }
-        });
-
-
-        mLogoutButton = view.findViewById(R.id.LogoutButton);
-        mLogoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ParseUser.logOut();
-                Intent i = new Intent(getContext(), LoginActivity.class);
-                startActivity(i);
-            }
-        });
-
     }
 
-    private void populateZipCode(JSONObject jsonObject, String mLatitude, String mLongitude) {
-        try {
-            if (jsonObject != null) {
-                for (int i = 0; i < jsonObject.length(); i++) {
-                    mLatitude = jsonObject.getString("lat");
-                    latlng.add(mLatitude);
-                    mLongitude = jsonObject.getString("lng");
-                    latlng.add(mLongitude);
-                }
-            }
-        }
-        catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-//    public String[] getLatlng(){
-//        return latlng.clone();
-//    }
 }
