@@ -11,7 +11,7 @@ Original App Design Project - README Template
 
 ## Overview
 ### Description
-This app is a way for users to search for new homes! It will use the AttomData, Zipcode, and Google Streetview Static API to gather data and upload houses on to the app. Users will be able to sign in, choose preferences, such as location, number of rooms, and price range! Uses can also save hoouses to their profiles.
+This app is a way for users to search for new homes! It will use the AttomData, Zipcode, and Google Streetview Static API to gather data and upload houses on to the app. Users will be able to sign in, choose preferences, such as location, number of rooms, and poperty type. Uses can also save houses to their profiles.
 
 ### App Evaluation
 [Evaluation of your app across the following attributes]
