@@ -34,16 +34,14 @@ This app is a way for users to search for new homes! It will use the AttomData, 
 * User can login
 * User can enter preferences
 * User can scroll through real estate, and view pictures
-* User can save houses to profile for later
 * User can logout
 
 **Optional Nice-to-have Stories**
 
 * [fill in your required user stories here]
-* ...
+* User can view closest houses to them or close in compability by recommendation.
 * User can schedule a virtual tour
 * User can share house via text
-* User can view closest houses to them or close in compability by recommendation.
 
 ### 2. Screen Archetypes
 
@@ -55,8 +53,6 @@ This app is a way for users to search for new homes! It will use the AttomData, 
    * User can input house preferences and save them.
 * Stream
     * User can view possible homes
-* Saved homes
-    * User can view saved homes
 * Logout
     * User can logout
 
@@ -66,7 +62,6 @@ This app is a way for users to search for new homes! It will use the AttomData, 
 
 * Saved preferences
 * Home Stream
-* Saved houses
 
 **Flow Navigation** (Screen to Screen)
 
@@ -78,8 +73,6 @@ This app is a way for users to search for new homes! It will use the AttomData, 
     * => Home stream
 * Home stream
     * => Home details(where you can save houses)
-* Saved homes
-    * => None
 * Logout
     * => Login
 
@@ -102,15 +95,19 @@ This app is a way for users to search for new homes! It will use the AttomData, 
    | userName      | String   | Username for account   |
    | password      | String   | password for account   |
    | email         | String   | email for account      |
-   | savedHomes    | ArrayList| list of houses saved   |
-   | location      | String   | location preference for user |
+##### UserPreferences
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | Zipcode       | String   | location preference for user |
+   | Zipcode       | String   | location preference for user |
    | noOfBedrooms  | Numbers  | Number of bedrooms preference for user |
    | noOfBathrooms | Numbers  | Number of bathrooms preference for user |
-   | houseStyle    | String   | House style preference for user |
-   | noOfFloors    | Number   | number of likes for the post |
-   | budget        | Numbers  | Budget amount for user |
+   | MaxBed     | Numbers  | Number of bathrooms preference for user + 1|
+   | propertyType  | String   | House style preference for user |
+   | recommendations|Boolean   | User checks off if they want preferences |
    | createdAt     | DateTime | date when post is created (default field) |
    | updatedAt     | DateTime | date when post is last updated (default field) |
+   
    
 #### Home
 
@@ -118,26 +115,17 @@ This app is a way for users to search for new homes! It will use the AttomData, 
    | ------------- | -------- | ------------|
    | objectId      | String   | unique id for the property (default field) |
    | address       | String   | Property address |
-   | homePrice        | Number   | budget amount |
    | homeNoOfBedrooms| Number | number of rooms the house has |
    | homeNoOfBathrooms| Number| number of bathrooms the house has |
-   | homeNoOfFloors| Number   | number of floors the house has |
    | yearBuilt     | Number   | Year the house was built |
+   | Latitude      | Number  | Latitude of house |
+   | Longitude     | Number  | Longitude of house |
+   | ImageUrl      | String  | ImageUrl of house |
    | createdAt     | DateTime | date when post is created (default field) |
    | updatedAt     | DateTime | date when post is last updated (default field) |
-   | saved         | boolean  | tells if the user saved the home |
    
-#### MatchProperty
-
-   | Property      | Type     | Description |
-   | ------------- | -------- | ------------|
-   | objectId      | String   | unique id for the property (default field) |
-   | budgetArr     | ArrayList   | budget amount |
-   | homeNoOfBedroomsArr| ArrayList | number of rooms the house has |
-   | homeNoOfBathroomsArr| ArrayList| number of bathrooms the house has |
-   | homeNoOfFloorsArr| ArrayList   | number of floors the house has |
-   | createdAt     | DateTime | date when post is created (default field) |
-   | updatedAt     | DateTime | date when post is last updated (default field) |
+ 
+   
    
 ### Networking
 #### List of network requests by screen
