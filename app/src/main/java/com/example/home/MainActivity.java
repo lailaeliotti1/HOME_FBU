@@ -11,9 +11,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.home.models.UserPreferences;
 import com.example.home.preferences.PreferenceFragment;
 import com.example.home.stream.StreamFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "Main Activity";
@@ -23,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
     private PreferenceFragment preferenceFragment = new PreferenceFragment(this);
-    private StreamFragment streamFragment;
+    private StreamFragment streamFragment = new StreamFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void startStream(String mNoOfBedrooms, String mPropertyTypeText, Integer mZipCode ){
-        streamFragment = new StreamFragment(mNoOfBedrooms, mPropertyTypeText, mZipCode);
-        fragmentManager.beginTransaction().replace(R.id.fragmentContainerView, streamFragment).commit();
+    public void startStream(UserPreferences userPreferences){
+        streamFragment = new StreamFragment(userPreferences);
 
     }
 }
