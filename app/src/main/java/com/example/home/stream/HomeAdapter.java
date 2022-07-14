@@ -73,11 +73,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
 
         public void bind(Home home) {
             mAddressTextView.setText(home.getAddress());
-            mPropertyTypeText.setText(home.getPropertyType());
-            mYearBuiltText.setText(home.getYearBuilt());
-            mDistanceText.setText(home.getDistance());
-            mBedroomText.setText(home.getHomeNoOfBedrooms());
-            mBathroomText.setText(home.getHomeNoOfBathrooms());
+            mPropertyTypeText.setText("Type: " + home.getPropertyType());
+            mYearBuiltText.setText("Year Built: " + home.getYearBuilt());
+            mDistanceText.setText(home.getDistance() + " miles away");
+            mBedroomText.setText(home.getHomeNoOfBedrooms() + " Bedroom(s)");
+            mBathroomText.setText(home.getHomeNoOfBathrooms() + " Bath(s)");
             Glide.with(context).load(home.getImageUrl()+context.getString(R.string.google_streetview_key)).into(mHomeImageView);
         }
     }

@@ -20,6 +20,12 @@ public class UserPreferences extends ParseObject {
     public void setNoOfBedrooms(Integer noOfBedrooms){
         put(KEY_BEDROOM_NO, noOfBedrooms);
     }
+
+    public Integer getMaxNoOfBedrooms(){
+        //returns one more bedroom than user asked for
+        int max = (Integer)getNoOfBedrooms() + 1;
+        return max;
+    }
     public String getPropertyType(){
         return getString("propertyType");
     }

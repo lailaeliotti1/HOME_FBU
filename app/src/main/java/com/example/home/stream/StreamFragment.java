@@ -43,11 +43,8 @@ public class StreamFragment extends Fragment {
     public HomeAdapter adapter;
     public RecyclerView streamRecyclerView;
     public LinearLayout StreamLinearLayout;
-    private String noOfBedrooms;
-    private String propertyTypeText;
     private String zipCode;
     private List<Home> mHomes;
-    private ArrayList latlng;
     private UserPreferences mUserPreferences;
     private AttomDataClient attomDataClient = new AttomDataClient();
     private ZipcodeClient zipcodeClient = new ZipcodeClient();
