@@ -14,7 +14,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/AddressTextView"
@@ -74,6 +74,18 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/DistanceTextView" />
+
+            <ImageView
+                android:id="@+id/HomeImageView"
+                android:layout_width="126dp"
+                android:layout_height="128dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="80dp"
+                app:layout_constraintEnd_toStartOf="@+id/AddressTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

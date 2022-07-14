@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView mSwipeLeftTextView;
     private RelativeLayout mRegisterRelativeLayout;
     private Button mbtnRegister;
+    private float firstTouchX, lastTouchX, firstTouchY, lastTouchY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,5 +116,23 @@ public class RegisterActivity extends AppCompatActivity {
     }
     private String setEmail(EditText email) {
         return email.getText().toString();
+    }
+
+    public boolean onTouchEvent(MotionEvent touchevent){
+        switch(touchevent.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                firstTouchX = touchevent.getX();
+                firstTouchY = touchevent.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                lastTouchX = touchevent.getX();
+                lastTouchY = touchevent.getY();
+                if(firstTouchX < lastTouchX){
+                    Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivity(i);
+                }
+                break;
+        }
+        return false;
     }
 }

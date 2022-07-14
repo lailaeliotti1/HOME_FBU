@@ -4,11 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.home.R;
 import com.example.home.models.Home;
 
@@ -52,6 +54,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
         private TextView mDistanceText;
         private TextView mBedroomText;
         private TextView mBathroomText;
+        private ImageView mHomeImageView;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -65,15 +68,17 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
             mDistanceText = (TextView) itemView.findViewById(R.id.DistanceTextView);
             mBedroomText = (TextView) itemView.findViewById(R.id.BedroomText);
             mBathroomText = (TextView) itemView.findViewById(R.id.BathroomText);
+            mHomeImageView = (ImageView) itemView.findViewById(R.id.HomeImageView);
         }
 
         public void bind(Home home) {
             mAddressTextView.setText(home.getAddress());
             mPropertyTypeText.setText(home.getPropertyType());
             mYearBuiltText.setText(home.getYearBuilt());
-            mDistanceText.setText(home.getYearBuilt());
+            mDistanceText.setText(home.getDistance());
             mBedroomText.setText(home.getHomeNoOfBedrooms());
             mBathroomText.setText(home.getHomeNoOfBathrooms());
+            Glide.with(context).load(home.getImageUrl()+context.getString(R.string.google_streetview_key)).into(mHomeImageView);
         }
     }
 

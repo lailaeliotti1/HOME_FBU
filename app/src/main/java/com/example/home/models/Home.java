@@ -1,5 +1,7 @@
 package com.example.home.models;
 
+import android.content.Context;
+
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
@@ -11,6 +13,10 @@ public class Home extends ParseObject {
     private String mHomeNoOfBathrooms;
     private String mYearBuilt;
     private String mDistance;
+    private String mLatitude;
+    private String mLongitude;
+    private String mImageUrl;
+    private Context context;
 
     public Home(){}
 
@@ -56,6 +62,25 @@ public class Home extends ParseObject {
     }
     public void setDistance(String distance) {
         mDistance = distance;
+    }
+
+    public String getLatitude(){
+        return mLatitude;
+    }
+    public void setLatitude(String latitude){
+        mLatitude = latitude;
+    }
+    public String getLongitude(){
+        return mLongitude;
+    }
+    public void setLongitude(String longitude){
+        mLongitude = longitude;
+    }
+    public String getImageUrl(){
+        return mImageUrl;
+    }
+    public void setImageUrl(String imageUrl) {
+        mImageUrl = imageUrl;
     }
 
 
