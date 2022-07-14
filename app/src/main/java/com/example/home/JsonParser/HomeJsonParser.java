@@ -30,7 +30,7 @@ public class HomeJsonParser {
     private static final String APIKEY_PARAM = "&key=";
     private static final String SIZE_PARAM = "size=";
     private static final String SIZE_DIMENSIONS = "150x150";
-    private static String LOCATION_LATLNG = "";
+    private static String LOCATION_LATLNG;
 
     private static final String API_URL = "https://maps.googleapis.com/maps/api/streetview?";
 
@@ -65,6 +65,7 @@ public class HomeJsonParser {
         return homes;
     }
     public static String getStreetView(Home home){
+        LOCATION_LATLNG = "";
         LOCATION_LATLNG += home.getLatitude() + "," + home.getLongitude();
         return API_URL+ SIZE_PARAM + SIZE_DIMENSIONS + STREET_LOCATION_PARAM + LOCATION_LATLNG +
                 APIKEY_PARAM;

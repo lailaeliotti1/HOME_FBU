@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,6 +57,7 @@ public class PreferenceFragment extends Fragment {
     private ArrayAdapter propertyTypeAdapter;
     private EditText mZipcodeEditText;
     private Button mSaveButton;
+    private Switch mRecommendationSwitch;
 
     private int mZipCode;
 
@@ -93,6 +95,7 @@ public class PreferenceFragment extends Fragment {
                     userPreferences.setNoOfBedrooms(userPreferences.getInt("noOfBedrooms"));
                     userPreferences.setZipcode(userPreferences.getInt("zipcode"));
                     userPreferences.setPropertyType(userPreferences.getString("propertyType"));
+                    userPreferences.setRecommendationSwitch(userPreferences.getBoolean("recommendationSwitch"));
                     userPreferences.saveInBackground();
 
 
@@ -121,6 +124,15 @@ public class PreferenceFragment extends Fragment {
         mPropertyType = view.findViewById(R.id.PropertyTypeTextView);
         initPropertyTypeText();
         mZipcodeEditText = (EditText) view.findViewById(R.id.ZipcodeEditText);
+
+        mRecommendationSwitch = view.findViewById(R.id.RecommendationsSwitch);
+        mRecommendationSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->{
+            if(isChecked) {
+                Toast.makeText(getContext(), "Recommendations ON ", Toast.LENGTH_SHORT).show();
+                userPreferences.setRecommendationSwitch(isChecked);
+            }
+        });
+
 
 
         mSaveButton = view.findViewById(R.id.SaveButton);
@@ -161,18 +173,12 @@ public class PreferenceFragment extends Fragment {
 
     public void initPropertyTypeText() {
         propertyTypeAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, getResources().getStringArray(R.array.PropertyType));
-
         mPropertyType.setAdapter(propertyTypeAdapter);
         mPropertyType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mPropertyTypeText = parent.getItemAtPosition(position).toString();
                 userPreferences.setPropertyType(mPropertyTypeText);
-                //user = getCurrentuser
-                //pref = user.getUserPreferences
-                //pref.setProperty()
-
-
                 Toast.makeText(getContext(), "Item: " + mPropertyTypeText, Toast.LENGTH_SHORT).show();
             }
         });

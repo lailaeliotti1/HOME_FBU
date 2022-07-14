@@ -136,6 +136,17 @@ public class StreamFragment extends Fragment {
 
             }
         });
+        if(mUserPreferences.getRecommendationSwitch() == true){
+            //Creating a new UP recommendations
+            //change radius
+            //change bedrooms
+            //change property type
+            //if mUP getBedroom < 2, give an apartment/condominum... else give residential acreage
+            //recommendations.setNoOfBedrooms(userP.getMaxBedrooms());
+            //attomDataClient.getHomeTimeline(getContext(), recommendations);
+
+
+        }
 
     }
 }

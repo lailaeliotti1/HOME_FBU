@@ -61,19 +61,13 @@
 
     <Button
         android:id="@+id/LogoutButton"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="162dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="156dp"
-        android:layout_marginBottom="300dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="20dp"
         android:text="LOGOUT"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SaveButton"
-        app:layout_constraintVertical_bias="0.0"
         tools:layout_conversion_absoluteHeight="48dp"
         tools:layout_conversion_absoluteWidth="93dp" />
 
@@ -94,17 +88,24 @@
 
     <Button
         android:id="@+id/SaveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="401dp"
+        android:layout_width="89dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="100dp"
         android:text="SAVE"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ZipcodeEditText"
-        app:layout_constraintVertical_bias="0.085" />
+        app:layout_constraintTop_toBottomOf="@+id/ZipcodeEditText" />
+
+    <Switch
+        android:id="@+id/RecommendationsSwitch"
+        android:layout_width="245dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="21dp"
+        android:text="Switch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ZipcodeEditText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
