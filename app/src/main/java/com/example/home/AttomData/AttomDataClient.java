@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class AttomDataClient {
         private ArrayList<String> latlng;
-        public static final String LATITUDE_PARAM = "latitude";
+        private static final String LATITUDE_PARAM = "latitude";
         private static final String LONGITUDE_PARAM = "longitude";
         private static final String MAX_BEDS_PARAM = "maxbeds";
         private static final String RADIUS_PARAM = "radius";
@@ -43,7 +43,6 @@ public class AttomDataClient {
             params.put(MIN_BEDS_PARAM, String.valueOf(userPreferences.getNoOfBedrooms()));
             params.put(MAX_BEDS_PARAM, String.valueOf(userPreferences.getNoOfBedrooms()));
             params.put(PROPERTY_TYPE_PARAM, userPreferences.getPropertyType());
-            Log.e("api", API_URL + headers+ params);
             //https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/snapshot?latitude=47.610903&longitude=-122.336229&radius=1&minbeds=1&maxbeds=1&propertytype=CONDOMINIUM
             mClient.get(API_URL, headers, params, jsonHttpResponseHandler);
         }

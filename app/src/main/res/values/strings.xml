@@ -21,6 +21,7 @@
     <string name="back4app_client_key">rKN3dsIyz3zEKWU4DnE8Ctva78zfSMCgx2lpNyRp</string>
     <string name="attomdata_api_key">4e1b1e82223a8cb310559399be217723</string>
     <string name="zipcode_api_key">dpORP970DJgFlkCFifSfFBWZB7SNia13dsvlMgAr1rtIbQuvI80Js4pEDyRTyhuV</string>
+    <string name="google_streetview_key">AIzaSyCNoCggg5iJ8eNKLkxxPYonbIWM-xJin7E</string>
 
     <string-array name="NoOfBedrooms">
         <item>1</item>

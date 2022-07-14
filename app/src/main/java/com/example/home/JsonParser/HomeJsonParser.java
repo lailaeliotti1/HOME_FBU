@@ -23,6 +23,16 @@ public class HomeJsonParser {
     private static final String LOCATION_PARAM = "location";
     private static final String DISTANCE_PARAM = "distance";
     private static final String PROPERTY_PARAM = "property";
+    private static final String LATITUDE_PARAM = "latitude";
+    private static final String LONGITUDE_PARAM = "longitude";
+
+    private static final String STREET_LOCATION_PARAM = "&location=";
+    private static final String APIKEY_PARAM = "&key=";
+    private static final String SIZE_PARAM = "size=";
+    private static final String SIZE_DIMENSIONS = "150x150";
+    private static String LOCATION_LATLNG = "";
+
+    private static final String API_URL = "https://maps.googleapis.com/maps/api/streetview?";
 
 
 
@@ -34,11 +44,13 @@ public class HomeJsonParser {
         home.setHomeNoOfBathrooms(jsonObject.getJSONObject(BUILDING_PARAM).getJSONObject(ROOMS_PARAM).getString(BATHS_PARAM));
         home.setYearBuilt(jsonObject.getJSONObject(SUMMARY_PARAM).getString(YEAR_PARAM));
         home.setDistance(jsonObject.getJSONObject(LOCATION_PARAM).getString(DISTANCE_PARAM));
+        home.setLatitude(jsonObject.getJSONObject(LOCATION_PARAM).getString(LATITUDE_PARAM));
+        home.setLongitude(jsonObject.getJSONObject(LOCATION_PARAM).getString(LONGITUDE_PARAM));
+        home.setImageUrl(getStreetView(home));
 
         return home;
     }
     public static ArrayList<Home> getListOfHomes(JSONObject jsonObject){
-        Log.e("getListOfHomes","in method");
         ArrayList<Home> homes = new ArrayList<>();
         try {
             JSONArray jsonArray = jsonObject.getJSONArray(PROPERTY_PARAM);
@@ -51,5 +63,10 @@ public class HomeJsonParser {
             e.printStackTrace();
         }
         return homes;
+    }
+    public static String getStreetView(Home home){
+        LOCATION_LATLNG += home.getLatitude() + "," + home.getLongitude();
+        return API_URL+ SIZE_PARAM + SIZE_DIMENSIONS + STREET_LOCATION_PARAM + LOCATION_LATLNG +
+                APIKEY_PARAM;
     }
 }
