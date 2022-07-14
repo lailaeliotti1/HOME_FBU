@@ -38,7 +38,6 @@ public class HomeJsonParser {
         return home;
     }
     public static ArrayList<Home> getListOfHomes(JSONObject jsonObject){
-        Log.e("getListOfHomes","in method");
         ArrayList<Home> homes = new ArrayList<>();
         try {
             JSONArray jsonArray = jsonObject.getJSONArray(PROPERTY_PARAM);
