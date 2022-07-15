@@ -43,6 +43,8 @@ public class HomeJsonParser {
         home.setHomeNoOfBedrooms(jsonObject.getJSONObject(BUILDING_PARAM).getJSONObject(ROOMS_PARAM).getString(BED_PARAM));
         home.setHomeNoOfBathrooms(jsonObject.getJSONObject(BUILDING_PARAM).getJSONObject(ROOMS_PARAM).getString(BATHS_PARAM));
         home.setYearBuilt(jsonObject.getJSONObject(SUMMARY_PARAM).getString(YEAR_PARAM));
+        if(home.getYearBuilt() == "" || home.getYearBuilt() == null)
+            home.setYearBuilt("0000");
         home.setDistance(jsonObject.getJSONObject(LOCATION_PARAM).getString(DISTANCE_PARAM));
         home.setLatitude(jsonObject.getJSONObject(LOCATION_PARAM).getString(LATITUDE_PARAM));
         home.setLongitude(jsonObject.getJSONObject(LOCATION_PARAM).getString(LONGITUDE_PARAM));

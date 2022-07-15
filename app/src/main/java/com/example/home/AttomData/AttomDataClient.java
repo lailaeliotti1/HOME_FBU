@@ -28,7 +28,6 @@ public class AttomDataClient {
         private static final String PROPERTY_TYPE_PARAM = "propertytype";
         private static final String ORDERBY_PARAM = "orderby";
         private static final String DISTANCE = "distance";
-        private static final int radius = 1;
         private static final String API_URL = "https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/snapshot";
 
         public static void getHomeTimeline(Context context, UserPreferences userPreferences, JsonHttpResponseHandler jsonHttpResponseHandler){
@@ -39,7 +38,7 @@ public class AttomDataClient {
             RequestParams params = new RequestParams();
             params.put(LATITUDE_PARAM, String.valueOf(userPreferences.getLat()));
             params.put(LONGITUDE_PARAM, String.valueOf(userPreferences.getLng()));
-            params.put(RADIUS_PARAM, String.valueOf(radius));
+            params.put(RADIUS_PARAM, String.valueOf(userPreferences.getRadius()));
             params.put(MIN_BEDS_PARAM, String.valueOf(userPreferences.getNoOfBedrooms()));
             if(userPreferences.getRecommendationSwitch() == true)
                 params.put(MAX_BEDS_PARAM, String.valueOf(userPreferences.getMaxNoOfBedrooms()));
@@ -48,6 +47,7 @@ public class AttomDataClient {
             params.put(PROPERTY_TYPE_PARAM, userPreferences.getPropertyType());
             params.put(ORDERBY_PARAM, DISTANCE);
             mClient.get(API_URL, headers, params, jsonHttpResponseHandler);
+            System.out.println("Trying to retrieve homes");
         }
 
 }

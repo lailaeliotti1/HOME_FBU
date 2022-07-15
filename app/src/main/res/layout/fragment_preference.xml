@@ -11,8 +11,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/BedroomDropDown"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
+        android:layout_width="307dp"
+        android:layout_height="69dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="10dp"
@@ -26,8 +26,8 @@
 
         <AutoCompleteTextView
             android:id="@+id/BedroomTextView"
-            android:layout_width="240dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
             android:layout_weight="1"
             android:inputType="none"
             android:text="Number of Bedrooms" />
@@ -36,8 +36,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/PropertyTypeDropDown"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
+        android:layout_width="309dp"
+        android:layout_height="77dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="2dp"
@@ -52,8 +52,8 @@
 
         <AutoCompleteTextView
             android:id="@+id/PropertyTypeTextView"
-            android:layout_width="240dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
             android:layout_weight="1"
             android:inputType="none"
             android:text="Property Type" />
@@ -73,16 +73,16 @@
 
     <EditText
         android:id="@+id/ZipcodeEditText"
-        android:layout_width="240dp"
-        android:layout_height="50dp"
+        android:layout_width="314dp"
+        android:layout_height="56dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="21dp"
         android:ems="10"
         android:hint="ZipCode"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.613"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PropertyTypeDropDown" />
 
@@ -99,11 +99,11 @@
 
     <Switch
         android:id="@+id/RecommendationsSwitch"
-        android:layout_width="245dp"
+        android:layout_width="308dp"
         android:layout_height="52dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="21dp"
-        android:text="Switch"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="16dp"
+        android:text="RECOMMENDATIONS"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ZipcodeEditText" />
 

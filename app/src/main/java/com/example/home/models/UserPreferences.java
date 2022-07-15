@@ -1,6 +1,5 @@
 package com.example.home.models;
 
-import com.example.home.ZipCode.ZipcodeParser;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
@@ -9,22 +8,28 @@ public class UserPreferences extends ParseObject {
     private static final String KEY_BEDROOM_NO = "noOfBedrooms";
     private static final String KEY_PROPERTY_TYPE = "propertyType";
     private static final String KEY_LAT = "latitude";
-    public static final String USER_KEY = "user";
-    private static final String KEY_LNG = "longtiude";
+    private static final String USER_KEY = "user";
+    private static final String KEY_LNG = "longitude";
     private static final String KEY_ZIPCODE = "zipcode";
     private static final String KEY_RECOMMENDATION = "recommendationSwitch";
+    private static final String KEY_RADIUS = "radius";
+    private static final String KEY_MAXBED = "maxbeds";
+    private int mRadius = 1;
 
 
     public Number getNoOfBedrooms(){
         return getNumber(KEY_BEDROOM_NO);
     }
-    public void setNoOfBedrooms(Integer noOfBedrooms){
+    public void setNoOfBedrooms(Number noOfBedrooms){
         put(KEY_BEDROOM_NO, noOfBedrooms);
     }
+    public void setMaxNoOfBedrooms(Integer maxNoOfBedrooms){
+        put(KEY_MAXBED, maxNoOfBedrooms);
+    }
     public Integer getMaxNoOfBedrooms(){
-        //returns one more bedroom than user asked for
-        int max = (Integer)getNoOfBedrooms() + 1;
-        return max;
+        if(getRecommendationSwitch() == true)
+            return (int)getNumber(KEY_BEDROOM_NO)+1;
+        return getInt(KEY_BEDROOM_NO);
     }
     public String getPropertyType(){
         return getString(KEY_PROPERTY_TYPE);
@@ -52,6 +57,15 @@ public class UserPreferences extends ParseObject {
     }
     public void setZipcode(Integer zipcode){
         put(KEY_ZIPCODE, zipcode);
+    }
+    public Number getRadius(){
+        return getNumber(KEY_RADIUS);
+    }
+    public void setRadius(Integer radius){
+        if(getRecommendationSwitch()==false)
+            put(KEY_RADIUS, radius);
+        else
+            put(KEY_RADIUS, mRadius);
     }
 
     public ParseObject getUserPreferences(){
