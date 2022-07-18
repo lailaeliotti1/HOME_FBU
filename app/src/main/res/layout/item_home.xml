@@ -59,6 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
+        android:fontFamily="More Fonts..."
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/HomeImageView"
         app:layout_constraintTop_toBottomOf="@+id/AddressTextView" />
