@@ -12,7 +12,7 @@
         <entry key="app/src/main/res/layout/activity_stream_homes.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/dropdown_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.4036458333333333" />
-        <entry key="app/src/main/res/layout/fragment_preference.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_preference.xml" value="0.39386138916015623" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/fragment_stream.xml" value="0.38421733505821476" />
         <entry key="app/src/main/res/layout/item_home.xml" value="0.40260416666666665" />
@@ -23,5 +23,12 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.39386138916015623" />
+      </ProjectState>
+    </option>
   </component>
 </project>

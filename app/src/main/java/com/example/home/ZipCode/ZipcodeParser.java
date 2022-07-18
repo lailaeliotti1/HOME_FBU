@@ -11,15 +11,11 @@ import java.util.ArrayList;
 public class ZipcodeParser {
     public static final String LAT_PARAM = "lat";
     public static final String LONG_PARAM = "lng";
-    static ArrayList<String> latlng = new ArrayList<>();
 
     public static void addLatlng(JSONObject jsonObject, UserPreferences userPreferences) throws JSONException{
         userPreferences.setLat(Double.parseDouble(String.valueOf(jsonObject.getDouble(LAT_PARAM))));
         userPreferences.setLng(Double.parseDouble(String.valueOf(jsonObject.getDouble(LONG_PARAM))));
         userPreferences.saveInBackground();
-    }
-    public static ArrayList<String> getLatLng(){
-        return latlng;
     }
 
 }

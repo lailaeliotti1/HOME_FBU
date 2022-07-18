@@ -19,7 +19,6 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 
 public class AttomDataClient {
-        private ArrayList<String> latlng;
         private static final String LATITUDE_PARAM = "latitude";
         private static final String LONGITUDE_PARAM = "longitude";
         private static final String MAX_BEDS_PARAM = "maxbeds";
@@ -27,7 +26,8 @@ public class AttomDataClient {
         private static final String ACCEPT_PARAM = "accept";
         private static final String MIN_BEDS_PARAM = "minbeds";
         private static final String PROPERTY_TYPE_PARAM = "propertytype";
-        private static final int radius = 1;
+        private static final String ORDERBY_PARAM = "orderby";
+        private static final String DISTANCE = "distance";
         private static final String API_URL = "https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/snapshot";
 
         public static void getHomeTimeline(Context context, UserPreferences userPreferences, JsonHttpResponseHandler jsonHttpResponseHandler){
@@ -38,13 +38,16 @@ public class AttomDataClient {
             RequestParams params = new RequestParams();
             params.put(LATITUDE_PARAM, String.valueOf(userPreferences.getLat()));
             params.put(LONGITUDE_PARAM, String.valueOf(userPreferences.getLng()));
-            params.put(RADIUS_PARAM, String.valueOf(radius));
-            //grabbed from server
+            params.put(RADIUS_PARAM, String.valueOf(userPreferences.getRadius()));
             params.put(MIN_BEDS_PARAM, String.valueOf(userPreferences.getNoOfBedrooms()));
-            params.put(MAX_BEDS_PARAM, String.valueOf(userPreferences.getNoOfBedrooms()));
+            if(userPreferences.getRecommendationSwitch() == true)
+                params.put(MAX_BEDS_PARAM, String.valueOf(userPreferences.getMaxNoOfBedrooms()));
+            else
+                params.put(MAX_BEDS_PARAM, String.valueOf(userPreferences.getNoOfBedrooms()));
             params.put(PROPERTY_TYPE_PARAM, userPreferences.getPropertyType());
-            //https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/snapshot?latitude=47.610903&longitude=-122.336229&radius=1&minbeds=1&maxbeds=1&propertytype=CONDOMINIUM
+            params.put(ORDERBY_PARAM, DISTANCE);
             mClient.get(API_URL, headers, params, jsonHttpResponseHandler);
+            System.out.println("Trying to retrieve homes");
         }
 
 }
