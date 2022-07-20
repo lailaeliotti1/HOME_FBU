@@ -14,6 +14,7 @@ public class UserPreferences extends ParseObject {
     private static final String KEY_RECOMMENDATION = "recommendationSwitch";
     private static final String KEY_RADIUS = "radius";
     private static final String KEY_MAXBED = "maxbeds";
+    private static Boolean recommendedHome;
     private int mRadius = 1;
 
 

@@ -47,7 +47,6 @@ public class AttomDataClient {
             params.put(PROPERTY_TYPE_PARAM, userPreferences.getPropertyType());
             params.put(ORDERBY_PARAM, DISTANCE);
             mClient.get(API_URL, headers, params, jsonHttpResponseHandler);
-            System.out.println("Trying to retrieve homes");
         }
 
 }

@@ -55,6 +55,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
         private TextView mBedroomText;
         private TextView mBathroomText;
         private ImageView mHomeImageView;
+        private TextView mRecommendedHomeTextView;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -69,6 +70,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
             mBedroomText = (TextView) itemView.findViewById(R.id.BedroomText);
             mBathroomText = (TextView) itemView.findViewById(R.id.BathroomText);
             mHomeImageView = (ImageView) itemView.findViewById(R.id.HomeImageView);
+            mRecommendedHomeTextView = (TextView) itemView.findViewById(R.id.RecommendedHomeTextView);
         }
 
         public void bind(Home home) {
@@ -78,6 +80,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
             mDistanceText.setText(home.getDistance() + " miles away");
             mBedroomText.setText(home.getHomeNoOfBedrooms() + " Bedroom(s)");
             mBathroomText.setText(home.getHomeNoOfBathrooms() + " Bath(s)");
+            if(home.getIsRecommended() == false)
+                mRecommendedHomeTextView.setText("Recommended Home: No");
+            else
+                mRecommendedHomeTextView.setText("Recommended Home: Yes");
             Glide.with(context).load(home.getImageUrl()+context.getString(R.string.google_streetview_key)).into(mHomeImageView);
         }
     }

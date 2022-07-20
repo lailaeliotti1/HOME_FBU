@@ -45,11 +45,7 @@ public class StreamFragment extends Fragment {
     private UserPreferences mUserPreferences;
     private AttomDataClient attomDataClient = new AttomDataClient();
     private ZipcodeClient zipcodeClient = new ZipcodeClient();
-    public static final String APARTMENT = "APARTMENT";
-    public static final String CONDO = "CONDOMINIUM";
-    public static final String DUPLEX = "DUPLEX";
-    public static final String RESIDENTIAL = "RESIDENTIAL ACREAGE";
-    public static final String TOWNHOUSE = "TOWNHOUSE/ROWHOUSE";
+
 
     public StreamFragment() {
     }
@@ -128,8 +124,10 @@ public class StreamFragment extends Fragment {
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 // Access a JSON array response with `json.jsonArray`
                 mHomes.addAll(HomeJsonParser.getListOfHomes(json.jsonObject));
-                if(mUserPreferences.getRecommendationSwitch() == true)
-                    populateRecommendations(user);
+                if(mUserPreferences.getRecommendationSwitch() == true) {
+                    UserPreferences recommendations = RecommendationHomes.getRecommendations(mUserPreferences);
+                    populateRecommendations(recommendations);
+                }
                 adapter.notifyDataSetChanged();
                 Log.d("Home size", String.valueOf(mHomes.size()));
                 // Access a JSON object response with `json.jsonObject`
@@ -143,52 +141,16 @@ public class StreamFragment extends Fragment {
             }
         });
     }
-    private void populateRecommendations(ParseUser user){
-            UserPreferences recommendations = new UserPreferences();
+    private void populateRecommendations(UserPreferences recommendations){
             mHomesRec = new ArrayList<>();
             List<Home> mHomesCopy = new ArrayList<>();
-            mHomesCopy.addAll(mHomes);
-            recommendations.setUser((User) user);
-            recommendations.setNoOfBedrooms(mUserPreferences.getNoOfBedrooms());
-            recommendations.setMaxNoOfBedrooms(mUserPreferences.getMaxNoOfBedrooms());
-            recommendations.setZipcode(mUserPreferences.getZipcode());
-            recommendations.setRadius((int)(Math.random()*5)+1);
-        // if user selects apartment, show condo and duplex, and townhouse and residential acreage
-            if (mUserPreferences.getPropertyType() == APARTMENT){
-                int random = (int)(Math.random()*2);
-                if(random == 1)
-                    recommendations.setPropertyType(CONDO);
-                else
-                    recommendations.setPropertyType(DUPLEX);
-            }
-            if (mUserPreferences.getPropertyType() == CONDO){
-                int random = (int)(Math.random()*2);
-                if(random == 1)
-                    recommendations.setPropertyType(APARTMENT);
-                else
-                    recommendations.setPropertyType(DUPLEX);
-            }
-            if (mUserPreferences.getPropertyType() == DUPLEX){
-                int random = (int)(Math.random()*2);
-                if(random == 1)
-                    recommendations.setPropertyType(CONDO);
-                else
-                    recommendations.setPropertyType(APARTMENT);
-            }
-            if (mUserPreferences.getPropertyType() == TOWNHOUSE)
-                recommendations.setPropertyType(RESIDENTIAL);
-            if(mUserPreferences.getPropertyType() == RESIDENTIAL)
-                recommendations.setPropertyType(TOWNHOUSE);
-            //one degree of latitude is 69 miles
-            //5 miles would be .0725 approx
-            recommendations.setLat(mUserPreferences.getLat());
-            recommendations.setLng(mUserPreferences.getLng());
-            recommendations.setRecommendationSwitch(false);
+            mHomesCopy.addAll(mHomes);//to iterate through mHomes while adding to mHomes
             attomDataClient.getHomeTimeline(getContext(), recommendations, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Headers headers, JSON json) {
                     mHomesRec.addAll(HomeJsonParser.getListOfHomes(json.jsonObject));
                     for(Home objRec: mHomesRec){
+                        objRec.setIsRecommended(true);
                         for(Home objHome: mHomesCopy)
                             if(!objRec.getAddress().equals(objHome.getAddress()))
                                 mHomes.add(objRec);
