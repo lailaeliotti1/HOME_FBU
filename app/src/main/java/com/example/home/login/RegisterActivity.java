@@ -58,7 +58,6 @@ public class RegisterActivity extends AppCompatActivity {
         mbtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "onClick login button");
                     //goLoginActivity();
                     String userName= setUserName(mUsernameEditText);
                     String password = setPassword(mPasswordEditText);
@@ -96,7 +95,6 @@ public class RegisterActivity extends AppCompatActivity {
                     // if we get any error then we are logging out
                     // our user and displaying an error message
                     ParseUser.logOut();
-                    Log.e(TAG, e.getMessage());
                     Toast.makeText(RegisterActivity.this, "Fail to Register User..", Toast.LENGTH_SHORT).show();
                 }
             }

@@ -46,7 +46,6 @@ public class RecommendationHomes {
             recommendations.setPropertyType(RESIDENTIAL);
         if(mUserPreferences.getPropertyType().equals(RESIDENTIAL))
             recommendations.setPropertyType(TOWNHOUSE);
-        Log.e("proptype", String.valueOf(recommendations.getPropertyType()));
             /*altering user lat and long by 5 miles
             5 miles == 8046.72 meters
             radius of Earth in km == 6378.137 */
