@@ -104,15 +104,12 @@ public class StreamFragment extends Fragment {
                     ZipcodeParser.addLatlng(json.jsonObject, mUserPreferences);
                     populateHomeTimeline();
                 } catch (JSONException e) {
-                    Log.e("ZipcodeAPI", e.toString());
                 }
 
             }
 
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                Log.e("Zipcode failure", response);
-
             }
         });
     }
@@ -129,14 +126,10 @@ public class StreamFragment extends Fragment {
                     populateRecommendations(recommendations);
                 }
                 adapter.notifyDataSetChanged();
-                Log.d("Home size", String.valueOf(mHomes.size()));
-                // Access a JSON object response with `json.jsonObject`
-                Log.d("DEBUG OBJECT", json.jsonObject.toString());
             }
 
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                Log.e("ERROR:", response.toString());
 
             }
         });
@@ -162,19 +155,6 @@ public class StreamFragment extends Fragment {
 
                 }
             });
-
-            //Creating a new UP recommendations
-            //change radius
-            //change bedrooms
-            //change property type
-            //if mUP getBedroom < 2, give an apartment/condominum... else give residential acreage
-            //recommendations.setNoOfBedrooms(userP.getMaxBedrooms());
-            //attomDataClient.getHomeTimeline(getContext(), recommendations);
-            //in on success mHomes.addAll()
-            //remove dupes
-            //adapter notify data set changed
-            //if mHomes[i].getAddress()
-
 
     }
 }

@@ -60,7 +60,6 @@ public class HomeJsonParser {
             JSONArray jsonArray = jsonObject.getJSONArray(PROPERTY_PARAM);
             for (int i = 0; i < jsonArray.length(); i++) {
                 homes.add(HomeJsonParser.getHomeFromJson((JSONObject) jsonArray.get(i)));
-                Log.d("ArrayList", "home added");
             }
         }
         catch (JSONException e) {

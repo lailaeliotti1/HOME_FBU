@@ -50,7 +50,6 @@ public class LoginActivity extends AppCompatActivity {
         mbtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "onClick login button");
                 String username = metUsername.getText().toString();
                 String password = metPassword.getText().toString();
                 loginUser(username, password);
@@ -59,12 +58,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
     public void loginUser(String username, String password){
-        Log.i(TAG, "Attempting to login user " + username + " " + password);
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
                 if(e != null){
-                    Log.e(TAG, "Issue with login", e);
                     Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
