@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,7 @@ public class PreferenceFragment extends Fragment {
     private ArrayAdapter bedroomAdapter;
     MainActivity mainActivity;
     private AutoCompleteTextView mPropertyType;
-    private ArrayAdapter propertyTypeAdapter;
+    private ArrayAdapter mPropertyTypeAdapter;
     private EditText mZipcodeEditText;
     private Button mSaveButton;
     private Switch mRecommendationSwitch;
@@ -71,22 +72,6 @@ public class PreferenceFragment extends Fragment {
 
         mUserPreferences.setUser((User) User.getCurrentUser());
         //grabbed from server
-        ParseQuery<UserPreferences> query = new ParseQuery<UserPreferences>(UserPreferences.class);
-        query.setLimit(1);
-        query.getFirstInBackground(new GetCallback<UserPreferences>() {
-            public void done(UserPreferences userPreferences, ParseException e) {
-                if (e == null) {
-                    mUserPreferences = userPreferences;
-                    mZipcodeEditText.setText(String.valueOf(mUserPreferences.getZipcode()));
-                    mBedroomTextView.setText(String.valueOf(mUserPreferences.getNoOfBedrooms()));
-                    mPropertyType.setText(mUserPreferences.getPropertyType());
-                    mRecommendationSwitch.setChecked(mUserPreferences.getRecommendationSwitch());
-                    //set uaer pref as initial stuff
-                } else {
-                    // Something is wrong
-                }
-            }
-        });
     }
 
     @Override
@@ -138,6 +123,23 @@ public class PreferenceFragment extends Fragment {
                 startActivity(i);
             }
         });
+        ParseQuery<UserPreferences> query = new ParseQuery<UserPreferences>(UserPreferences.class);
+        query.setLimit(1);
+        query.getFirstInBackground(new GetCallback<UserPreferences>() {
+            public void done(UserPreferences userPreferences, ParseException e) {
+                if (e == null) {
+                    mUserPreferences = userPreferences;
+                    mZipcodeEditText.setText(String.valueOf(mUserPreferences.getZipcode()));
+                    mBedroomTextView.setText(String.valueOf(mUserPreferences.getNoOfBedrooms()),false);
+                    mPropertyType.setText(mUserPreferences.getPropertyType(), false);
+
+                    mRecommendationSwitch.setChecked(mUserPreferences.getRecommendationSwitch());
+                    //set uaer pref as initial stuff
+                } else {
+                    // Something is wrong
+                }
+            }
+        });
 
     }
 
@@ -156,8 +158,8 @@ public class PreferenceFragment extends Fragment {
     }
 
     public void initPropertyTypeText() {
-        propertyTypeAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, getResources().getStringArray(R.array.PropertyType));
-        mPropertyType.setAdapter(propertyTypeAdapter);
+        mPropertyTypeAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, getResources().getStringArray(R.array.PropertyType));
+        mPropertyType.setAdapter(mPropertyTypeAdapter);
         mPropertyType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

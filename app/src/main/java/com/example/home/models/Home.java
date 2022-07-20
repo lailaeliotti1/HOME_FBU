@@ -16,6 +16,7 @@ public class Home extends ParseObject {
     private String mLatitude;
     private String mLongitude;
     private String mImageUrl;
+    private Boolean mIsRecommended;
     private Context context;
 
     public Home(){}
@@ -84,4 +85,11 @@ public class Home extends ParseObject {
     }
 
 
+    public Boolean getIsRecommended() {
+        return mIsRecommended;
+    }
+
+    public void setIsRecommended(Boolean isRecommended) {
+        mIsRecommended = isRecommended;
+    }
 }

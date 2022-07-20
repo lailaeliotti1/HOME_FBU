@@ -19,10 +19,9 @@
     <!-- Paste BOTH strings as required -->
     <string name="back4app_app_id">G90mbl2Izwog6wDodvDxkSzFPKPkiPzTR6zAt6Fc</string>
     <string name="back4app_client_key">rKN3dsIyz3zEKWU4DnE8Ctva78zfSMCgx2lpNyRp</string>
-    <string name="attomdata_api_key">4e1b1e82223a8cb310559399be217723</string>
+    <string name="attomdata_api_key">431af99ed30493175eb616ba09537f0a</string>
     <string name="zipcode_api_key">uc3gcClzm0LzsXCwUWol4YEqQ5ILv8LDz3oa5qFX7HIv5l2F2VWldzhdishuGVu5</string>
     <string name="google_streetview_key">AIzaSyCNoCggg5iJ8eNKLkxxPYonbIWM-xJin7E</string>
-
     <string-array name="NoOfBedrooms">
         <item>1</item>
         <item>2</item>
