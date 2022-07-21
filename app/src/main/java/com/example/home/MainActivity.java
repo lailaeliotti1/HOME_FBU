@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -22,14 +23,10 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String TAG = "Main Activity";
-    public String mNoOfBedrooms;
-    public String mPropertyType;
-    public Integer mZipCode;
     public final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
     private PreferenceFragment preferenceFragment = new PreferenceFragment(this);
-    private StreamFragment streamFragment = new StreamFragment();
+    private StreamFragment streamFragment = new StreamFragment(this);
     private ProfileFragment profileFragment = new ProfileFragment(ParseUser.getCurrentUser());
 
     @Override
@@ -59,12 +56,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
-
     }
     public void startStream(UserPreferences userPreferences){
-        streamFragment = new StreamFragment(userPreferences);
+        streamFragment = new StreamFragment(this, userPreferences);
 
     }
 }

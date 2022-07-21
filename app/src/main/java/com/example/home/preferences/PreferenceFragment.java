@@ -108,7 +108,7 @@ public class PreferenceFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mZipCodeText = mZipcodeEditText.getText().toString();
-                mUserPreferences.setZipcode(Integer.parseInt(mZipCodeText));
+                mUserPreferences.setZipcode(mZipCodeText);
                 mUserPreferences.saveInBackground();
                 Toast.makeText(getContext(), "Preferences Saved", Toast.LENGTH_SHORT).show();
                 ((MainActivity) getActivity()).startStream(mUserPreferences);

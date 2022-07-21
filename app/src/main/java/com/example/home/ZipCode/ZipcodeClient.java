@@ -18,6 +18,6 @@ public class ZipcodeClient {
 
     public static void getZipcodeClient(Context context, String zipcode, JsonHttpResponseHandler jsonHttpResponseHandler){
         AsyncHttpClient mClient = new AsyncHttpClient();
-        mClient.get(API_URL+context.getString(R.string.zipcode_api_key)+INFO_PARAM+zipcode+DEGREES_PARAM, jsonHttpResponseHandler);
+        mClient.get(API_URL+context.getString(R.string.zipcode_api_key)+INFO_PARAM + zipcode + DEGREES_PARAM, jsonHttpResponseHandler);
     }
 }
