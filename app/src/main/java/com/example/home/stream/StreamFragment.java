@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -144,9 +143,14 @@ public class StreamFragment extends Fragment {
                     mHomesRec.addAll(HomeJsonParser.getListOfHomes(json.jsonObject));
                     for(Home objRec: mHomesRec){
                         objRec.setIsRecommended(true);
+                        // Checks if this recommendation is not in the current homes list.
+                        boolean isInCurrentHomeList = false;  // Assumes it's not in the list, until we see it being repeated
                         for(Home objHome: mHomesCopy)
-                            if(!objRec.getAddress().equals(objHome.getAddress()))
-                                mHomes.add(objRec);
+                            if(objRec.getAddress().equals(objHome.getAddress()))
+                                isInCurrentHomeList = true;  // We see the home repeated, so it's not a new home
+                        // Add the recommended home if it's not in the list
+                        if (!isInCurrentHomeList)
+                            mHomes.add(objRec);
                     }
                 }
 
