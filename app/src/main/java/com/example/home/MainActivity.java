@@ -11,10 +11,13 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.home.models.User;
 import com.example.home.models.UserPreferences;
 import com.example.home.preferences.PreferenceFragment;
+import com.example.home.profile.ProfileFragment;
 import com.example.home.stream.StreamFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private PreferenceFragment preferenceFragment = new PreferenceFragment(this);
     private StreamFragment streamFragment = new StreamFragment();
+    private ProfileFragment profileFragment = new ProfileFragment(ParseUser.getCurrentUser());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment fragment;
                 switch (item.getItemId()) {
+                    case R.id.action_profile:
+                        fragment = profileFragment;
+                        break;
                     case R.id.action_preferences:
                         fragment = preferenceFragment;
                         break;
