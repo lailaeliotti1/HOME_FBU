@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -16,6 +19,7 @@ import android.widget.LinearLayout;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.home.AttomData.AttomDataClient;
 import com.example.home.JsonParser.HomeJsonParser;
+import com.example.home.MainActivity;
 import com.example.home.R;
 import com.example.home.ZipCode.ZipcodeClient;
 import com.example.home.ZipCode.ZipcodeParser;
@@ -44,19 +48,28 @@ public class StreamFragment extends Fragment {
     private UserPreferences mUserPreferences;
     private AttomDataClient attomDataClient = new AttomDataClient();
     private ZipcodeClient zipcodeClient = new ZipcodeClient();
+    MenuItem mActionProgressItem;
+    MainActivity mMainActivity;
 
 
     public StreamFragment() {
+        // Required empty public constructor
     }
 
-    public StreamFragment(UserPreferences userPreferences) {
+    public StreamFragment(MainActivity mainActivity) {
+        this.mMainActivity = mainActivity;
+    }
+
+    public StreamFragment(MainActivity activity, UserPreferences userPreferences) {
+        this.mMainActivity = activity;
         mUserPreferences = userPreferences;
-        // Required empty public constructor
+
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -64,6 +77,7 @@ public class StreamFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_stream, container, false);
+
 
         return view;
 
@@ -92,7 +106,13 @@ public class StreamFragment extends Fragment {
 
         }));
 
+    }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        mMainActivity.getMenuInflater().inflate(R.menu.activity_main_actionbar, menu);
+        mActionProgressItem = menu.findItem(R.id.miActionProgress);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     private void populateZipCode(String zipCode) {
@@ -124,6 +144,7 @@ public class StreamFragment extends Fragment {
                     UserPreferences recommendations = RecommendationHomes.getRecommendations(mUserPreferences);
                     populateRecommendations(recommendations);
                 }
+                mActionProgressItem.setVisible(false);
                 adapter.notifyDataSetChanged();
             }
 

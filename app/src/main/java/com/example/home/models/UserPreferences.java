@@ -53,10 +53,10 @@ public class UserPreferences extends ParseObject {
     public void setLng(Number longitude){
         put(KEY_LNG, longitude);
     }
-    public Integer getZipcode(){
-        return getInt(KEY_ZIPCODE);
+    public String getZipcode(){
+        return getString(KEY_ZIPCODE);
     }
-    public void setZipcode(Integer zipcode){
+    public void setZipcode(String zipcode){
         put(KEY_ZIPCODE, zipcode);
     }
     public Number getRadius(){

@@ -34,7 +34,7 @@ import android.widget.AutoCompleteTextView;
 public class PreferenceFragment extends Fragment {
     private ConstraintLayout mPrefConLayout;
     private TextView mPreferenceTextView;
-    private Button mLogoutButton;
+
     private AutoCompleteTextView mBedroomTextView;
     private ArrayAdapter bedroomAdapter;
     MainActivity mainActivity;
@@ -100,27 +100,15 @@ public class PreferenceFragment extends Fragment {
                 mUserPreferences.setRecommendationSwitch(isChecked);
             }
         });
-
-
-
         mSaveButton = view.findViewById(R.id.SaveButton);
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mZipCodeText = mZipcodeEditText.getText().toString();
-                mUserPreferences.setZipcode(Integer.parseInt(mZipCodeText));
+                mUserPreferences.setZipcode(mZipCodeText);
                 mUserPreferences.saveInBackground();
                 Toast.makeText(getContext(), "Preferences Saved", Toast.LENGTH_SHORT).show();
                 ((MainActivity) getActivity()).startStream(mUserPreferences);
-            }
-        });
-        mLogoutButton = view.findViewById(R.id.LogoutButton);
-        mLogoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ParseUser.logOut();
-                Intent i = new Intent(getContext(), LoginActivity.class);
-                startActivity(i);
             }
         });
         ParseQuery<UserPreferences> query = new ParseQuery<UserPreferences>(UserPreferences.class);
@@ -134,7 +122,7 @@ public class PreferenceFragment extends Fragment {
                     mPropertyType.setText(mUserPreferences.getPropertyType(), false);
 
                     mRecommendationSwitch.setChecked(mUserPreferences.getRecommendationSwitch());
-                    //set uaer pref as initial stuff
+                    //set user pref as initial stuff
                 } else {
                     // Something is wrong
                 }
@@ -142,10 +130,8 @@ public class PreferenceFragment extends Fragment {
         });
 
     }
-
     public void initBedroomTextView() {
         bedroomAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, getResources().getStringArray(R.array.NoOfBedrooms));
-
         mBedroomTextView.setAdapter(bedroomAdapter);
         mBedroomTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -156,7 +142,6 @@ public class PreferenceFragment extends Fragment {
             }
         });
     }
-
     public void initPropertyTypeText() {
         mPropertyTypeAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, getResources().getStringArray(R.array.PropertyType));
         mPropertyType.setAdapter(mPropertyTypeAdapter);
