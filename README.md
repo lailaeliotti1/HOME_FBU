@@ -64,15 +64,12 @@ This app is a way for users to search for new homes! It will use the AttomData, 
 **Flow Navigation** (Screen to Screen)
 
 * Registration
-   * => Home
+   * => Login
 * Login
    * => Home
 * Saved preferences
-    * => Home stream
 * Home stream
-    * => Home details(where you can save houses)
-* Logout
-    * => Login
+* Profile
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
@@ -107,62 +104,41 @@ This app is a way for users to search for new homes! It will use the AttomData, 
    | updatedAt     | DateTime | date when post is last updated (default field) |
    
    
-#### Home
-
-   | Property      | Type     | Description |
-   | ------------- | -------- | ------------|
-   | objectId      | String   | unique id for the property (default field) |
-   | address       | String   | Property address |
-   | homeNoOfBedrooms| Number | number of rooms the house has |
-   | homeNoOfBathrooms| Number| number of bathrooms the house has |
-   | yearBuilt     | Number   | Year the house was built |
-   | Latitude      | Number  | Latitude of house |
-   | Longitude     | Number  | Longitude of house |
-   | ImageUrl      | String  | ImageUrl of house |
-   | createdAt     | DateTime | date when post is created (default field) |
-   | updatedAt     | DateTime | date when post is last updated (default field) |
-   
  
    
    
 ### Networking
 #### List of network requests by screen
-   - Home Feed Screen
-      - (Read/GET) Query all posts where user is author
+   - Preference Screen
+      - (Read/GET) Query User Preferences
          ```swift
-         let query = PFQuery(className:"Post")
-         query.whereKey("author", equalTo: currentUser)
-         query.order(byDescending: "createdAt")
-         query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
-            if let error = error { 
-               print(error.localizedDescription)
-            } else if let posts = posts {
-               print("Successfully retrieved \(posts.count) posts.")
-           // TODO: Do something with posts...
+      ParseQuery<UserPreferences> query = new ParseQuery<UserPreferences>(UserPreferences.class);
+        query.setLimit(1);
+        query.getFirstInBackground(new GetCallback<UserPreferences>() {
+            public void done(UserPreferences userPreferences, ParseException e) {
+                if (e == null) {
+                    mUserPreferences = userPreferences;
+                    mZipcodeEditText.setText(String.valueOf(mUserPreferences.getZipcode()));
+                    mBedroomTextView.setText(String.valueOf(mUserPreferences.getNoOfBedrooms()),false);
+                    mPropertyType.setText(mUserPreferences.getPropertyType(), false);
+
+                    mRecommendationSwitch.setChecked(mUserPreferences.getRecommendationSwitch());
+                    //set user pref as initial stuff
+                } else {
+                    // Something is wrong
+                }
             }
-         }
+        });
          ```
-      - (Create/POST) Create a new like on a post
-      - (Delete) Delete existing like
-      - (Create/POST) Create a new comment on a post
-      - (Delete) Delete existing comment
-   - Create Post Screen
-      - (Create/POST) Create a new post object
-   - Profile Screen
-      - (Read/GET) Query logged in user object
-      - (Update/PUT) Update user profile image
-#### [OPTIONAL:] Existing API Endpoints
-##### An API Of Ice And Fire
-- Base URL - [http://www.anapioficeandfire.com/api](http://www.anapioficeandfire.com/api)
+#### Existing API Endpoints
+##### AttomData Real Estate API
+- Base URL -[(https://api.gateway.attomdata.com/propertyapi/v1.0.0/property)]
 
    HTTP Verb | Endpoint | Description
    ----------|----------|------------
-    `GET`    | /characters | get all characters
-    `GET`    | /characters/?name=name | return specific character by name
-    `GET`    | /houses   | get all houses
-    `GET`    | /houses/?name=name | return specific house by name
+    `GET`    | /snapshot| returns houses with inputted parameters
 
-##### Game of Thrones API
+##### Zip code API
 - Base URL - [https://api.got.show/api](https://api.got.show/api)
 
    HTTP Verb | Endpoint | Description
@@ -174,3 +150,17 @@ This app is a way for users to search for new homes! It will use the AttomData, 
     `GET`    | /regions | gets all regions
     `GET`    | /regions/byId/:id | gets specific region by :id
     `GET`    | /characters/paths/:name | gets a character's path with a given name
+  
+  ##### Google Streetview Static API
+- Base URL - [https://api.got.show/api](https://api.got.show/api)
+
+   HTTP Verb | Endpoint | Description
+   ----------|----------|------------
+    `GET`    | /cities | gets all cities
+    `GET`    | /cities/byId/:id | gets specific city by :id
+    `GET`    | /continents | gets all continents
+    `GET`    | /continents/byId/:id | gets specific continent by :id
+    `GET`    | /regions | gets all regions
+    `GET`    | /regions/byId/:id | gets specific region by :id
+    `GET`    | /characters/paths/:name | gets a character's path with a given name
+
