@@ -24,7 +24,6 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 public class RegisterActivity extends AppCompatActivity {
-    public static final String TAG = "Register Activity";
     private TextView LogoTextView;
     private TextView mSubtitleTextView;
     private EditText mUsernameEditText;
@@ -73,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registerUser (String userName, String password, String email){
-        User user = new User();
+        ParseUser user = new ParseUser();
         // Set the user's username and password,
         // which can be obtained from edit text
         user.setUsername(userName);

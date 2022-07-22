@@ -100,9 +100,6 @@ public class PreferenceFragment extends Fragment {
                 mUserPreferences.setRecommendationSwitch(isChecked);
             }
         });
-
-
-
         mSaveButton = view.findViewById(R.id.SaveButton);
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +111,6 @@ public class PreferenceFragment extends Fragment {
                 ((MainActivity) getActivity()).startStream(mUserPreferences);
             }
         });
-
         ParseQuery<UserPreferences> query = new ParseQuery<UserPreferences>(UserPreferences.class);
         query.setLimit(1);
         query.getFirstInBackground(new GetCallback<UserPreferences>() {
@@ -126,7 +122,7 @@ public class PreferenceFragment extends Fragment {
                     mPropertyType.setText(mUserPreferences.getPropertyType(), false);
 
                     mRecommendationSwitch.setChecked(mUserPreferences.getRecommendationSwitch());
-                    //set uaer pref as initial stuff
+                    //set user pref as initial stuff
                 } else {
                     // Something is wrong
                 }
@@ -134,10 +130,8 @@ public class PreferenceFragment extends Fragment {
         });
 
     }
-
     public void initBedroomTextView() {
         bedroomAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, getResources().getStringArray(R.array.NoOfBedrooms));
-
         mBedroomTextView.setAdapter(bedroomAdapter);
         mBedroomTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -148,7 +142,6 @@ public class PreferenceFragment extends Fragment {
             }
         });
     }
-
     public void initPropertyTypeText() {
         mPropertyTypeAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, getResources().getStringArray(R.array.PropertyType));
         mPropertyType.setAdapter(mPropertyTypeAdapter);
