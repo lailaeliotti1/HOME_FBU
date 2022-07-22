@@ -14,9 +14,6 @@ public class User extends ParseUser {
     private String mUserName;
     private String mPassword;
     private String mEmail;
-    //private UserPreferences mUserPreferences = new UserPreferences();
-    //private ParseObject mParseObject = ParseObject.create("UserPreferences");
-
 
     public User(){}
 
@@ -44,11 +41,4 @@ public class User extends ParseUser {
         this.mPassword = mPassword;
     }
 
-//    public UserPreferences getUserPreferences(){
-//        return mUserPreferences;
-//    }
-//    public void setUserPreferences(UserPreferences mUserPreferences) {
-//        this.mUserPreferences = mUserPreferences;
-//
-//    }
 }

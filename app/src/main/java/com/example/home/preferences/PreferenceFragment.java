@@ -34,7 +34,7 @@ import android.widget.AutoCompleteTextView;
 public class PreferenceFragment extends Fragment {
     private ConstraintLayout mPrefConLayout;
     private TextView mPreferenceTextView;
-    private Button mLogoutButton;
+
     private AutoCompleteTextView mBedroomTextView;
     private ArrayAdapter bedroomAdapter;
     MainActivity mainActivity;
@@ -114,15 +114,7 @@ public class PreferenceFragment extends Fragment {
                 ((MainActivity) getActivity()).startStream(mUserPreferences);
             }
         });
-        mLogoutButton = view.findViewById(R.id.LogoutButton);
-        mLogoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ParseUser.logOut();
-                Intent i = new Intent(getContext(), LoginActivity.class);
-                startActivity(i);
-            }
-        });
+
         ParseQuery<UserPreferences> query = new ParseQuery<UserPreferences>(UserPreferences.class);
         query.setLimit(1);
         query.getFirstInBackground(new GetCallback<UserPreferences>() {

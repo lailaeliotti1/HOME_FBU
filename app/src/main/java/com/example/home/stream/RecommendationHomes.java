@@ -46,7 +46,14 @@ public class RecommendationHomes {
             recommendations.setPropertyType(RESIDENTIAL);
         if(mUserPreferences.getPropertyType().equals(RESIDENTIAL))
             recommendations.setPropertyType(TOWNHOUSE);
-            /*altering user lat and long by 5 miles
+
+        recommendations.setLat(changeLatLng(mUserPreferences));
+        recommendations.setLng(mUserPreferences.getLng());
+        recommendations.setRecommendationSwitch(false);
+        return recommendations;
+    }
+    public static Double changeLatLng(UserPreferences mUserPreferences){
+        /*altering user lat and long by 5 miles
             5 miles == 8046.72 meters
             radius of Earth in km == 6378.137 */
         double earthRadius = 6378.147;
@@ -57,10 +64,7 @@ public class RecommendationHomes {
         double newLatitude = ((double)mUserPreferences.getLat() + (metersChanged * degreePerMeter));
         String formatLat = String.format("%.5f",newLatitude);
         newLatitude = Double.parseDouble(formatLat);
+        return newLatitude;
 
-        recommendations.setLat(newLatitude);
-        recommendations.setLng(mUserPreferences.getLng());
-        recommendations.setRecommendationSwitch(false);
-        return recommendations;
     }
 }

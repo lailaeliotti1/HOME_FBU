@@ -29,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="51dp"
             android:layout_weight="1"
+            android:fontFamily="@font/pt_sans"
             android:inputType="none"
             android:text="Number of Bedrooms" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -55,21 +56,10 @@
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_weight="1"
+            android:fontFamily="@font/pt_sans"
             android:inputType="none"
             android:text="Property Type" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/LogoutButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="20dp"
-        android:text="LOGOUT"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SaveButton"
-        tools:layout_conversion_absoluteHeight="48dp"
-        tools:layout_conversion_absoluteWidth="93dp" />
 
     <EditText
         android:id="@+id/ZipcodeEditText"
@@ -79,6 +69,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="21dp"
         android:ems="10"
+        android:fontFamily="@font/pt_sans"
         android:hint="ZipCode"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,6 +94,7 @@
         android:layout_height="52dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/pt_sans_bold"
         android:text="RECOMMENDATIONS"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ZipcodeEditText" />

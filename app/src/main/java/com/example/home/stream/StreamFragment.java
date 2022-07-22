@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.home.AttomData.AttomDataClient;
@@ -49,20 +48,20 @@ public class StreamFragment extends Fragment {
     private UserPreferences mUserPreferences;
     private AttomDataClient attomDataClient = new AttomDataClient();
     private ZipcodeClient zipcodeClient = new ZipcodeClient();
-    MenuItem miActionProgressItem;
-    MainActivity activity;
+    MenuItem mActionProgressItem;
+    MainActivity mMainActivity;
 
 
     public StreamFragment() {
         // Required empty public constructor
     }
 
-    public StreamFragment(MainActivity activity) {
-        this.activity = activity;
+    public StreamFragment(MainActivity mainActivity) {
+        this.mMainActivity = mainActivity;
     }
 
     public StreamFragment(MainActivity activity, UserPreferences userPreferences) {
-        this.activity = activity;
+        this.mMainActivity = activity;
         mUserPreferences = userPreferences;
 
     }
@@ -111,8 +110,8 @@ public class StreamFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        activity.getMenuInflater().inflate(R.menu.activity_main_actionbar, menu);
-        miActionProgressItem = menu.findItem(R.id.miActionProgress);
+        mMainActivity.getMenuInflater().inflate(R.menu.activity_main_actionbar, menu);
+        mActionProgressItem = menu.findItem(R.id.miActionProgress);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -145,7 +144,7 @@ public class StreamFragment extends Fragment {
                     UserPreferences recommendations = RecommendationHomes.getRecommendations(mUserPreferences);
                     populateRecommendations(recommendations);
                 }
-                miActionProgressItem.setVisible(false);
+                mActionProgressItem.setVisible(false);
                 adapter.notifyDataSetChanged();
             }
 

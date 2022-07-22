@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
 import com.example.home.R;
+import com.example.home.login.LoginActivity;
 import com.example.home.models.User;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -41,6 +43,7 @@ public class ProfileFragment extends Fragment {
     private TextView ProfileUsernameTextView;
     private TextView ProfileEmailTextView;
     private ImageButton AddProfileImageButton;
+    private Button mLogoutButton;
     private ParseUser user;
 
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
@@ -71,9 +74,18 @@ public class ProfileFragment extends Fragment {
         ProfileEmailTextView = view.findViewById(R.id.ProfileEmailTextView);
         AddProfileImageButton = view.findViewById(R.id.ProfileAddProfilePicImageView);
 
-        ProfileUsernameTextView.setText(user.getUsername());
-        ProfileEmailTextView.setText(user.getString("email"));
+        ProfileUsernameTextView.setText("Username: " + user.getUsername());
+        ProfileEmailTextView.setText("Email: " + user.getString("email"));
 
+        mLogoutButton = view.findViewById(R.id.LogoutButton);
+        mLogoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParseUser.logOut();
+                Intent i = new Intent(getContext(), LoginActivity.class);
+                startActivity(i);
+            }
+        });
         ParseFile image = user.getParseFile("profileImage");
         if (image != null) {
             Glide.with(this)
