@@ -127,6 +127,7 @@ public class ProfileFragment extends Fragment {
         File file = new File(mediaStorageDir.getPath() + File.separator + fileName);
         return file;
     }
+
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {

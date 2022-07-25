@@ -19,20 +19,21 @@ public class Home extends ParseObject {
     private Boolean mIsRecommended;
     private Context context;
 
-    public Home(){}
-
-
+    public Home() {
+    }
 
     public String getAddress() {
         return mAddress;
     }
+
     public void setAddress(String address) {
         mAddress = address;
     }
 
-    public String getPropertyType(){
+    public String getPropertyType() {
         return mPropertyType;
     }
+
     public void setPropertyType(String propertyType) {
         mPropertyType = propertyType;
     }
@@ -40,20 +41,23 @@ public class Home extends ParseObject {
     public String getHomeNoOfBedrooms() {
         return mHomeNoOfBedrooms;
     }
+
     public void setHomeNoOfBedrooms(String homeNoOfBedrooms) {
         mHomeNoOfBedrooms = homeNoOfBedrooms;
     }
 
     public String getHomeNoOfBathrooms() {
-      return mHomeNoOfBathrooms;
+        return mHomeNoOfBathrooms;
     }
+
     public void setHomeNoOfBathrooms(String homeNoOfBathrooms) {
         mHomeNoOfBathrooms = homeNoOfBathrooms;
     }
 
     public String getYearBuilt() {
-       return mYearBuilt;
+        return mYearBuilt;
     }
+
     public void setYearBuilt(String yearBuilt) {
         mYearBuilt = yearBuilt;
     }
@@ -61,29 +65,34 @@ public class Home extends ParseObject {
     public String getDistance() {
         return mDistance;
     }
+
     public void setDistance(String distance) {
         mDistance = distance;
     }
 
-    public String getLatitude(){
+    public String getLatitude() {
         return mLatitude;
     }
-    public void setLatitude(String latitude){
+
+    public void setLatitude(String latitude) {
         mLatitude = latitude;
     }
-    public String getLongitude(){
+
+    public String getLongitude() {
         return mLongitude;
     }
-    public void setLongitude(String longitude){
+
+    public void setLongitude(String longitude) {
         mLongitude = longitude;
     }
-    public String getImageUrl(){
+
+    public String getImageUrl() {
         return mImageUrl;
     }
+
     public void setImageUrl(String imageUrl) {
         mImageUrl = imageUrl;
     }
-
 
     public Boolean getIsRecommended() {
         return mIsRecommended;

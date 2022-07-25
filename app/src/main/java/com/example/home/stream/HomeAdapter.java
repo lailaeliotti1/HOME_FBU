@@ -16,15 +16,15 @@ import com.example.home.models.Home;
 
 import java.util.List;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     private List<Home> mHomes;
     private Context context;
 
-    public HomeAdapter(Context context, List<Home> mHomes)
-    {
+    public HomeAdapter(Context context, List<Home> mHomes) {
         this.context = context;
         this.mHomes = mHomes;
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -80,21 +80,21 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
             mDistanceText.setText(home.getDistance() + " miles away");
             mBedroomText.setText(home.getHomeNoOfBedrooms() + " Bedroom(s)");
             mBathroomText.setText(home.getHomeNoOfBathrooms() + " Bath(s)");
-            if(home.getIsRecommended() == false)
+            if (home.getIsRecommended() == false)
                 mRecommendedHomeTextView.setText("Recommended Home: No");
             else
                 mRecommendedHomeTextView.setText("Recommended Home: Yes");
-            Glide.with(context).load(home.getImageUrl()+context.getString(R.string.google_streetview_key)).into(mHomeImageView);
+            Glide.with(context).load(home.getImageUrl() + context.getString(R.string.google_streetview_key)).into(mHomeImageView);
         }
     }
 
-    public void clear(){
+    public void clear() {
         mHomes.clear();
         notifyDataSetChanged();
     }
-    public void addAll(List<Home> mHome)
-    {
+
+    public void addAll(List<Home> mHome) {
         mHome.addAll(mHome);
         notifyDataSetChanged();
     }
-    }
+}

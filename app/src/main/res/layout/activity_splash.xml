@@ -11,6 +11,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img" />
+        app:srcCompat="@drawable/splash" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,10 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Inside text input layout add
-              an auto complete text view
-                and make its input type to none-->
-
         <AutoCompleteTextView
             android:id="@+id/BedroomTextView"
             android:layout_width="match_parent"
@@ -46,10 +42,6 @@
         app:layout_constraintHorizontal_bias="0.472"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BedroomDropDown">
-
-        <!-- Inside text input layout add
-              an auto complete text view
-                and make its input type to none-->
 
         <AutoCompleteTextView
             android:id="@+id/PropertyTypeTextView"

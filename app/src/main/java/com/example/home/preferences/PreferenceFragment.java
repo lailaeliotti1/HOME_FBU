@@ -94,8 +94,8 @@ public class PreferenceFragment extends Fragment {
         mZipcodeEditText = (EditText) view.findViewById(R.id.ZipcodeEditText);
 
         mRecommendationSwitch = view.findViewById(R.id.RecommendationsSwitch);
-        mRecommendationSwitch.setOnCheckedChangeListener((buttonView, isChecked) ->{
-            if(isChecked) {
+        mRecommendationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
                 Toast.makeText(getContext(), "Recommendations ON ", Toast.LENGTH_SHORT).show();
                 mUserPreferences.setRecommendationSwitch(isChecked);
             }
@@ -118,7 +118,7 @@ public class PreferenceFragment extends Fragment {
                 if (e == null) {
                     mUserPreferences = userPreferences;
                     mZipcodeEditText.setText(String.valueOf(mUserPreferences.getZipcode()));
-                    mBedroomTextView.setText(String.valueOf(mUserPreferences.getNoOfBedrooms()),false);
+                    mBedroomTextView.setText(String.valueOf(mUserPreferences.getNoOfBedrooms()), false);
                     mPropertyType.setText(mUserPreferences.getPropertyType(), false);
 
                     mRecommendationSwitch.setChecked(mUserPreferences.getRecommendationSwitch());
@@ -130,6 +130,7 @@ public class PreferenceFragment extends Fragment {
         });
 
     }
+
     public void initBedroomTextView() {
         bedroomAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, getResources().getStringArray(R.array.NoOfBedrooms));
         mBedroomTextView.setAdapter(bedroomAdapter);
@@ -142,6 +143,7 @@ public class PreferenceFragment extends Fragment {
             }
         });
     }
+
     public void initPropertyTypeText() {
         mPropertyTypeAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, getResources().getStringArray(R.array.PropertyType));
         mPropertyType.setAdapter(mPropertyTypeAdapter);
