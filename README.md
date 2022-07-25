@@ -16,10 +16,10 @@ This app is a way for users to search for new homes! It will use the AttomData, 
 ### App Evaluation
 [Evaluation of your app across the following attributes]
 - **Category:** "Lifestyle"
-- **Mobile:** "This app is mobile due to the ability to log in, and users can click on houses instantly."
+- **Mobile:** "This app is mobile due to the ability to log in, and users can view houses instantly."
 - **Story:** "This app is for that new college grad, couple who is ready to take the next step, or for the person who wants their own space. This app will allow them to find their new sanctuary of peace, and a place to call HOME."
-- **Market:** "Anyone who is financially ready to purchase their next home."
-- **Habit:**"Users will be rewarded with discounts on homes after multiple consecutive days of using the app."
+- **Market:** "Anyone who is ready to search for their next home."
+- **Habit:**"Users can check to see if new homes have been added in their area."
 - **Scope:**"V1 would allow user to sign in/ create a new account. V2 would allow users to add preferences."
 
 ## Product Spec
@@ -38,8 +38,9 @@ This app is a way for users to search for new homes! It will use the AttomData, 
 
 **Optional Nice-to-have Stories**
 
-* [fill in your required user stories here]
-* User can view closest houses to them or close in compability by recommendation.
+* User can view closest houses to them or close in compability.
+* Users can select to see recommended houses based on my algorithm.
+*User can uplad profile image.
 
 ### 2. Screen Archetypes
 
@@ -51,6 +52,8 @@ This app is a way for users to search for new homes! It will use the AttomData, 
    * User can input house preferences and save them.
 * Stream
     * User can view possible homes
+*Profile
+    * User can upload profile picture, view username, and email.
 * Logout
     * User can logout
 
@@ -60,6 +63,7 @@ This app is a way for users to search for new homes! It will use the AttomData, 
 
 * Saved preferences
 * Home Stream
+*Profile
 
 **Flow Navigation** (Screen to Screen)
 
@@ -76,7 +80,6 @@ This app is a way for users to search for new homes! It will use the AttomData, 
 <img src="https://user-images.githubusercontent.com/93938274/174900993-6294f53e-b067-4af5-a96f-b2ea7277b319.jpeg"
  width=600>
 
-### [BONUS] Digital Wireframes & Mockups
 
 ### [BONUS] Interactive Prototype
 
@@ -94,11 +97,13 @@ This app is a way for users to search for new homes! It will use the AttomData, 
    | Property      | Type     | Description |
    | ------------- | -------- | ------------|
    | Zipcode       | String   | location preference for user |
-   | Zipcode       | String   | location preference for user |
+   
    | noOfBedrooms  | Numbers  | Number of bedrooms preference for user |
    | noOfBathrooms | Numbers  | Number of bathrooms preference for user |
-   | MaxBed     | Numbers  | Number of bathrooms preference for user + 1|
+   | radius        | Numbers  | number of radii of user location
    | propertyType  | String   | House style preference for user |
+   | latitude      | Numbers   | latitude of user |
+   | longitude     | Numbers   | longitude of user |
    | recommendations|Boolean   | User checks off if they want preferences |
    | createdAt     | DateTime | date when post is created (default field) |
    | updatedAt     | DateTime | date when post is last updated (default field) |
@@ -139,28 +144,13 @@ This app is a way for users to search for new homes! It will use the AttomData, 
     `GET`    | /snapshot| returns houses with inputted parameters
 
 ##### Zip code API
-- Base URL - [https://api.got.show/api](https://api.got.show/api)
-
-   HTTP Verb | Endpoint | Description
-   ----------|----------|------------
-    `GET`    | /cities | gets all cities
-    `GET`    | /cities/byId/:id | gets specific city by :id
-    `GET`    | /continents | gets all continents
-    `GET`    | /continents/byId/:id | gets specific continent by :id
-    `GET`    | /regions | gets all regions
-    `GET`    | /regions/byId/:id | gets specific region by :id
-    `GET`    | /characters/paths/:name | gets a character's path with a given name
+- Base URL - [https://www.zipcodeapi.com/API)
+Takes in zip code and returns latitude and longitude
   
   ##### Google Streetview Static API
-- Base URL - [https://api.got.show/api](https://api.got.show/api)
+- Base URL - [https://maps.googleapis.com/maps/api)
 
    HTTP Verb | Endpoint | Description
    ----------|----------|------------
-    `GET`    | /cities | gets all cities
-    `GET`    | /cities/byId/:id | gets specific city by :id
-    `GET`    | /continents | gets all continents
-    `GET`    | /continents/byId/:id | gets specific continent by :id
-    `GET`    | /regions | gets all regions
-    `GET`    | /regions/byId/:id | gets specific region by :id
-    `GET`    | /characters/paths/:name | gets a character's path with a given name
+    `GET`    | /strretview | gets pictures of homes with parameters.
 
