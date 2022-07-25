@@ -10,7 +10,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.home.MainActivity;
 import com.example.home.R;
 import com.parse.LogInCallback;
@@ -34,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //if user is already logged in
-        if (ParseUser.getCurrentUser() != null){
+        if (ParseUser.getCurrentUser() != null) {
             goMainActivity();
         }
 
@@ -57,11 +59,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    public void loginUser(String username, String password){
+
+    public void loginUser(String username, String password) {
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
-                if(e != null){
+                if (e != null) {
                     Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -70,13 +73,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    private void goMainActivity(){
+
+    private void goMainActivity() {
         Intent i = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(i);
         finish();
     }
-    public boolean onTouchEvent(MotionEvent touchevent){
-        switch(touchevent.getAction()){
+
+    public boolean onTouchEvent(MotionEvent touchevent) {
+        switch (touchevent.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 firstTouchX = touchevent.getX();
                 firstTouchY = touchevent.getY();
@@ -84,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
             case MotionEvent.ACTION_UP:
                 lastTouchX = touchevent.getX();
                 lastTouchY = touchevent.getY();
-                if(firstTouchX > lastTouchX){
+                if (firstTouchX > lastTouchX) {
                     Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
                     startActivity(i);
                 }

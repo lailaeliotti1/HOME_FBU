@@ -1,92 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    app:strokeColor="?colorPrimary"
+    app:strokeWidth="@dimen/cardview_default_radius">
 
-    <ImageView
-        android:id="@+id/HomeImageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="6dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/BathroomText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:fontFamily="@font/pt_sans"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/HomeImageView"
-        app:layout_constraintTop_toBottomOf="@+id/BedroomText" />
+        <TextView
+            android:id="@+id/YearBuiltText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:fontFamily="@font/pt_sans"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/HomeImageView"
+            app:layout_constraintTop_toBottomOf="@+id/PropertyTypeText" />
 
-    <TextView
-        android:id="@+id/DistanceTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:fontFamily="@font/pt_sans"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/HomeImageView"
-        app:layout_constraintTop_toBottomOf="@+id/YearBuiltText" />
+        <TextView
+            android:id="@+id/BedroomText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:fontFamily="@font/pt_sans"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/HomeImageView"
+            app:layout_constraintTop_toBottomOf="@+id/YearBuiltText" />
 
-    <TextView
-        android:id="@+id/YearBuiltText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:fontFamily="@font/pt_sans"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/HomeImageView"
-        app:layout_constraintTop_toBottomOf="@+id/PropertyTypeText" />
+        <TextView
+            android:id="@+id/RecommendedHomeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:fontFamily="@font/pt_sans"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/HomeImageView"
+            app:layout_constraintTop_toBottomOf="@+id/DistanceTextView" />
 
-    <TextView
-        android:id="@+id/AddressTextView"
-        android:layout_width="247dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/pt_sans_bold"
-        android:text="TextView"
-        android:textSize="10.5sp"
-        app:layout_constraintStart_toEndOf="@+id/HomeImageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/PropertyTypeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:fontFamily="@font/pt_sans"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/HomeImageView"
+            app:layout_constraintTop_toBottomOf="@+id/AddressTextView" />
 
-    <TextView
-        android:id="@+id/PropertyTypeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:fontFamily="@font/pt_sans"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/HomeImageView"
-        app:layout_constraintTop_toBottomOf="@+id/AddressTextView" />
+        <TextView
+            android:id="@+id/AddressTextView"
+            android:layout_width="247dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:fontFamily="@font/pt_sans_bold"
+            android:text="TextView"
+            android:textSize="10.5sp"
+            app:layout_constraintStart_toEndOf="@+id/HomeImageView"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/BedroomText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:fontFamily="@font/pt_sans"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/HomeImageView"
-        app:layout_constraintTop_toBottomOf="@+id/DistanceTextView" />
+        <ImageView
+            android:id="@+id/HomeImageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/RecommendedHomeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:fontFamily="@font/pt_sans"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/HomeImageView"
-        app:layout_constraintTop_toBottomOf="@+id/BathroomText" />
+        <TextView
+            android:id="@+id/DistanceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:fontFamily="@font/pt_sans"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/HomeImageView"
+            app:layout_constraintTop_toBottomOf="@+id/BathroomText" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/BathroomText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:fontFamily="@font/pt_sans"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/HomeImageView"
+            app:layout_constraintTop_toBottomOf="@+id/BedroomText" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

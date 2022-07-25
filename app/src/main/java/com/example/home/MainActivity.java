@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public void startStream(UserPreferences userPreferences){
+
+    public void startStream(UserPreferences userPreferences) {
         streamFragment = new StreamFragment(this, userPreferences);
 
     }

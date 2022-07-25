@@ -51,27 +51,27 @@ public class RegisterActivity extends AppCompatActivity {
         mRegisterRelativeLayout = findViewById(R.id.RegisterRelativeLayout);
         mSwipeLeftTextView = findViewById(R.id.SwipeLeftTextView);
 
-        if(ParseUser.getCurrentUser() !=null ) {
+        if (ParseUser.getCurrentUser() != null) {
             goLoginActivity();
         }
         mbtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    //goLoginActivity();
-                    String userName= setUserName(mUsernameEditText);
-                    String password = setPassword(mPasswordEditText);
-                    String email = setEmail(mEmailEditText);
-                    // checking if the entered text is empty or not.
-                    if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
-                        Toast.makeText(RegisterActivity.this, getString(R.string.please_enter_username_and_password), Toast.LENGTH_SHORT).show();
-                    }
-                    // calling a method to register a user.
-                    registerUser(userName, password, email);
+                //goLoginActivity();
+                String userName = setUserName(mUsernameEditText);
+                String password = setPassword(mPasswordEditText);
+                String email = setEmail(mEmailEditText);
+                // checking if the entered text is empty or not.
+                if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
+                    Toast.makeText(RegisterActivity.this, getString(R.string.please_enter_username_and_password), Toast.LENGTH_SHORT).show();
+                }
+                // calling a method to register a user.
+                registerUser(userName, password, email);
             }
         });
     }
 
-    private void registerUser (String userName, String password, String email){
+    private void registerUser(String userName, String password, String email) {
         ParseUser user = new ParseUser();
         // Set the user's username and password,
         // which can be obtained from edit text
@@ -100,23 +100,26 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void goLoginActivity(){
+    private void goLoginActivity() {
         Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(i);
         finish();
     }
+
     private String setUserName(EditText userName) {
         return userName.getText().toString();
     }
+
     private String setPassword(EditText password) {
         return password.getText().toString();
     }
+
     private String setEmail(EditText email) {
         return email.getText().toString();
     }
 
-    public boolean onTouchEvent(MotionEvent touchevent){
-        switch(touchevent.getAction()){
+    public boolean onTouchEvent(MotionEvent touchevent) {
+        switch (touchevent.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 firstTouchX = touchevent.getX();
                 firstTouchY = touchevent.getY();
@@ -124,7 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
             case MotionEvent.ACTION_UP:
                 lastTouchX = touchevent.getX();
                 lastTouchY = touchevent.getY();
-                if(firstTouchX < lastTouchX){
+                if (firstTouchX < lastTouchX) {
                     Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(i);
                 }

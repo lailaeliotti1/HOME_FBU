@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -33,39 +32,39 @@
         android:id="@+id/UserNameEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="@string/Username"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
-        android:padding="15dp"
-        android:inputType="textPersonName"
         android:background="@drawable/et_custom"
+        android:hint="@string/Username"
+        android:inputType="textPersonName"
+        android:padding="15dp"
         android:textSize="15sp" />
 
     <EditText
         android:id="@+id/EmailEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="@string/e_mail"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
-        android:padding="15dp"
-        android:inputType="textEmailAddress"
         android:background="@drawable/et_custom"
+        android:hint="@string/e_mail"
+        android:inputType="textEmailAddress"
+        android:padding="15dp"
         android:textSize="15sp" />
 
     <EditText
         android:id="@+id/PassEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="@string/password"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
-        android:padding="15dp"
-        android:inputType="textPassword"
         android:background="@drawable/et_custom"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="15dp"
         android:textSize="15sp" />
 
     <RelativeLayout

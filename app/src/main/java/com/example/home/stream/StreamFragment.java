@@ -140,7 +140,7 @@ public class StreamFragment extends Fragment {
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 // Access a JSON array response with `json.jsonArray`
                 mHomes.addAll(HomeJsonParser.getListOfHomes(json.jsonObject));
-                if(mUserPreferences.getRecommendationSwitch() == true) {
+                if (mUserPreferences.getRecommendationSwitch() == true) {
                     UserPreferences recommendations = RecommendationHomes.getRecommendations(mUserPreferences);
                     populateRecommendations(recommendations);
                 }
@@ -154,32 +154,33 @@ public class StreamFragment extends Fragment {
             }
         });
     }
-    private void populateRecommendations(UserPreferences recommendations){
-            mHomesRec = new ArrayList<>();
-            List<Home> mHomesCopy = new ArrayList<>();
-            mHomesCopy.addAll(mHomes);//to iterate through mHomes while adding to mHomes
-            attomDataClient.getHomeTimeline(getContext(), recommendations, new JsonHttpResponseHandler() {
-                @Override
-                public void onSuccess(int statusCode, Headers headers, JSON json) {
-                    mHomesRec.addAll(HomeJsonParser.getListOfHomes(json.jsonObject));
-                    for(Home objRec: mHomesRec){
-                        objRec.setIsRecommended(true);
-                        // Checks if this recommendation is not in the current homes list.
-                        boolean isInCurrentHomeList = false;  // Assumes it's not in the list, until we see it being repeated
-                        for(Home objHome: mHomesCopy)
-                            if(objRec.getAddress().equals(objHome.getAddress()))
-                                isInCurrentHomeList = true;  // We see the home repeated, so it's not a new home
-                        // Add the recommended home if it's not in the list
-                        if (!isInCurrentHomeList)
-                            mHomes.add(objRec);
-                    }
-                }
 
-                @Override
-                public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-
+    private void populateRecommendations(UserPreferences recommendations) {
+        mHomesRec = new ArrayList<>();
+        List<Home> mHomesCopy = new ArrayList<>();
+        mHomesCopy.addAll(mHomes);//to iterate through mHomes while adding to mHomes
+        attomDataClient.getHomeTimeline(getContext(), recommendations, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                mHomesRec.addAll(HomeJsonParser.getListOfHomes(json.jsonObject));
+                for (Home objRec : mHomesRec) {
+                    objRec.setIsRecommended(true);
+                    // Checks if this recommendation is not in the current homes list.
+                    boolean isInCurrentHomeList = false;  // Assumes it's not in the list, until we see it being repeated
+                    for (Home objHome : mHomesCopy)
+                        if (objRec.getAddress().equals(objHome.getAddress()))
+                            isInCurrentHomeList = true;  // We see the home repeated, so it's not a new home
+                    // Add the recommended home if it's not in the list
+                    if (!isInCurrentHomeList)
+                        mHomes.add(objRec);
                 }
-            });
+            }
+
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+
+            }
+        });
 
     }
 }

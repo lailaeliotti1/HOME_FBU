@@ -35,14 +35,13 @@ public class HomeJsonParser {
     private static final String API_URL = "https://maps.googleapis.com/maps/api/streetview?";
 
 
-
-    public static Home getHomeFromJson (JSONObject jsonObject) throws JSONException {
+    public static Home getHomeFromJson(JSONObject jsonObject) throws JSONException {
         Home home = new Home();
         home.setAddress(jsonObject.getJSONObject(ADDRESS_PARAM).getString(ONELINE_PARAM));
         home.setPropertyType(jsonObject.getJSONObject(SUMMARY_PARAM).getString(PROPERTYTYPE_PARAM));
         home.setHomeNoOfBedrooms(jsonObject.getJSONObject(BUILDING_PARAM).getJSONObject(ROOMS_PARAM).getString(BED_PARAM));
         home.setHomeNoOfBathrooms(jsonObject.getJSONObject(BUILDING_PARAM).getJSONObject(ROOMS_PARAM).getString(BATHS_PARAM));
-        if(!jsonObject.getJSONObject(SUMMARY_PARAM).has(YEAR_PARAM))
+        if (!jsonObject.getJSONObject(SUMMARY_PARAM).has(YEAR_PARAM))
             home.setYearBuilt("N/A");
         else
             home.setYearBuilt(jsonObject.getJSONObject(SUMMARY_PARAM).getString(YEAR_PARAM));
@@ -54,23 +53,24 @@ public class HomeJsonParser {
 
         return home;
     }
-    public static ArrayList<Home> getListOfHomes(JSONObject jsonObject){
+
+    public static ArrayList<Home> getListOfHomes(JSONObject jsonObject) {
         ArrayList<Home> homes = new ArrayList<>();
         try {
             JSONArray jsonArray = jsonObject.getJSONArray(PROPERTY_PARAM);
             for (int i = 0; i < jsonArray.length(); i++) {
                 homes.add(HomeJsonParser.getHomeFromJson((JSONObject) jsonArray.get(i)));
             }
-        }
-        catch (JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return homes;
     }
-    public static String getStreetView(Home home){
+
+    public static String getStreetView(Home home) {
         LOCATION_LATLNG = "";
         LOCATION_LATLNG += home.getLatitude() + "," + home.getLongitude();
-        return API_URL+ SIZE_PARAM + SIZE_DIMENSIONS + STREET_LOCATION_PARAM + LOCATION_LATLNG +
+        return API_URL + SIZE_PARAM + SIZE_DIMENSIONS + STREET_LOCATION_PARAM + LOCATION_LATLNG +
                 APIKEY_PARAM;
     }
 }
