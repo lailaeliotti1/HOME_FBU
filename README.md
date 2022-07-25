@@ -116,8 +116,8 @@ This app is a way for users to search for new homes! It will use the AttomData, 
 #### List of network requests by screen
    - Preference Screen
       - (Read/GET) Query User Preferences
-         ```swift
-      ParseQuery<UserPreferences> query = new ParseQuery<UserPreferences>(UserPreferences.class);
+        ```
+        ParseQuery<UserPreferences> query = new ParseQuery<UserPreferences>(UserPreferences.class);
         query.setLimit(1);
         query.getFirstInBackground(new GetCallback<UserPreferences>() {
             public void done(UserPreferences userPreferences, ParseException e) {
@@ -126,7 +126,6 @@ This app is a way for users to search for new homes! It will use the AttomData, 
                     mZipcodeEditText.setText(String.valueOf(mUserPreferences.getZipcode()));
                     mBedroomTextView.setText(String.valueOf(mUserPreferences.getNoOfBedrooms()),false);
                     mPropertyType.setText(mUserPreferences.getPropertyType(), false);
-
                     mRecommendationSwitch.setChecked(mUserPreferences.getRecommendationSwitch());
                     //set user pref as initial stuff
                 } else {
@@ -134,7 +133,7 @@ This app is a way for users to search for new homes! It will use the AttomData, 
                 }
             }
         });
-         ```
+        ```
 #### Existing API Endpoints
 ##### AttomData Real Estate API
 - Base URL -[(https://api.gateway.attomdata.com/propertyapi/v1.0.0/property)]
