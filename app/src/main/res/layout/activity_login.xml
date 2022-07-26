@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LoginConsLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".login.LoginActivity">
@@ -90,7 +91,7 @@
         android:layout_height="30dp"
         android:layout_above="@id/SwipeRightTextView"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/ic_arrow_right"
         app:layout_constraintStart_toEndOf="@+id/SwipeRightTextView"

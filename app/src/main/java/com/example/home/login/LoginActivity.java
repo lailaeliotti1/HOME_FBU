@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,9 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.home.MainActivity;
 import com.example.home.R;
+import com.google.android.material.snackbar.Snackbar;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -28,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText metPassword;
     private ImageView mivArrow;
     private TextView mtvSwipeRight;
+    private ConstraintLayout mConstraintLayout;
     private float firstTouchX, lastTouchX, firstTouchY, lastTouchY;
 
 
@@ -47,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         metPassword = findViewById(R.id.PassEditText);
         mivArrow = findViewById(R.id.ArrowImageView);
         mtvSwipeRight = findViewById(R.id.SwipeRightTextView);
+        mConstraintLayout = findViewById(R.id.LoginConsLayout);
 
 
         mbtnLogin.setOnClickListener(new View.OnClickListener() {
@@ -65,11 +71,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void done(ParseUser user, ParseException e) {
                 if (e != null) {
-                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    //shakes edit text boxes if incorrect user/password
+                    Animation shake = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.shake);
+                    metUsername.startAnimation(shake);
+                    metPassword.startAnimation(shake);
+                    Snackbar.make(mConstraintLayout, e.getMessage(), Snackbar.LENGTH_SHORT).show();
                     return;
                 }
+                Toast.makeText(LoginActivity.this, "SUCCESS", Toast.LENGTH_SHORT).show();
                 goMainActivity();
-                Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+
             }
         });
     }
