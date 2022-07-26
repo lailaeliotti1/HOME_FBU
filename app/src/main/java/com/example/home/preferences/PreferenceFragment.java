@@ -23,6 +23,7 @@ import com.example.home.R;
 import com.example.home.login.LoginActivity;
 import com.example.home.models.User;
 import com.example.home.models.UserPreferences;
+import com.google.android.material.snackbar.Snackbar;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -96,7 +97,7 @@ public class PreferenceFragment extends Fragment {
         mRecommendationSwitch = view.findViewById(R.id.RecommendationsSwitch);
         mRecommendationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                Toast.makeText(getContext(), "Recommendations ON ", Toast.LENGTH_SHORT).show();
+                Snackbar.make(view, "RECOMMENDATIONS: ON", 500).show();
                 mUserPreferences.setRecommendationSwitch(isChecked);
             }
         });
@@ -107,7 +108,7 @@ public class PreferenceFragment extends Fragment {
                 mZipCodeText = mZipcodeEditText.getText().toString();
                 mUserPreferences.setZipcode(mZipCodeText);
                 mUserPreferences.saveInBackground();
-                Toast.makeText(getContext(), "Preferences Saved", Toast.LENGTH_SHORT).show();
+                Snackbar.make(view, "Preferences Saved", Snackbar.LENGTH_SHORT).show();
                 ((MainActivity) getActivity()).startStream(mUserPreferences);
             }
         });
@@ -120,15 +121,12 @@ public class PreferenceFragment extends Fragment {
                     mZipcodeEditText.setText(String.valueOf(mUserPreferences.getZipcode()));
                     mBedroomTextView.setText(String.valueOf(mUserPreferences.getNoOfBedrooms()), false);
                     mPropertyType.setText(mUserPreferences.getPropertyType(), false);
-
                     mRecommendationSwitch.setChecked(mUserPreferences.getRecommendationSwitch());
-                    //set user pref as initial stuff
                 } else {
                     // Something is wrong
                 }
             }
         });
-
     }
 
     public void initBedroomTextView() {

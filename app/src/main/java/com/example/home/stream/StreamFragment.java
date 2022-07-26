@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.home.AttomData.AttomDataClient;
@@ -150,6 +151,7 @@ public class StreamFragment extends Fragment {
 
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                Toast.makeText(getContext(), "No Homes found", Toast.LENGTH_SHORT).show();
 
             }
         });
