@@ -40,15 +40,15 @@ import okhttp3.Headers;
 
 
 public class StreamFragment extends Fragment {
-    public HomeAdapter adapter;
-    public RecyclerView streamRecyclerView;
-    public LinearLayout StreamLinearLayout;
+    public HomeAdapter mAdapter;
+    public RecyclerView mStreamRecyclerView;
+    public LinearLayout mStreamLinearLayout;
     private String zipCode;
     private List<Home> mHomes;
     private List<Home> mHomesRec;
     private UserPreferences mUserPreferences;
-    private AttomDataClient attomDataClient = new AttomDataClient();
-    private ZipcodeClient zipcodeClient = new ZipcodeClient();
+    private AttomDataClient mAttomDataClient = new AttomDataClient();
+    private ZipcodeClient mZipcodeClient = new ZipcodeClient();
     MenuItem mActionProgressItem;
     MainActivity mMainActivity;
 
@@ -87,14 +87,14 @@ public class StreamFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        streamRecyclerView = view.findViewById(R.id.HomesRecyclerView);
-        StreamLinearLayout = view.findViewById(R.id.StreamLinearLayout);
+        mStreamRecyclerView = view.findViewById(R.id.HomesRecyclerView);
+        mStreamLinearLayout = view.findViewById(R.id.StreamLinearLayout);
         //initializes list of homes and adapter
         mHomes = new ArrayList<>();
         //recycler view setup
-        adapter = new HomeAdapter(getContext(), mHomes);
-        streamRecyclerView.setAdapter(adapter);
-        streamRecyclerView.setLayoutManager(new LinearLayoutManager(StreamLinearLayout.getContext()));
+        mAdapter = new HomeAdapter(getContext(), mHomes);
+        mStreamRecyclerView.setAdapter(mAdapter);
+        mStreamRecyclerView.setLayoutManager(new LinearLayoutManager(mStreamLinearLayout.getContext()));
         ParseQuery<ParseObject> query = new ParseQuery<>("UserPreferences");
         query.whereEqualTo("user", User.getCurrentUser());
         query.setLimit(1);
@@ -117,7 +117,7 @@ public class StreamFragment extends Fragment {
     }
 
     private void populateZipCode(String zipCode) {
-        zipcodeClient.getZipcodeClient(getContext(), String.valueOf(mUserPreferences.getZipcode()), new JsonHttpResponseHandler() {
+        mZipcodeClient.getZipcodeClient(getContext(), String.valueOf(mUserPreferences.getZipcode()), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 try {
@@ -136,7 +136,7 @@ public class StreamFragment extends Fragment {
 
     private void populateHomeTimeline() {
         ParseUser user = ParseUser.getCurrentUser();
-        attomDataClient.getHomeTimeline(getContext(), mUserPreferences, new JsonHttpResponseHandler() {
+        mAttomDataClient.getHomeTimeline(getContext(), mUserPreferences, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 // Access a JSON array response with `json.jsonArray`
@@ -146,7 +146,7 @@ public class StreamFragment extends Fragment {
                     populateRecommendations(recommendations);
                 }
                 mActionProgressItem.setVisible(false);
-                adapter.notifyDataSetChanged();
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -161,7 +161,7 @@ public class StreamFragment extends Fragment {
         mHomesRec = new ArrayList<>();
         List<Home> mHomesCopy = new ArrayList<>();
         mHomesCopy.addAll(mHomes);//to iterate through mHomes while adding to mHomes
-        attomDataClient.getHomeTimeline(getContext(), recommendations, new JsonHttpResponseHandler() {
+        mAttomDataClient.getHomeTimeline(getContext(), recommendations, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 mHomesRec.addAll(HomeJsonParser.getListOfHomes(json.jsonObject));
