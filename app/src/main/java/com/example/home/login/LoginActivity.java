@@ -2,7 +2,6 @@ package com.example.home.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -24,14 +23,13 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 
 public class LoginActivity extends AppCompatActivity {
-    private String TAG = "Login Activity";
-    private TextView mtvTitle;
-    private TextView mtvSubtitle;
-    private Button mbtnLogin;
-    private EditText metUsername;
-    private EditText metPassword;
-    private ImageView mivArrow;
-    private TextView mtvSwipeRight;
+    private TextView mTitleTextView;
+    private TextView mSubtitleTextView;
+    private Button mLoginButton;
+    private EditText mUsernameEditText;
+    private EditText mPasswordEditText;
+    private ImageView mArrowImageView;
+    private TextView mSwipeRightTextView;
     private ConstraintLayout mConstraintLayout;
     private float firstTouchX, lastTouchX, firstTouchY, lastTouchY;
 
@@ -45,21 +43,20 @@ public class LoginActivity extends AppCompatActivity {
             goMainActivity();
         }
 
-        mtvTitle = findViewById(R.id.TitleTextView);
-        mtvSubtitle = findViewById(R.id.SubtitleTextView);
-        mbtnLogin = findViewById(R.id.LoginButton);
-        metUsername = findViewById(R.id.EmailEditText);
-        metPassword = findViewById(R.id.PassEditText);
-        mivArrow = findViewById(R.id.ArrowImageView);
-        mtvSwipeRight = findViewById(R.id.SwipeRightTextView);
+        mTitleTextView = findViewById(R.id.TitleTextView);
+        mSubtitleTextView = findViewById(R.id.SubtitleTextView);
+        mLoginButton = findViewById(R.id.LoginButton);
+        mUsernameEditText = findViewById(R.id.EmailEditText);
+        mPasswordEditText = findViewById(R.id.PassEditText);
+        mArrowImageView = findViewById(R.id.ArrowImageView);
+        mSwipeRightTextView = findViewById(R.id.SwipeRightTextView);
         mConstraintLayout = findViewById(R.id.LoginConsLayout);
 
-
-        mbtnLogin.setOnClickListener(new View.OnClickListener() {
+        mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = metUsername.getText().toString();
-                String password = metPassword.getText().toString();
+                String username = mUsernameEditText.getText().toString();
+                String password = mPasswordEditText.getText().toString();
                 loginUser(username, password);
 
             }
@@ -73,14 +70,13 @@ public class LoginActivity extends AppCompatActivity {
                 if (e != null) {
                     //shakes edit text boxes if incorrect user/password
                     Animation shake = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.shake);
-                    metUsername.startAnimation(shake);
-                    metPassword.startAnimation(shake);
+                    mUsernameEditText.startAnimation(shake);
+                    mPasswordEditText.startAnimation(shake);
                     Snackbar.make(mConstraintLayout, e.getMessage(), Snackbar.LENGTH_SHORT).show();
                     return;
                 }
                 Toast.makeText(LoginActivity.this, "SUCCESS", Toast.LENGTH_SHORT).show();
                 goMainActivity();
-
             }
         });
     }

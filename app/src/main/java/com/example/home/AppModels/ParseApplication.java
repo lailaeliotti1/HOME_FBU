@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.res.Resources;
 
 import com.example.home.R;
+import com.example.home.login.RegisterActivity;
 import com.example.home.models.Home;
 import com.example.home.models.User;
 import com.example.home.models.UserPreferences;

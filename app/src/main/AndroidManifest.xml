@@ -43,7 +43,6 @@
         <activity
             android:name=".login.RegisterActivity"
             android:exported="true">
-
         </activity>
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -22,24 +22,14 @@ public class User extends ParseUser {
         return mUserName;
     }
 
-    public void setUserName(String mUserName) {
-        this.mUserName = mUserName;
-    }
 
     public String getEmail() {
         return mEmail;
     }
 
-    public void setEmail(String mEmail) {
-        this.mEmail = mEmail;
-    }
 
     public String getPassword() {
         return mPassword;
-    }
-
-    public void setPassword(String mPassword) {
-        this.mPassword = mPassword;
     }
 
 }

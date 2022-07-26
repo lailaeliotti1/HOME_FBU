@@ -30,7 +30,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
 import com.example.home.R;
 import com.example.home.login.LoginActivity;
-import com.example.home.models.User;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
@@ -39,12 +38,12 @@ import java.io.File;
 
 public class ProfileFragment extends Fragment {
 
-    private ImageView ProfilePicImageView;
-    private TextView ProfileUsernameTextView;
-    private TextView ProfileEmailTextView;
-    private ImageButton AddProfileImageButton;
+    private ImageView mProfilePicImageView;
+    private TextView mProfileUsernameTextView;
+    private TextView mProfileEmailTextView;
+    private ImageButton mAddProfileImageButton;
     private Button mLogoutButton;
-    private ParseUser user;
+    private ParseUser mUser;
 
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     private File photoFile;
@@ -53,7 +52,7 @@ public class ProfileFragment extends Fragment {
 
     public ProfileFragment(ParseUser user) {
         // Required empty public constructor
-        this.user = user;
+        this.mUser = user;
     }
 
     @Override
@@ -69,13 +68,13 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ProfilePicImageView = view.findViewById(R.id.ProfilePicImageView);
-        ProfileUsernameTextView = view.findViewById(R.id.ProfileUsernameTextView);
-        ProfileEmailTextView = view.findViewById(R.id.ProfileEmailTextView);
-        AddProfileImageButton = view.findViewById(R.id.ProfileAddProfilePicImageView);
+        mProfilePicImageView = view.findViewById(R.id.ProfilePicImageView);
+        mProfileUsernameTextView = view.findViewById(R.id.ProfileUsernameTextView);
+        mProfileEmailTextView = view.findViewById(R.id.ProfileEmailTextView);
+        mAddProfileImageButton = view.findViewById(R.id.ProfileAddProfilePicImageView);
 
-        ProfileUsernameTextView.setText("Username: " + user.getUsername());
-        ProfileEmailTextView.setText("Email: " + user.getString("email"));
+        mProfileUsernameTextView.setText("Username: " + mUser.getUsername());
+        mProfileEmailTextView.setText("Email: " + mUser.getString("email"));
 
         mLogoutButton = view.findViewById(R.id.LogoutButton);
         mLogoutButton.setOnClickListener(new View.OnClickListener() {
@@ -86,16 +85,16 @@ public class ProfileFragment extends Fragment {
                 startActivity(i);
             }
         });
-        ParseFile image = user.getParseFile("profileImage");
+        ParseFile image = mUser.getParseFile("profileImage");
         if (image != null) {
             Glide.with(this)
                     .load(image.getUrl())
                     .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
                     .circleCrop()
-                    .into(ProfilePicImageView);
+                    .into(mProfilePicImageView);
         }
 
-        AddProfileImageButton.setOnClickListener(new View.OnClickListener() {
+        mAddProfileImageButton.setOnClickListener(new View.OnClickListener() {
             Context context = getContext();
 
             @Override
@@ -122,7 +121,6 @@ public class ProfileFragment extends Fragment {
         File mediaStorageDir = new File(getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), TAG);
 
         if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) {
-            Log.d(TAG, "failed to create directory");
         }
         File file = new File(mediaStorageDir.getPath() + File.separator + fileName);
         return file;
@@ -135,18 +133,18 @@ public class ProfileFragment extends Fragment {
                 Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
                 // what should width be here?
                 Bitmap resizedBitmap = BitmapScaler.scaleToFitWidth(takenImage, 100);
-                ProfilePicImageView.setImageBitmap(resizedBitmap);
-                user.put("profileImage", new ParseFile(photoFile));
+                mProfilePicImageView.setImageBitmap(resizedBitmap);
+                mUser.put("profileImage", new ParseFile(photoFile));
                 try {
-                    user.save();
+                    mUser.save();
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
                 Glide.with(this)
-                        .load(user.getParseFile("profileImage").getUrl())
+                        .load(mUser.getParseFile("profileImage").getUrl())
                         .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
                         .circleCrop()
-                        .into(ProfilePicImageView);
+                        .into(mProfilePicImageView);
             } else {
                 Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }

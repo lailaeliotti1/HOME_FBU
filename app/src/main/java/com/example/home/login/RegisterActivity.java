@@ -3,7 +3,6 @@ package com.example.home.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +23,7 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 public class RegisterActivity extends AppCompatActivity {
-    private TextView LogoTextView;
+    private TextView mTitleTextView;
     private TextView mSubtitleTextView;
     private EditText mUsernameEditText;
     private EditText mEmailEditText;
@@ -32,7 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
     private ImageView mBackArrowImageView;
     private TextView mSwipeLeftTextView;
     private RelativeLayout mRegisterRelativeLayout;
-    private Button mbtnRegister;
+    private Button mRegisterButton;
     private float firstTouchX, lastTouchX, firstTouchY, lastTouchY;
 
     @Override
@@ -41,9 +40,9 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         ParseInstallation.getCurrentInstallation().saveInBackground();
 
-        LogoTextView = findViewById(R.id.LogoTextView);
+        mTitleTextView = findViewById(R.id.LogoTextView);
         mSubtitleTextView = findViewById(R.id.SubtitleTextView);
-        mbtnRegister = findViewById(R.id.RegisterButton);
+        mRegisterButton = findViewById(R.id.RegisterButton);
         mEmailEditText = findViewById(R.id.EmailEditText);
         mUsernameEditText = findViewById(R.id.UserNameEditText);
         mPasswordEditText = findViewById(R.id.PassEditText);
@@ -51,13 +50,9 @@ public class RegisterActivity extends AppCompatActivity {
         mRegisterRelativeLayout = findViewById(R.id.RegisterRelativeLayout);
         mSwipeLeftTextView = findViewById(R.id.SwipeLeftTextView);
 
-        if (ParseUser.getCurrentUser() != null) {
-            goLoginActivity();
-        }
-        mbtnRegister.setOnClickListener(new View.OnClickListener() {
+        mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //goLoginActivity();
                 String userName = setUserName(mUsernameEditText);
                 String password = setPassword(mPasswordEditText);
                 String email = setEmail(mEmailEditText);
@@ -72,13 +67,12 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registerUser(String userName, String password, String email) {
-        ParseUser user = new ParseUser();
+        User user = new User();
         // Set the user's username and password,
         // which can be obtained from edit text
         user.setUsername(userName);
         user.setPassword(password);
         user.setEmail(email);
-
         // calling a method to register the user.
         user.signUpInBackground(new SignUpCallback() {
             @Override
@@ -93,13 +87,11 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     // if we get any error then we are logging out
                     // our user and displaying an error message
-                    ParseUser.logOut();
                     Toast.makeText(RegisterActivity.this, "Fail to Register User..", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
-
     private void goLoginActivity() {
         Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(i);

@@ -1,12 +1,10 @@
 package com.example.home.preferences;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +18,6 @@ import android.widget.Toast;
 
 import com.example.home.MainActivity;
 import com.example.home.R;
-import com.example.home.login.LoginActivity;
 import com.example.home.models.User;
 import com.example.home.models.UserPreferences;
 import com.google.android.material.snackbar.Snackbar;
@@ -38,19 +35,15 @@ public class PreferenceFragment extends Fragment {
 
     private AutoCompleteTextView mBedroomTextView;
     private ArrayAdapter bedroomAdapter;
-    MainActivity mainActivity;
+    private MainActivity mMainActivity;
     private AutoCompleteTextView mPropertyType;
     private ArrayAdapter mPropertyTypeAdapter;
     private EditText mZipcodeEditText;
     private Button mSaveButton;
     private Switch mRecommendationSwitch;
-
     private int mZipCode;
-
-    private Bundle latlngBundle;
     private String mLatitude;
     private String mLongitude;
-
     public static final String FORMAT_ZIP = "info.json";
     public static final String DEGREES_ZIP = "degrees";
     private String mZipCodeText;
@@ -64,7 +57,7 @@ public class PreferenceFragment extends Fragment {
 
     public PreferenceFragment(MainActivity mainActivity) {
         // Required empty public constructor
-        this.mainActivity = mainActivity;
+        this.mMainActivity = mainActivity;
     }
 
     @Override
