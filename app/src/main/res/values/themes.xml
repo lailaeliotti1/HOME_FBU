@@ -14,6 +14,6 @@
         <!-- Customize your theme here. -->
     </style>
     <style name="TextAppearance.AppCompat.Widget.ActionBar.Title" parent="@android:style/TextAppearance">
-        <item name="fontFamily">monospace</item>
+        <item name="fontFamily">@font/pt_sans_bold</item>
     </style>
 </resources>

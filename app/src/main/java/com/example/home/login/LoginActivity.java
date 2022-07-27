@@ -27,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView mSubtitleTextView;
     private Button mLoginButton;
     private EditText mUsernameEditText;
+
     private EditText mPasswordEditText;
     private ImageView mArrowImageView;
     private TextView mSwipeRightTextView;

@@ -27,6 +27,7 @@ import com.example.home.ZipCode.ZipcodeParser;
 import com.example.home.models.Home;
 import com.example.home.models.User;
 import com.example.home.models.UserPreferences;
+import com.google.android.material.transition.MaterialFadeThrough;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -71,6 +72,10 @@ public class StreamFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        setExitTransition(new MaterialFadeThrough());
+        setReenterTransition(new MaterialFadeThrough());
+        setReturnTransition(new MaterialFadeThrough());
+        setEnterTransition(new MaterialFadeThrough());
     }
 
     @Override
