@@ -21,6 +21,7 @@ import com.example.home.R;
 import com.example.home.models.User;
 import com.example.home.models.UserPreferences;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.transition.MaterialFadeThrough;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -63,7 +64,10 @@ public class PreferenceFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setExitTransition(new MaterialFadeThrough());
+        setReenterTransition(new MaterialFadeThrough());
+        setReturnTransition(new MaterialFadeThrough());
+        setEnterTransition(new MaterialFadeThrough());
         mUserPreferences.setUser((User) User.getCurrentUser());
         //grabbed from server
     }

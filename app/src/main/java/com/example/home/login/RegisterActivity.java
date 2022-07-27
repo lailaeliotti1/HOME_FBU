@@ -4,23 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.home.R;
-//import com.example.home.models.User;
 import com.example.home.models.User;
-import com.parse.ParseException;
 import com.parse.ParseInstallation;
-import com.parse.ParseUser;
-import com.parse.SignUpCallback;
+
 
 public class RegisterActivity extends AppCompatActivity {
     private TextView mTitleTextView;
@@ -50,19 +44,16 @@ public class RegisterActivity extends AppCompatActivity {
         mRegisterRelativeLayout = findViewById(R.id.RegisterRelativeLayout);
         mSwipeLeftTextView = findViewById(R.id.SwipeLeftTextView);
 
-        mRegisterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String userName = setUserName(mUsernameEditText);
-                String password = setPassword(mPasswordEditText);
-                String email = setEmail(mEmailEditText);
-                // checking if the entered text is empty or not.
-                if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
-                    Toast.makeText(RegisterActivity.this, getString(R.string.please_enter_username_and_password), Toast.LENGTH_SHORT).show();
-                }
-                // calling a method to register a user.
-                registerUser(userName, password, email);
+        mRegisterButton.setOnClickListener(v -> {
+            String userName = setUserName(mUsernameEditText);
+            String password = setPassword(mPasswordEditText);
+            String email = setEmail(mEmailEditText);
+            // checking if the entered text is empty or not.
+            if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
+                Toast.makeText(RegisterActivity.this, getString(R.string.please_enter_username_and_password), Toast.LENGTH_SHORT).show();
             }
+            // calling a method to register a user.
+            registerUser(userName, password, email);
         });
     }
 
@@ -74,24 +65,22 @@ public class RegisterActivity extends AppCompatActivity {
         user.setPassword(password);
         user.setEmail(email);
         // calling a method to register the user.
-        user.signUpInBackground(new SignUpCallback() {
-            @Override
-            public void done(ParseException e) {
-                // on user registration checking if
-                // the error is null or not.
-                if (e == null) {
-                    // if the error is null we are displaying a toast message and
-                    // redirecting our user to new activity and passing the user name.
-                    Toast.makeText(RegisterActivity.this, "User Registered successfully", Toast.LENGTH_SHORT).show();
-                    goLoginActivity();
-                } else {
-                    // if we get any error then we are logging out
-                    // our user and displaying an error message
-                    Toast.makeText(RegisterActivity.this, "Fail to Register User..", Toast.LENGTH_SHORT).show();
-                }
+        user.signUpInBackground(e -> {
+            // on user registration checking if
+            // the error is null or not.
+            if (e == null) {
+                // if the error is null we are displaying a toast message and
+                // redirecting our user to new activity and passing the user name.
+                Toast.makeText(RegisterActivity.this, "User Registered successfully", Toast.LENGTH_SHORT).show();
+                goLoginActivity();
+            } else {
+                // if we get any error then we are logging out
+                // our user and displaying an error message
+                Toast.makeText(RegisterActivity.this, "Fail to Register User..", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
     private void goLoginActivity() {
         Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(i);

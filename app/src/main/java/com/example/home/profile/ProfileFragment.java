@@ -30,6 +30,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
 import com.example.home.R;
 import com.example.home.login.LoginActivity;
+import com.google.android.material.transition.MaterialFadeThrough;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
@@ -58,6 +59,10 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setExitTransition(new MaterialFadeThrough());
+        setReenterTransition(new MaterialFadeThrough());
+        setReturnTransition(new MaterialFadeThrough());
+        setEnterTransition(new MaterialFadeThrough());
     }
 
     @Override
@@ -73,8 +78,8 @@ public class ProfileFragment extends Fragment {
         mProfileEmailTextView = view.findViewById(R.id.ProfileEmailTextView);
         mAddProfileImageButton = view.findViewById(R.id.ProfileAddProfilePicImageView);
 
-        mProfileUsernameTextView.setText("Username: " + mUser.getUsername());
-        mProfileEmailTextView.setText("Email: " + mUser.getString("email"));
+        mProfileUsernameTextView.setText(mUser.getUsername());
+        mProfileEmailTextView.setText(mUser.getString("email"));
 
         mLogoutButton = view.findViewById(R.id.LogoutButton);
         mLogoutButton.setOnClickListener(new View.OnClickListener() {
